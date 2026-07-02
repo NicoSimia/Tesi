@@ -1,0 +1,38 @@
+# File temporanei LaTeX e Latexmk
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+*.lof
+*.lot
+*.xdv
+*.lol
+
+# File generati per i glossari
+*.acn
+*.acr
+*.alg
+*.glg
+*.glo
+*.gls
+*.ist
+
+# File generati da minted (codice)
+_minted-*/
+*.pyg
+
+# File generati da pdfx
+*.xmpi
+
+# File di sistema macOS
+.DS_Store
+
+# (Opzionale) Ignora il PDF generato localmente se non vuoi tracciarlo su Git
+thesis.pdf

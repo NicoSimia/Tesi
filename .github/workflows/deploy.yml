@@ -1,0 +1,46 @@
+name: Compile and Publish
+
+on:
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout del repository
+        uses: actions/checkout@v4
+
+      - name: Compila il PDF (LaTeX)
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: thesis.tex
+          args: -pdf -shell-escape -file-line-error -interaction=nonstopmode
+          extra_system_packages: "py3-pygments"
+
+      - name: Prepara i file per le GitHub Pages
+        run: |
+          mkdir public
+          cp thesis.pdf public/NicolaSimionato.pdf
+
+      - name: Pubblica l'artefatto
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'public'
+
+  deploy:
+    needs: build-and-deploy
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy su GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
