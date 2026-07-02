@@ -20,7 +20,7 @@ jobs:
       - name: Compila il PDF (LaTeX)
         uses: xu-cheng/latex-action@v3
         with:
-          root_file: thesis.tex
+          root_file: main.tex
           args: -pdf -shell-escape -file-line-error -interaction=nonstopmode
           extra_system_packages: "py3-pygments"
 
