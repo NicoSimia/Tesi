@@ -1,0 +1,43 @@
+\chapter{Svolgimento dello stage}
+
+\section{Metodo di lavoro}
+
+In questa sezione viene descritto l'approccio organizzativo adottato durante l'intero periodo di stage, con particolare attenzione alle modalità di pianificazione delle attività, alla comunicazione con il tutor aziendale e agli strumenti utilizzati per monitorare l'avanzamento del progetto.
+
+\subsection{Pianificazione e interazione con il tutor}
+
+Descrizione dell'organizzazione delle giornate e delle settimane lavorative, della frequenza e delle modalità degli incontri con il tutor aziendale, delle revisioni periodiche dello stato di avanzamento e della collaborazione quotidiana con il secondo stagista. Verrà inoltre illustrato l'utilizzo del file condiviso \textit{Todo}, impiegato come strumento informale ma efficace per il monitoraggio delle attività aperte e completate, evidenziandone i vantaggi in termini di praticità e i limiti rispetto a sistemi di tracciamento più strutturati.
+
+\subsection{Versionamento e \textit{workflow} collaborativo}
+
+Descrizione dell'utilizzo di \textit{Git} e \textit{Bitbucket} per la gestione del codice sorgente, dell'organizzazione dei rami di sviluppo, delle operazioni di \textit{merge} tra il lavoro dei due stagisti e delle modalità di rilascio progressivo delle modifiche. Verrà inoltre evidenziato come la struttura dei messaggi di \textit{commit} abbia costituito una forma di documentazione incrementale dell'evoluzione del progetto, compensando l'assenza di un sistema dedicato di \textit{issue tracking}.
+
+\section{Attività svolte}
+
+Le attività sviluppate nel corso delle otto settimane di stage vengono presentate secondo una suddivisione per macroaree tematiche, anziché seguire una rigida successione cronologica. Tale organizzazione permette di mettere maggiormente in risalto le scelte progettuali e le soluzioni tecniche adottate durante lo sviluppo.
+
+\subsection{Stabilizzazione del progetto su Unity 6}
+
+La prima fase dello stage è stata dedicata all'aggiornamento dell'ambiente di sviluppo mediante la migrazione del progetto a \textit{Unity 6}. In questo contesto sono stati individuati e risolti numerosi problemi di compatibilità, tra cui errori di rendering delle immagini dovuti all'inversione dell'ordine di visualizzazione e malfunzionamenti delle \textit{shader} causati dal nuovo motore grafico. Verrà descritto il processo di analisi adottato per individuare le cause dei problemi e le soluzioni implementate, con particolare attenzione agli aspetti tecnici che hanno contribuito maggiormente alla crescita professionale maturata durante lo stage.
+
+\subsection{Implementazione della navigazione da controller}
+
+L'attività principale dello stage ha riguardato la progettazione e l'implementazione della navigazione completa tramite \textit{gamepad}, inizialmente sviluppata utilizzando un controller \textit{PlayStation 4}, su tutte le scene del gioco: \textit{Authentication}, \textit{Inn}, \textit{Showcase}, \textit{DeckBuilder}, \textit{InventoryShop} e \textit{DungeonGame}. Verranno illustrate le principali sfide affrontate durante lo sviluppo, tra cui la progettazione di una logica unificata per la funzione \textit{Back}, l'introduzione dei pulsanti \textit{L1} e \textit{R1} nella schermata \textit{DeckBuilder}, la realizzazione del cursore grafico a forma di mano per evidenziare il focus corrente e le strategie adottate per adattare al controller un'interfaccia originariamente progettata per dispositivi \textit{mouse} e \textit{touch}. Sarà infine approfondito almeno un caso particolarmente significativo dal punto di vista progettuale e implementativo.
+
+\subsection{Test su piattaforme multiple e certificazione Nintendo Switch}
+
+Le attività di verifica hanno interessato diverse piattaforme di destinazione, tra cui Android, iOS, macOS e \textit{Nintendo Switch}, utilizzando il relativo \textit{dev-kit}. Particolare attenzione verrà dedicata al processo di certificazione per Nintendo Switch, durante il quale è stato individuato il superamento del limite di \textit{Write Access Count}. Verranno descritte le attività di analisi delle cause, le ottimizzazioni introdotte per ridurre il numero di accessi in scrittura e il successivo superamento del requisito di certificazione. Sarà inoltre presentata la realizzazione di un \textit{logger} grafico integrato nell'interfaccia del gioco, sviluppato per rendere consultabili i messaggi di log direttamente sulla console, in assenza di una console di sviluppo tradizionale. Questa soluzione si è rivelata fondamentale per l'attività di debugging sull'hardware di destinazione.
+
+\subsection{Implementazione del Secret Dungeon}
+
+Nella fase conclusiva dello stage è stata progettata e sviluppata una nuova funzionalità di gioco denominata \textit{Secret Dungeon}, concepita come contenuto aggiuntivo rispetto all'esperienza esistente. Tale attività si distingue dalle precedenti, maggiormente orientate alla manutenzione e al \textit{porting}, in quanto ha richiesto un lavoro di progettazione funzionale, analisi dei requisiti e integrazione con l'architettura software già presente. Verranno illustrate le principali scelte implementative e il modo in cui la nuova funzionalità è stata integrata con il sistema di eventi e con il meccanismo di navigazione già sviluppato. Si evidenzierà inoltre come il lavoro sia rimasto parzialmente incompleto a causa della mancanza di alcune risorse grafiche (\textit{assets}), ottenendo comunque una versione pienamente giocabile ma non definitiva.
+
+\section{Risultati raggiunti}
+
+\subsection{Visione d'insieme del prodotto}
+
+Al termine dello stage il prodotto risulta completamente navigabile tramite controller in tutte le principali scene di gioco, compatibile con la piattaforma \textit{Nintendo Switch} e predisposto per l'integrazione del nuovo contenuto rappresentato dal \textit{Secret Dungeon}. Verrà analizzata l'esperienza d'uso dal punto di vista dell'utente finale, mettendo in evidenza la coerenza dell'interfaccia e le soluzioni adottate per adattare un sistema originariamente progettato per \textit{mouse} e \textit{touch} a un paradigma di interazione basato esclusivamente sul controller.
+
+\subsection{Copertura dei requisiti e risultati quantitativi}
+
+In conclusione verranno presentati i principali risultati quantitativi ottenuti durante il progetto: numero di scene rese completamente navigabili tramite controller, numero di attività completate all'interno del file \textit{Todo}, stima delle righe di codice sviluppate o modificate, piattaforme sulle quali il gioco è stato testato con successo e requisiti di certificazione per \textit{Nintendo Switch} soddisfatti. Tali informazioni saranno sintetizzate mediante una tabella riepilogativa che metterà in relazione gli obiettivi definiti nel Capitolo~2 con i risultati effettivamente conseguiti.
