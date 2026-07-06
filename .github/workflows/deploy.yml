@@ -27,7 +27,14 @@ jobs:
       - name: Prepara i file per le GitHub Pages
         run: |
           mkdir public
+
+          echo "=== PDF prodotti ==="
+          find . -name "*.pdf"
+          
           cp thesis.pdf public/NicolaSimionato.pdf
+
+          echo "=== Contenuto public ==="
+          ls -lah public
 
       - name: Pubblica l'artefatto
         uses: actions/upload-pages-artifact@v3
