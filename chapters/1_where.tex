@@ -3,26 +3,77 @@
 
 \section{Identità e contesto di Eggon}
 
-Presentazione dello studio di sviluppo videoludico indipendente \textit{Eggon}: dimensioni del team, tipologia di prodotti realizzati, posizionamento nel mercato \textit{consumer} su piattaforme digitali quali \textit{Steam}, \textit{App Store}, \textit{Google Play} e \textit{Nintendo eShop}. Le informazioni verranno riportate direttamente sulla base di quanto osservato durante il periodo di stage, tenendo conto che il team responsabile dello sviluppo originario del videogioco non faceva più parte dell'azienda.
+% Presentazione dello studio di sviluppo videoludico indipendente \textit{Eggon}: dimensioni del team, tipologia di prodotti realizzati, posizionamento nel mercato \textit{consumer} su piattaforme digitali quali \textit{Steam}, \textit{App Store}, \textit{Google Play} e \textit{Nintendo eShop}. Le informazioni verranno riportate direttamente sulla base di quanto osservato durante il periodo di stage, tenendo conto che il team responsabile dello sviluppo originario del videogioco non faceva più parte dell'azienda.
 
-Eggon è una \textit{software house} italiana, fondata a fine 2015 da Gianpaolo Ferrarin e Fulvio Menegozzo nel loro ritorno a Padova dopo un'esperienza 
-startupper negli Stati Uniti, e conta circa 30 persona che vi lavorano.
+Eggon è una \textit{software house} italiana, fondata a fine 2015 da Gianpaolo Ferrarin e Fulvio Menegozzo nel loro ritorno a Padova dopo un'esperienza da \textit{startupper} negli 
+Stati Uniti, e conta circa 30 persone che vi lavorano.
 Oggi è una realtà che opera su tre settori chiave:
-- Digital Health, che con l'app MioPEDIATRA ha connesso centinaia di migliaia di genitori con i pediatri, facilitandone le operazioni come prescrizioni, appuntamenti e tanto altro.
-- IoT e Industria 5.0, con software che puntano sull'efficientamento produttivo ed energetico.
-- Insurtech, con l'app MyWide che permette una gestione facilitata delle polizze assicurative.
-Un quarto settore su cui hanno sperimento con qualche progetto è l'ambito videoludico che sarà l'interesse di questo elaborato.
-In quest'ultimo ambito l'azienda ha sperimentato diversi tipi di progetti ludici, in modo a volte indipendente e altre in collaborazione con altri studi.
+
+\begin{itemize}
+    \item \textbf{Digital Health}, che con l'app \textit{MioPEDIATRA} ha connesso centinaia di migliaia di genitori con i pediatri, facilitandone le operazioni come prescrizioni, appuntamenti e tanto altro.
+    \item \textbf{IoT e Industria 5.0}, con \textit{software} che puntano sull'efficientamento produttivo ed energetico.
+    \item \textbf{Insurtech}, con l'app \textit{MyWide} che permette una gestione facilitata delle polizze assicurative.
+\end{itemize}
+
+Un quarto settore su cui l'azienda ha sperimentato con qualche progetto è l'ambito videoludico, che costituisce l'interesse di questo elaborato.
+In quest'ultimo ambito Eggon ha sviluppato diversi tipi di progetti ludici, in modo a volte indipendente e altre in collaborazione con altri studi.
 I progetti sviluppati sono i seguenti:
-- Eleston, gioco da tavolo strategico in cui i giocatori assuomo il ruolo di maghi impegnati in una sfida per dimostrare la loro padronanza degli elementi.
-- Diamonst, RP in realtà aumentata, per mobile, con un campagna per il giocatore singolo, duelli multiplayer e una modalità "Virual Pet".
-- Fangold, gioco che mescola MMORP e TC, per pc, combinando elementi tipici dei giochi di carte con meccaniche da gioco di ruolo online.
-- Lost in the Dungeon, l'ultimo gioco sviluppato, rilasciato a Marzo 2018. SI tratta di un gioco di carte che mescola meccaniche degli RP e meccaniche dei dungeon crawler, disponibile su pc e mobile.
-Con l'attività di stage che questo documento ha l'obiettivo di descrivere e analizzare l'azienda ha deciso di riaprire un'altra volta questo suo piccolo paragrafo di storia, il quale verrà approfondito nel resto del documento.
+
+\begin{itemize}
+    \item \textit{Eleston}, gioco da tavolo strategico in cui i giocatori assumono il ruolo di maghi impegnati in una sfida per dimostrare la loro padronanza degli elementi.
+    \item \textit{Diamonst}, RPG in realtà aumentata per dispositivi \textit{mobile}, con una campagna per il giocatore singolo, duelli \textit{multiplayer} e una modalità ``Virtual Pet''.
+    \item \textit{Fangold}, gioco che mescola MMORPG e TCG per PC, combinando elementi tipici dei giochi di carte con meccaniche da gioco di ruolo \textit{online}.
+    \item \textit{Lost in the Dungeon} (d'ora in poi \textit{LITD}), l'ultimo gioco sviluppato, rilasciato a marzo 2018. Si tratta di un gioco di carte che mescola meccaniche degli RPG e meccaniche dei \textit{dungeon crawler}, disponibile su PC e \textit{mobile}.
+\end{itemize}
+
+Con l'attività di stage che questo documento ha l'obiettivo di descrivere e analizzare, l'azienda ha deciso di riprendere questo suo quarto filone, che verrà approfondito nel resto del documento.
+
 
 \section{Tecnologie e strumenti adottati}
 
-Panoramica del \textit{tech stack} utilizzato all'interno dello studio: motore grafico \textit{Unity} (versione~6), linguaggio di programmazione \textit{C\#}, sistema di versionamento \textit{Git} ospitato su \textit{Bitbucket} e integrazione con \textit{Steamworks.NET} per la distribuzione sulla piattaforma \textit{Steam}. Verrà inoltre descritta l'architettura del progetto, organizzata su due livelli: da un lato le librerie proprietarie condivise tra i diversi progetti sviluppati da Eggon, dall'altro il codice specifico del titolo \textit{LITD}. Particolare attenzione sarà dedicata al sistema di eventi interno, che rappresenta il principale meccanismo di comunicazione tra i diversi componenti dell'applicazione.
+% Panoramica del \textit{tech stack} utilizzato all'interno dello studio: motore grafico \textit{Unity} (versione~6), linguaggio di programmazione \textit{C\#}, sistema di versionamento \textit{Git} ospitato su \textit{Bitbucket} e integrazione con \textit{Steamworks.NET} per la distribuzione sulla piattaforma \textit{Steam}. Verrà inoltre descritta l'architettura del progetto, organizzata su due livelli: da un lato le librerie proprietarie condivise tra i diversi progetti sviluppati da Eggon, dall'altro il codice specifico del titolo \textit{LITD}. Particolare attenzione sarà dedicata al sistema di eventi interno, che rappresenta il principale meccanismo di comunicazione tra i diversi componenti dell'applicazione.
+
+Lo sviluppo di un videogioco richiede la definizione di uno \textit{stack} tecnologico fin dalle prime fasi del progetto, poiché la scelta del \textit{game engine} condiziona, o in 
+alcuni casi vincola, tutte le decisioni successive.
+Nel caso di \textit{LITD} lo \textit{stack} tecnologico era già stato definito dal precedente team di sviluppo; il compito dello stage non era quindi quello di sceglierlo, bensì di 
+aggiornarlo e adattarlo alle nuove esigenze.
+
+In assenza di documentazione formale sulle motivazioni originarie, le ragioni della scelta di \textit{Unity} come \textit{game engine} possono essere ricondotte alla natura stessa del 
+gioco: un titolo basato su carte e meccaniche di gioco di ruolo non richiede funzionalità avanzate di rendering 3D o fisica, per cui un \textit{engine} più complesso come 
+\textit{Unreal Engine} non avrebbe apportato vantaggi significativi a fronte di una curva di apprendimento più ripida.
+Nel contesto dello stage, inoltre, la scelta di mantenere \textit{Unity} era motivata da ragioni pratiche: ricostruire l'intero progetto su un \textit{engine} diverso avrebbe richiesto 
+un tempo sproporzionato rispetto agli obiettivi prefissati, mentre aggiornare la versione dell'engine e risolvere le incompatibilità risultanti era un percorso percorribile nelle 
+tempistiche disponibili. La versione adottata è stata \textit{Unity 6}.
+
+La selezione di \textit{Unity} porta con sé l'utilizzo del linguaggio di programmazione \textit{C\#}, un linguaggio orientato agli oggetti installato insieme all'engine e da esso 
+nativamente supportato.
+
+Per l'integrazione con la piattaforma di distribuzione \textit{Steam} il progetto fa uso di \textit{Steamworks.NET}, un \textit{wrapper} per .NET della libreria nativa 
+\textit{Steamworks SDK} fornita da Valve, che espone le API necessarie per funzionalità come autenticazione, salvataggio su cloud e distribuzione.
+
+Invece per quanto riguarda il sistema di versionamento, si è scelto di mantenere quello già in uso dal precedente team di sviluppo: \textit{Git}, ospitato su un'istanza \textit{Bitbucket} 
+proprietaria dell'azienda.
+
+La struttura del progetto era anch'essa ereditata dai precedenti sviluppatori; l'introduzione di una nuova organizzazione, in assenza di motivazioni tecniche stringenti, avrebbe 
+comportato un costo ingiustificato.
+Il progetto è organizzato nelle seguenti cartelle principali:
+
+\begin{itemize}
+    \item \texttt{Internal Assets}, suddivisa a sua volta in sottocartelle corrispondenti alle singole scene di gioco, ognuna contenente gli \textit{asset} specifici di quella scena: \textit{script}, immagini e prefab.
+    \item \texttt{External Assets}, contenente le librerie proprietarie condivise tra tutti i progetti sviluppati da Eggon.
+    \item \texttt{Shared Assets}, dove risiedono file usati trasversalmente dalle altre cartelle: immagini comuni, \textit{scriptable object}, materiali e simili.
+    \item \texttt{Scripts}, un insieme di \textit{script} con un raggio di operazione molto ampio, non riconducibili a nessuna delle altre cartelle.
+    \item \texttt{Nintendo SDK Plugin}, contenente il \textit{plugin} per l'SDK di Nintendo, necessario per l'adattamento del gioco alla relativa piattaforma. Questa cartella non viene 
+    mai modificata direttamente, ma utilizzata esclusivamente per interfacciarsi al sistema di salvataggio file della console, che differisce da quello degli altri dispositivi supportati.
+\end{itemize}
+
+Questa separazione ha avuto implicazioni dirette durante lo stage: le cartelle \texttt{External Assets} e \texttt{Shared Assets} erano da considerarsi librerie non modificabili, salvo 
+eccezioni motivate da necessità tecniche e sempre con la cautela necessaria a non introdurre regressioni negli altri prodotti Eggon che ne dipendono. Il lavoro si è concentrato 
+principalmente all'interno di \texttt{Internal Assets}.
+
+Una spiegazione dettagliata merita il sistema con cui le componenti del gioco comunicano tra loro: l'\textit{Event System}. Tale sistema permette ai manager di dichiarare eventi 
+attraverso enumeratori con relativi parametri; altri manager possono registrarsi come ascoltatori di tali eventi e infine invocarli quando necessario. Questo meccanismo di 
+\textit{publish-subscribe} è il principale canale di comunicazione tra i componenti dell'applicazione, preferito ai riferimenti diretti tra oggetti.
 
 \section{Processi di sviluppo e organizzazione del lavoro}
 
