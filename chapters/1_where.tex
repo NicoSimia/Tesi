@@ -34,12 +34,11 @@ Con l'attività di stage che questo documento ha l'obiettivo di descrivere e ana
 
 Lo sviluppo di un videogioco richiede la definizione di uno \textit{stack} tecnologico fin dalle prime fasi del progetto, poiché la scelta del \textit{game engine}, 
 condiziona, o in alcuni casi vincola, tutte le decisioni successive.
-Nel caso specifico del nostro approccio a LITD, ovvero un evulozione piuttosto che il suo sviluppo, lo stack tecnologico era già stato definito dal precedente team 
-di sviluppo, che nel periodo di tirocinio non era più presente in azienda. Quindi il compito dello stage non era quello di scegliere le possibili tecnologie ma piuttosto 
-di aggiornarle e addatarle alle nuove esigenze del mercato.
+Nel caso specifico del nostro approccio a LITD, ovvero un evoluzione piuttosto che il suo sviluppo, lo stack tecnologico era già stato definito dal precedente team 
+di sviluppo, che nel periodo di tirocinio non era più presente in azienda. Quindi lo stage non richiedeva di scegliere le possibili tecnologie ma piuttosto 
+di aggiornarle e adattarle alle nuove esigenze del mercato.
 
-In assenza di documentazione formale sulle motivazioni originarie, le ragioni della scelta di \textit{Unity} come \textit{game engine} possono essere ricondotte alla natura stessa del 
-gioco: un titolo basato su carte e meccaniche di gioco di ruolo non richiede funzionalità avanzate di rendering 3D o fisica, per cui un \textit{engine} più complesso come 
+In assenza di documentazione formale sulle motivazioni originarie, la natura stessa del gioco è la ragione dietro la scelta di \textit{Unity} come \textit{game engine}: un titolo basato su carte e meccaniche di gioco di ruolo non richiede funzionalità avanzate di rendering 3D o fisica, per cui un \textit{engine} più complesso come 
 \textit{Unreal Engine} non avrebbe apportato vantaggi significativi a fronte di una curva di apprendimento più ripida.
 Nel contesto dello stage, inoltre, la scelta di mantenere \textit{Unity} era motivata da ragioni pratiche: ricostruire l'intero progetto su un \textit{engine} diverso avrebbe richiesto 
 un tempo sproporzionato rispetto agli obiettivi prefissati, mentre aggiornare la versione dell'engine e risolvere le incompatibilità risultanti era un percorso fattibile nelle 
@@ -54,7 +53,7 @@ il progetto fa uso della libreria Steamworks.NET, la quale è un wrapper per .NE
 
 Invece per quanto riguarda il sistema di versionamento, si è scelto di mantenere quello già in uso dal precedente team di sviluppo: \textit{Git}, ospitato su un'istanza \textit{Bitbucket} 
 proprietaria dell'azienda. In questo modo non si è andata a perdere tutta la storia del progetto, i precedenti commit e i branch lasciati dai precedenti sviluppatori. Grazie a una scelta tale 
-si è riusciti a comprendere alcune implementazione che nell'aggiornamento risultavano difettose perchè mal implementate.
+si è riusciti a comprendere alcune implementazione che nell'aggiornamento risultavano difettose perché mal implementate.
 
 La struttura del progetto era anch'essa ereditata dai precedenti sviluppatori; l'introduzione di una nuova organizzazione, in assenza di motivazioni tecniche stringenti, avrebbe 
 comportato un costo ingiustificato.
@@ -69,7 +68,7 @@ Il progetto è organizzato nelle seguenti cartelle principali:
     % \item \texttt{Nintendo SDK Plugin}, contenente il \textit{plugin} per l'SDK di Nintendo, necessario per l'adattamento del gioco alla relativa piattaforma. Questa cartella non viene mai modificata direttamente, ma utilizzata esclusivamente per interfacciarsi al sistema di salvataggio file della console, che differisce da quello degli altri dispositivi supportati.
 \end{itemize}
 
-Questa separazione ha avuto implicazioni dirette durante lo stage: le cartelle \texttt{External Assets} e \texttt{Shared Assets} erano da considerarsi librerie non modificabili, salvo 
+Questa separazione ha avuto implicazioni dirette durante lo stage: le cartelle \texttt{External Assets} e \texttt{Shared Assets} le trattavamo come librerie non modificabili, salvo 
 eccezioni motivate da necessità tecniche e sempre con la cautela necessaria a non introdurre regressioni negli altri prodotti Eggon che ne dipendono. Il lavoro si è concentrato 
 principalmente all'interno di \texttt{Internal Assets}.
 
@@ -87,22 +86,22 @@ agili, come Scrum, comprendendo brevi cicli di sviluppo, con riunioni giornalier
 Per quanto riguarda invece il 
 progetto di interesse di questo stage la modalità era decisamente più informale. Non vi erano appuntamenti fissi con riunioni e cicli di sviluppo. La strategia adottata infatti prevedeva per lo più dei 
 riscontri faccia a faccia con il tutor aziendale ad ogni avanzamento significativo, ovvero al completamento di una task. Tali compiti venivano definiti all'inizio di ogni settimana. 
-Il costo di un implementazione di metodologie formali sarebbe stato eccessivo, relazionato alla grandezza del team di sviluppo e alla conoscenza del dominio di applicazione relativamente ignota.
+Il costo di un implementazione di metodologie formali sarebbe stato eccessivo, relativo alla grandezza del team di sviluppo e alla conoscenza del dominio di applicazione relativamente ignota.
 
-Lo studio adotta un approccio di sviluppo manuale: le \textit{build} vengono generate direttamente dall'editor di \textit{Unity}, senza l'ausilio di una \textit{pipeline} di 
+Lo studio adotta un approccio di sviluppo manuale: gli sviluppatori generano le \textit{build} direttamente dall'editor di \textit{Unity}, senza l'ausilio di una \textit{pipeline} di 
 integrazione continua automatizzata. Questa scelta riflette ancora una volta le dimensioni ridotte del team e la natura del prodotto: un videogioco indipendente non distribuito attraverso aggiornamenti 
 frequenti come un servizio \textit{web}, ma rilasciato in versioni discrete sulle piattaforme di distribuzione.
 
-Il processo di verifica del prodotto è di tipo manuale e multi-piattaforma: le \textit{build} vengono installate e testate direttamente sui dispositivi di destinazione, PC, 
+Il processo di verifica del prodotto è di tipo manuale e multi-piattaforma: il team installava e testava le \textit{build} direttamente sui dispositivi di destinazione, PC, 
 dispositivi \textit{mobile} e console, con l'obiettivo di rilevare regressioni e comportamenti anomali specifici di ciascuna piattaforma. L'assenza di una suite di test automatizzati 
-è compensata dalla frequenza dei cicli di test manuali. Inoltre i test richiesti dalla piattaforma di destinazione, ovvero Nintendo Switch, vengono eseguiti in automatico dall'hardware proprietario 
-e il compito risulta essere quindi di risolvere i problemi riscontrati.
+è compensata dalla frequenza dei cicli di test manuali. Inoltre i test che Nintendo richiede, per la pubblicazione sulla piattaforma Switch, vengono eseguiti in automatico dall'hardware proprietario 
+e il compito era quindi di risolvere i problemi riscontrati.
 
-Come anticipato, il team di sviluppo originario del prodotto LITD era stato smantellato, e il suo ciclo di vita era stato decisamente breve, in confronto al mercato videoludico moderno. Al momento 
+Come anticipato, Eggon aveva smantellato il team di sviluppo dell'originario LITD, e il suo ciclo di vita era stato decisamente breve, in confronto al mercato videoludico moderno. Al momento 
 dello stage l'organizzazione del lavoro è stata ripartita sulla coppia di stagisti che erano stati assegnati al progetto. Entrambi operavano in parallelo su ambiti distinti del progetto, 
 coordinati da un tutor aziendale di riferimento.
-La suddivisione dei compiti e il tracciamento delle attività venivano gestiti in modo informale, senza ricorso a strumenti dedicati di \textit{Issue Tracking System}, e l'avanzamento 
-veniva spesso condiviso in modo sincrono quando in presenza e attraverso strumenti asincroni nel caso di smart working. I dettagli relativi all'organizzazione specifica del lavoro saranno 
+Io e il mio compagno stagista gestivamo la suddivisione dei compiti e delle attività in modo informale, senza ricorso a strumenti dedicati di \textit{Issue Tracking System}, e condividavamo 
+l'avanzamento in modo sincrono quando in presenza e attraverso strumenti asincroni nel caso di smart working. I dettagli relativi all'organizzazione specifica del lavoro saranno 
 approfonditi nel capitolo~3.
 
 \section{Propensione all'innovazione}
@@ -111,20 +110,20 @@ approfonditi nel capitolo~3.
 
 Come evidenziato nei precedenti paragrafi, al momento di inizio della mia esperienza, il prodotto LITD si basava su uno stack tecnologico desueto, utilizzando una versione 
 di Unity non più supportata e aggiornata o in situazioni peggiori si trovava la libreria Steamworks.NET che non permetteva più di connettersi all'interfaccia dell'applicazione Steam 
-in quanto ne erano cambiate le metodologie di accesso. Questo debito tecnico importante è dovuto prima di tutto dall'abbandono di questo mercato e del progetto da parte dell'azienda, dopo i primi 
-mesi dal rilascio, e in secondo luogo dalla repentina evoluzione che ha subito il mercato videoludico negli ultimi anni.
+in quanto ne erano cambiate le metodologie di accesso. L'abbandono di questo mercato e del progetto da parte dell'azienda dopo i primi mesi dal rilascio ha causato 
+questo importante debito tecnico, e in secondo luogo dalla repentina evoluzione che ha subito il mercato videoludico negli ultimi anni.
 
-Tuttavia tale da tale problema ne consegue ciò che è l'approccio di Eggon all'innovazione, che si manifesta su più livelli. 
-Sul piano tecnologico viene aggiornato prima di tutti il game engine, abbandonando la versione di Unity del 2017 a favore dell'adozione di \textit{Unity~6}, versione più recente del motore al 
+Tuttavia da tale problema ne consegue ciò che è l'approccio di Eggon all'innovazione, che si manifesta su più livelli. 
+Sul piano tecnologico l'azienda decide di aggirnare in primo luogo il game engine, abbandonando la versione di Unity del 2017 a favore dell'adozione di \textit{Unity~6}, versione più recente del motore al 
 momento dello stage, in modo da conoscere anche i successivi passi riguardanti le librerie e la documentazione utile. Ciò riflette la volontà di mantenere lo \textit{stack} tecnologico allineato con 
 le evoluzioni del settore, beneficiando dei miglioramenti in termini di prestazioni, compatibilità e supporto alle piattaforme più recenti.
 
 Sul piano commerciale, la scelta di portare \textit{LITD} nell'ecosistema di Nintendo Switch rappresenta un'espansione deliberata verso un mercato distinto da quelli già presidiati.
-Di fatto le console sono un modo spesso chiuso da questo punto di vista , rispetto al mondo dei PC e mobile il quale processo di rilascio sulle piattaforme di distribuzione è meno restrittivo e vincolante.
-La console ibrida di Nintendo si rivolge a un pubblico con abitudini di consumo differenti rispetto al PC o al \textit{mobile}, e la sua presenza richiede il superamento di un processo di certificazione 
-formale imposto dal \textit{platform holder}.
+Le console spesso impongono vincolo più restrittivi da questo punto di vista, rispetto al mondo dei PC e mobile il quale processo di rilascio sulle piattaforme di distribuzione è meno restrittivo e vincolante.
+La console ibrida di Nintendo si rivolge a un pubblico con abitudini di consumo differenti rispetto al PC o al \textit{mobile}, e il platform holder richiede il 
+superamento di un processo di certificazione formale.
 Nel caso specifico di Nintendo Switch i controlli sono molto rigidi quando si guarda alle performance, dato che la natura ibrida della console, richiede un efficienza nell'utilizzo dell'energia non da trascurare, 
-e in secondo luogo vi sono anche una serie di controlli riguardanti l'esperiena utente e il suo possibile disorientamento all'interno del prodotto, ad esempio con termini ambigui.
+e in secondo luogo vi sono anche una serie di controlli riguardanti l'esperienza utente e il suo possibile disorientamento all'interno del prodotto, ad esempio con termini ambigui.
 
 Più in generale, la decisione di riprendere un titolo rilasciato nel 2018 e di investire risorse per estenderne il ciclo di vita verso nuove piattaforme è indicativa di una strategia 
 orientata alla valorizzazione del catalogo esistente, anziché alla sola produzione di nuovi titoli. Il ricorso agli stagisti universitari come risorsa per affrontare queste attività di 
