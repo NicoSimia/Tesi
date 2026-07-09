@@ -1,0 +1,79 @@
+Leggo il file e lo analizzo. **Verdict: il capitolo ha una struttura decente ma è pieno di violazioni serie.**
+
+## Violazioni critiche contro le linee guida
+
+### 1. **Passivo sistemico** (il problema più grave)
+
+Le istruzioni dicono di evitare il passivo. Tu ne hai una quantità impressionante:
+
+- "il team era **stato smantellato**" (riga 101)
+- "il compito dello stage non **era** quello di scegliere" (riga 38 - passivo travestito)
+- "le \textit{build} **vengono generate**" (riga 92)
+- "le \textit{build} **venivano installate** e **testate**" (riga 96)
+- "i test **richiesti**" (riga 98)
+- "la suddivisione dei compiti e il tracciamento **venivano gestiti**" (riga 104)
+- "l'avanzamento **veniva spesso condivisa**" (riga 105)
+- "tale problema ne consegue" / "l'approccio di Eggon **si manifesta**" (righe 117-118, passive voice con costruzione contorta)
+
+**Sono almeno 15-20 passivi chiari.** Servono attivi: "tu hai scelto", "il team smantella", "lo studio genera le build", "i test richiedono".
+
+### 2. **Mancanza totale di illustrazioni**
+
+Le linee guida dicono esplicitamente:
+> "Eviterai lo stile 'muro di testo', dotando quindi la narrazione di un appropriato corredo di illustrazioni (immagini, diagrammi, tabelle, ecc.)"
+
+Il tuo capitolo non ha **nemmeno una figura**. Per un capitolo su tecnologie, processi e struttura del progetto, questo è un buco. Servono:
+- Diagramma dell'architettura del progetto (Internal/External/Shared Assets)
+- Schema dell'Event System
+- Forse una tabella con i prodotti Eggon e settori
+
+### 3. **Manca il "tipo di clientela"**
+
+Le linee guida richiedono: "il tipo di clientela (piccoli, grandi, pubblici, privati)".
+
+Tu descrivi brevemente MioPEDIATRA, MyWide e IoT, ma **non specifichi mai chi sono i clienti reali di LITD**. È un gioco consumer su Steam/mobile/Switch: chi lo compra? Gamers indie? Casual players? Qual è il target demografico? Le linee guida vogliono che tu risponda a questo.
+
+### 4. **Errori materiali di battitura**
+
+- Riga 37: "evulozione" → "evoluzione"
+- Riga 39: "addatarle" → "adattarle"
+- Riga 57: "perchè" → "perché" (vedi le linee guida: "vocali maiuscole accentate avranno l'accento")
+- Riga 123: "chiuso da questo punto di vista" → frase poco chiara, probabilmente intendi "restrittivo"
+- Riga 127: "esperiena" → "esperienza"
+- Riga 90: "relazionato" → "relativo" (uso della parola sbagliato)
+
+### 5. **Inconsistenza: termini stranieri in corsivo**
+
+Alcune parole in inglese sono in corsivo, altre no. Controlla: 
+- "build" (righe 92, 96, 98) **NON in corsivo** → dovrebbero esserlo
+- "smart working" (riga 105) **NON in corsivo** → dovrebbe esserlo
+- "Issue Tracking System" (riga 104) **NON in corsivo** → dubbio
+- Mentre "API", "SDK", "UI" spesso NON sono in corsivo neanche loro (sono acronimi)
+
+La linea guida dice "termini in lingua diversa dall'italiano in corsivo per segnalare il loro uso intenzionale" → sii coerente.
+
+### 6. **Commenti meta-testuali dentro il file**
+
+Righe 6, 33, 83, 110: hai commentato lunghe descrizioni di cosa scriverai. Queste devono sparire dal file finale. Servivano per l'outline che hai mandato al relatore, non nel draft del capitolo.
+
+---
+
+## Cosa va bene
+
+- Struttura: 4 sezioni logiche che seguono il "dove"
+- Profondità tecnica su architettura e Event System (bene)
+- Connessione tra scelte tecnologiche e contesto organizzativo (bene)
+- La sezione su innovazione è solida
+
+---
+
+## Azioni concrete
+
+1. **Rivisita tutto il passivo**: usa attivi e imperativo quando possibile
+2. **Aggiungi almeno 2-3 figure**: architettura, Event System, tabella comparativa prodotti/settori
+3. **Specifica il cliente di LITD**: chi compra questo gioco, dove viene distribuito, qual è il target
+4. **Correggi batture e ortografia**
+5. **Elimina i commenti di outline**
+6. **Standardizza: tutti i termini inglesi in corsivo** (incluso "build", "smart working")
+
+Fai queste correzioni prima di mandare di nuovo al relatore. Lo scheletro è ok, ma la forma è fragile.

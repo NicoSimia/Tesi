@@ -3,16 +3,146 @@
 
 \section{Identità e contesto di Eggon}
 
-Presentazione dello studio di sviluppo videoludico indipendente \textit{Eggon}: dimensioni del team, tipologia di prodotti realizzati, posizionamento nel mercato \textit{consumer} su piattaforme digitali quali \textit{Steam}, \textit{App Store}, \textit{Google Play} e \textit{Nintendo eShop}. Le informazioni verranno riportate direttamente sulla base di quanto osservato durante il periodo di stage, tenendo conto che il team responsabile dello sviluppo originario del videogioco non faceva più parte dell'azienda.
+% Presentazione dello studio di sviluppo videoludico indipendente \textit{Eggon}: dimensioni del team, tipologia di prodotti realizzati, posizionamento nel mercato \textit{consumer} su piattaforme digitali quali \textit{Steam}, \textit{App Store}, \textit{Google Play} e \textit{Nintendo eShop}. Le informazioni verranno riportate direttamente sulla base di quanto osservato durante il periodo di stage, tenendo conto che il team responsabile dello sviluppo originario del videogioco non faceva più parte dell'azienda.
+
+Eggon Group Srl è una \textit{software house} italiana, fondata a fine 2015 da Gianpaolo Ferrarin e Fulvio Menegozzo al loro ritorno a Padova dopo un'esperienza come \gls{startupper} negli 
+Stati Uniti, e conta circa 30 dipendenti che vi lavorano. Oggi è una realtà che opera su tre settori chiave:
+
+\begin{itemize}
+    \item \textbf{Digital Health}, che con l'app \textit{MioPEDIATRA} ha connesso centinaia di migliaia di genitori con i pediatri, facilitandone le operazioni come prescrizioni, appuntamenti e tanto altro.
+    \item \textbf{IoT e Industria 5.0}, con \textit{software} che puntano sull'efficientamento produttivo ed energetico delle aziende.
+    \item \textbf{Insurtech}, con l'app \textit{MyWide} che permette una gestione facilitata delle polizze assicurative.
+\end{itemize}
+
+Un quarto settore su cui l'azienda ha sperimentato con qualche progetto è l'ambito videoludico, che costituisce l'interesse di questo elaborato.
+In quest'ultimo ambito Eggon ha sviluppato diversi tipi di progetti ludici, in modo a volte indipendente e altre in collaborazione con altri studi.
+I progetti sviluppati sono i seguenti:
+
+\begin{itemize}
+    \item \textit{Eleston}, gioco da tavolo strategico in cui i giocatori assumono il ruolo di maghi impegnati in una sfida per dimostrare la loro padronanza degli elementi.
+    \item \textit{Diamonst}, \gls{rpg} in realtà aumentata per dispositivi \textit{mobile}, con una campagna per il giocatore singolo, duelli \gls{multiplayer} e una modalità \textit{'Virtual Pet'}, ovvero un tipo di compagni umani artificiali.
+    \item \textit{Fangold}, gioco che mescola \gls{mmorpg} e \gls{tcg} per PC, combinando elementi tipici dei giochi di carte con meccaniche da gioco di ruolo \textit{online}.
+    \item \textit{Lost in the Dungeon} (d'ora in poi \textit{LITD}), l'ultimo gioco sviluppato, rilasciato a marzo 2018. Si tratta di un gioco di carte che mescola meccaniche degli RPG e meccaniche dei \gls{dungeon crawler}, disponibile su PC e \textit{mobile}.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=1.15\textwidth]{img/litd_2.jpg}}
+    \caption{Schema dell'architettura Assets}
+    \vspace{0.1cm}
+    {\footnotesize Fonte: \textit{Steam}, pagina del prodotto\par}
+    \label{fig:litd_cover}
+\end{figure}
+
+Con l'attività di stage che questo documento ha l'obiettivo di descrivere e analizzare, l'azienda ha deciso di riprendere questo suo quarto filone, che verrà approfondito nel resto del documento.
 
 \section{Tecnologie e strumenti adottati}
 
-Panoramica del \textit{tech stack} utilizzato all'interno dello studio: motore grafico \textit{Unity} (versione~6), linguaggio di programmazione \textit{C\#}, sistema di versionamento \textit{Git} ospitato su \textit{Bitbucket} e integrazione con \textit{Steamworks.NET} per la distribuzione sulla piattaforma \textit{Steam}. Verrà inoltre descritta l'architettura del progetto, organizzata su due livelli: da un lato le librerie proprietarie condivise tra i diversi progetti sviluppati da Eggon, dall'altro il codice specifico del titolo \textit{LITD}. Particolare attenzione sarà dedicata al sistema di eventi interno, che rappresenta il principale meccanismo di comunicazione tra i diversi componenti dell'applicazione.
+% Panoramica del \textit{tech stack} utilizzato all'interno dello studio: motore grafico \textit{Unity} (versione~6), linguaggio di programmazione \textit{C\#}, sistema di versionamento \textit{Git} ospitato su \textit{Bitbucket} e integrazione con \textit{Steamworks.NET} per la distribuzione sulla piattaforma \textit{Steam}. Verrà inoltre descritta l'architettura del progetto, organizzata su due livelli: da un lato le librerie proprietarie condivise tra i diversi progetti sviluppati da Eggon, dall'altro il codice specifico del titolo \textit{LITD}. Particolare attenzione sarà dedicata al sistema di eventi interno, che rappresenta il principale meccanismo di comunicazione tra i diversi componenti dell'applicazione.
+
+Lo sviluppo di un videogioco richiede la definizione di uno \textit{stack} tecnologico fin dalle prime fasi del progetto, poiché la scelta del \gls{game engine}, 
+condiziona, o in alcuni casi vincola, tutte le decisioni successive.
+Nel caso specifico del nostro approccio a \textit{LITD}, ovvero un evoluzione piuttosto che il suo sviluppo, lo stack tecnologico era già stato definito dal precedente team 
+di sviluppo, che nel periodo di tirocinio non era più presente in azienda. Quindi lo stage non richiedeva di scegliere le possibili tecnologie ma piuttosto 
+di aggiornarle e adattarle alle nuove esigenze del mercato.
+
+In assenza di documentazione formale sulle motivazioni originarie, la natura stessa del gioco è la ragione dietro la scelta di \gls{Unity} come \textit{game engine}: un titolo basato su carte e meccaniche di gioco di ruolo non richiede funzionalità avanzate di rendering 3D o fisica, per cui un \textit{engine} più complesso come 
+\gls{Unreal Engine} non avrebbe apportato vantaggi significativi a fronte di una curva di apprendimento più ripida.
+Nel contesto dello stage, inoltre, la scelta di mantenere \textit{Unity} era motivata da ragioni pratiche: ricostruire l'intero progetto su un \textit{engine} diverso avrebbe richiesto 
+un tempo sproporzionato rispetto agli obiettivi prefissati, mentre aggiornare la versione dell'\textit{engine} e risolvere le incompatibilità risultanti era un percorso fattibile nelle 
+tempistiche disponibili.
+
+La selezione di \textit{Unity} porta con sé l'utilizzo del linguaggio di programmazione \textit{C\#}, un linguaggio orientato agli oggetti installato insieme all'engine e da esso 
+nativamente supportato.
+
+La piattaforma di distribuzione per PC è la famosa applicazione \gls{Steam}, della Valve Corporation, la quale permette una quasi completa integrazione con il software 
+attraverso del \gls{API} che espongono servizi come autenticazione, salvataggio su cloud e gestione degli achievement. Per comunicare con l'applicazione e la sua interfaccia 
+il progetto fa uso della libreria Steamworks.NET, la quale è un wrapper per .NET della libreria nativa Steamworks \gls{SDK} fornita da Valve.
+
+Invece per quanto riguarda il sistema di versionamento, si è scelto di mantenere quello già in uso dal precedente team di sviluppo: \gls{Git}, ospitato su un'istanza \gls{Bitbucket} 
+proprietaria dell'azienda. In questo modo non si è andata a perdere tutta la storia del progetto, i precedenti commit e i branch lasciati dai precedenti sviluppatori. Grazie a una scelta tale 
+si è riusciti a comprendere alcune implementazione che nell'aggiornamento risultavano difettose perché mal implementate.
+
+La struttura del progetto era anch'essa ereditata dai precedenti sviluppatori; l'introduzione di una nuova organizzazione, in assenza di motivazioni tecniche stringenti, avrebbe 
+comportato un costo ingiustificato.
+Il progetto è organizzato nelle seguenti cartelle principali:
+
+\begin{itemize}
+    \item \texttt{Internal Assets}, suddivisa a sua volta in sottocartelle corrispondenti alle singole scene di gioco, ognuna contenente gli \textit{asset} specifici di quella scena: \textit{script}, immagini e prefab.
+    \item \texttt{External Assets}, contenente le librerie proprietarie condivise tra tutti i progetti sviluppati da Eggon.
+    \item \texttt{Shared Assets}, dove risiedono file usati trasversalmente dalle altre cartelle: immagini comuni, \gls{scriptable object}, materiali e simili.
+    \item \texttt{Scripts}, un insieme di \textit{script} con un raggio di operazione molto ampio, non riconducibili a nessuna delle altre cartelle.
+    \item Cartelle di secondo interesse che diventeranno quasi totalmente obsolete con il lavoro descritto nei capitoli successivi e che contengono file di configurazione per le piattaforme mobile.
+    % \item \texttt{Nintendo SDK Plugin}, contenente il \textit{plugin} per l'SDK di Nintendo, necessario per l'adattamento del gioco alla relativa piattaforma. Questa cartella non viene mai modificata direttamente, ma utilizzata esclusivamente per interfacciarsi al sistema di salvataggio file della console, che differisce da quello degli altri dispositivi supportati.
+\end{itemize}
+
+Questa separazione ha avuto implicazioni dirette durante lo stage: le cartelle \texttt{External Assets} e \texttt{Shared Assets} le trattavamo come librerie non modificabili, salvo 
+eccezioni motivate da necessità tecniche e sempre con la cautela necessaria a non introdurre regressioni negli altri prodotti Eggon che ne dipendono. Il lavoro si è concentrato 
+principalmente all'interno di \texttt{Internal Assets}.
+
+Il sistema con cui le componenti del gioco comunicano tra loro merita una spiegazione dettagliata : l'\textit{Event System}. Tale sistema permette ai manager, che sono classi contenenti i 
+riferimenti degli oggetti nelle scene e che ne descrivono la logica, di dichiarare eventi attraverso enumeratori con relativi parametri; altri manager possono registrarsi come ascoltatori di 
+tali eventi e infine invocarli quando necessario. Questo meccanismo di \gls{publish-subscribe} è il principale canale di comunicazione tra i componenti dell'applicazione, 
+preferito ai riferimenti diretti tra oggetti.
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=1.15\textwidth]{img/pub_sub_model_2.png}}
+    \caption{Schema di un modello publish-subscribe}
+    \vspace{0.1cm}
+    {\footnotesize Fonte: \textit{UML Board - Design Pattern, Publisher Subscribe}\par}
+    \label{fig:pub_sub_model}
+\end{figure}
 
 \section{Processi di sviluppo e organizzazione del lavoro}
 
-Descrizione delle modalità operative adottate nello studio: sviluppo manuale con generazione delle \textit{build} direttamente dall'editor di \textit{Unity}, assenza di una pipeline di integrazione continua automatizzata, utilizzo di file condivisi per il tracciamento delle attività come strumento informale di pianificazione e lavoro in coppia tra gli stagisti sotto la supervisione del tutor aziendale. Verrà evidenziato come tali processi riflettano le esigenze e le caratteristiche organizzative tipiche di uno studio di sviluppo indipendente.
+% Descrizione delle modalità operative adottate nello studio: sviluppo manuale con generazione delle \textit{build} direttamente dall'editor di \textit{Unity}, assenza di una pipeline di integrazione continua automatizzata, utilizzo di file condivisi per il tracciamento delle attività come strumento informale di pianificazione e lavoro in coppia tra gli stagisti sotto la supervisione del tutor aziendale. Verrà evidenziato come tali processi riflettano le esigenze e le caratteristiche organizzative tipiche di uno studio di sviluppo indipendente.
+
+I processi di sviluppo messi in azione per il progetto \textit{LITD} discostano in parte da ciò che viene adottato nel resto dei progetti dell'azienda. I dipendenti infatti adottano delle metodologie 
+agili, come Scrum, comprendendo brevi cicli di sviluppo, con riunioni giornaliere e settimanali in cui vengono discussi i progressi completati e quelli futuri su cui spendere le risorse. 
+Per quanto riguarda invece il 
+progetto di interesse di questo stage la modalità era decisamente più informale. Non vi erano appuntamenti fissi con riunioni e cicli di sviluppo. La strategia adottata infatti prevedeva per lo più dei 
+riscontri faccia a faccia con il tutor aziendale ad ogni avanzamento significativo, ovvero al completamento di una task. Tali compiti venivano definiti all'inizio di ogni settimana. 
+Il costo di un implementazione di metodologie formali sarebbe stato eccessivo, relativo alla grandezza del team di sviluppo e alla conoscenza del dominio di applicazione relativamente ignota.
+
+Lo studio adotta un approccio di sviluppo manuale: gli sviluppatori generano le \textit{build} direttamente dall'editor di \textit{Unity}, senza l'ausilio di una \textit{pipeline} di 
+integrazione continua automatizzata. Questa scelta riflette ancora una volta le dimensioni ridotte del team e la natura del prodotto: un videogioco indipendente non distribuito attraverso aggiornamenti 
+frequenti come un servizio \textit{web}, ma rilasciato in versioni discrete sulle piattaforme di distribuzione.
+
+Il processo di verifica del prodotto è di tipo manuale e multi-piattaforma: il team installava e testava le \textit{build} direttamente sui dispositivi di destinazione, PC, 
+dispositivi \textit{mobile} e console, con l'obiettivo di rilevare regressioni e comportamenti anomali specifici di ciascuna piattaforma. L'assenza di una suite di test automatizzati 
+è compensata dalla frequenza dei cicli di test manuali. Inoltre i test che Nintendo richiede, per la pubblicazione sulla piattaforma Switch, vengono eseguiti in automatico dall'hardware proprietario 
+e il compito era quindi di risolvere i problemi riscontrati.
+
+Come anticipato, Eggon aveva smantellato il team di sviluppo dell'originario \textit{LITD}, e il suo ciclo di vita era stato decisamente breve, in confronto al mercato videoludico moderno. Al momento 
+dello stage l'organizzazione del lavoro è stata ripartita sulla coppia di stagisti che erano stati assegnati al progetto. Entrambi operavano in parallelo su ambiti distinti del progetto, 
+coordinati da un tutor aziendale di riferimento.
+Io e il mio compagno stagista gestivamo la suddivisione dei compiti e delle attività in modo informale, senza ricorso a strumenti dedicati di \gls{Issue Tracking System}, e condividavamo 
+l'avanzamento in modo sincrono quando in presenza e attraverso strumenti asincroni nel caso di smart working. I dettagli relativi all'organizzazione specifica del lavoro saranno 
+approfonditi nel capitolo~3.
 
 \section{Propensione all'innovazione}
 
-Analisi delle strategie adottate da Eggon per perseguire i propri obiettivi di mercato: espansione verso nuove piattaforme hardware, come \textit{Nintendo Switch}, aggiornamento continuo del motore grafico quale strategia di modernizzazione tecnologica e integrazione con ecosistemi di distribuzione consolidati. Tale propensione all'innovazione costituisce il collegamento diretto con le motivazioni che hanno portato alla definizione del progetto di stage, oggetto di approfondimento nel capitolo successivo.
+% Analisi delle strategie adottate da Eggon per perseguire i propri obiettivi di mercato: espansione verso nuove piattaforme hardware, come \textit{Nintendo Switch}, aggiornamento continuo del motore grafico quale strategia di modernizzazione tecnologica e integrazione con ecosistemi di distribuzione consolidati. Tale propensione all'innovazione costituisce il collegamento diretto con le motivazioni che hanno portato alla definizione del progetto di stage, oggetto di approfondimento nel capitolo successivo.
+
+Come evidenziato nei precedenti paragrafi, al momento di inizio della mia esperienza, il prodotto \textit{LITD} si basava su uno stack tecnologico desueto, utilizzando una versione 
+di Unity non più supportata e aggiornata o in situazioni peggiori si trovava la libreria Steamworks.NET che non permetteva più di connettersi all'interfaccia dell'applicazione Steam 
+in quanto ne erano cambiate le metodologie di accesso. L'abbandono di questo mercato e del progetto da parte dell'azienda dopo i primi mesi dal rilascio ha causato 
+questo importante debito tecnico, e in secondo luogo dalla repentina evoluzione che ha subito il mercato videoludico negli ultimi anni.
+
+Tuttavia da tale problema ne consegue ciò che è l'approccio di Eggon all'innovazione, che si manifesta su più livelli. 
+Sul piano tecnologico l'azienda decide di aggirnare in primo luogo il \textit{game engine}, abbandonando la versione di Unity del 2017 a favore dell'adozione di \textit{Unity~6}, versione più recente del motore al 
+momento dello stage, in modo da conoscere anche i successivi passi riguardanti le librerie e la documentazione utile. Ciò riflette la volontà di mantenere lo \textit{stack} tecnologico allineato con 
+le evoluzioni del settore, beneficiando dei miglioramenti in termini di prestazioni, compatibilità e supporto alle piattaforme più recenti.
+
+Sul piano commerciale, la scelta di portare \textit{LITD} nell'ecosistema di Nintendo Switch rappresenta un'espansione deliberata verso un mercato distinto da quelli già presidiati.
+Le console spesso impongono vincolo più restrittivi da questo punto di vista, rispetto al mondo dei PC e \textit{mobile} il quale processo di rilascio sulle piattaforme di distribuzione è meno restrittivo e vincolante.
+La console ibrida di Nintendo si rivolge a un pubblico con abitudini di consumo differenti rispetto al PC o al \textit{mobile}, e il \textit{platform holder} richiede il 
+superamento di un processo di certificazione formale.
+Nel caso specifico di Nintendo Switch i controlli sono molto rigidi quando si guarda alle \textit{performance}, dato che la natura ibrida della console, richiede un efficienza nell'utilizzo dell'energia non da trascurare, 
+e in secondo luogo vi sono anche una serie di controlli riguardanti l'esperienza utente e il suo possibile disorientamento all'interno del prodotto, ad esempio con termini ambigui.
+
+Più in generale, la decisione di riprendere un titolo rilasciato nel 2018 e di investire risorse per estenderne il ciclo di vita verso nuove piattaforme è indicativa di una strategia 
+orientata alla valorizzazione del catalogo esistente, anziché alla sola produzione di nuovi titoli. Il ricorso agli stagisti universitari come risorsa per affrontare queste attività di 
+espansione riflette un approccio pragmatico all'innovazione: l'azienda individua nei tirocini accademici un canale per integrare competenze e capacità produttiva in modo flessibile. 
+Questa visione è alla base della proposta di stage oggetto di questo elaborato, come verrà discusso nel prossimo capitolo.
