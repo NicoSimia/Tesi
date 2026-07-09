@@ -25,8 +25,16 @@ I progetti sviluppati sono i seguenti:
     \item \textit{Lost in the Dungeon} (d'ora in poi \textit{LITD}), l'ultimo gioco sviluppato, rilasciato a marzo 2018. Si tratta di un gioco di carte che mescola meccaniche degli RPG e meccaniche dei \gls{dungeon crawler}, disponibile su PC e \textit{mobile}.
 \end{itemize}
 
-Con l'attività di stage che questo documento ha l'obiettivo di descrivere e analizzare, l'azienda ha deciso di riprendere questo suo quarto filone, che verrà approfondito nel resto del documento.
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=1.15\textwidth]{img/litd_2.png}}
+    \caption{Schema dell'architettura Assets}
+    \vspace{0.1cm}
+    {\footnotesize Fonte: \textit{Steam}, pagina del prodotto\par}
+    \label{fig:litd_cover}
+\end{figure}
 
+Con l'attività di stage che questo documento ha l'obiettivo di descrivere e analizzare, l'azienda ha deciso di riprendere questo suo quarto filone, che verrà approfondito nel resto del documento.
 
 \section{Tecnologie e strumenti adottati}
 
@@ -76,6 +84,15 @@ Il sistema con cui le componenti del gioco comunicano tra loro merita una spiega
 riferimenti degli oggetti nelle scene e che ne descrivono la logica, di dichiarare eventi attraverso enumeratori con relativi parametri; altri manager possono registrarsi come ascoltatori di 
 tali eventi e infine invocarli quando necessario. Questo meccanismo di \gls{publish-subscribe} è il principale canale di comunicazione tra i componenti dell'applicazione, 
 preferito ai riferimenti diretti tra oggetti.
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=1.15\textwidth]{img/pub_sub_model_2.png}}
+    \caption{Schema di un modello publish-subscribe}
+    \vspace{0.1cm}
+    {\footnotesize Fonte: \textit{UML Board - Design Pattern, Publisher Subscribe}\par}
+    \label{fig:pub_sub_model}
+\end{figure}
 
 \section{Processi di sviluppo e organizzazione del lavoro}
 
