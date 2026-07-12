@@ -6,7 +6,53 @@ Descrizione di come \textit{Eggon} integra gli stagisti universitari all'interno
 
 \section{Il prodotto: \textit{Lost in the Dungeon}}
 
-Presentazione del videogioco oggetto dello stage, \textit{Lost in the Dungeon}: genere (\textit{card game} con ambientazione \textit{dungeon fantasy}), piattaforme di destinazione, principali meccaniche di gioco dal punto di vista dell'utente finale e stato del progetto al momento dell'avvio dello stage. Questa sezione fornisce il contesto applicativo necessario per comprendere le scelte progettuali e gli interventi descritti nel Capitolo~3.
+% Presentazione del videogioco oggetto dello stage, \textit{Lost in the Dungeon}: genere (\textit{card game} con ambientazione \textit{dungeon fantasy}), piattaforme di destinazione, principali meccaniche di gioco dal punto di vista dell'utente finale e stato del progetto al momento dell'avvio dello stage. Questa sezione fornisce il contesto applicativo necessario per comprendere le scelte progettuali e gli interventi descritti nel Capitolo~3.
+
+Lost in the Dungeon è un videogioco facente parte della categoria dei \textit{dungeon crawler} e dei giochi di carte, rilasciato sul mercato PC e smartphone, 
+successivamente rimosso in quest'utlimo, nel 2018, soltanto in lingua inglese.
+Il gioco comprende 5 macroscene:
+\begin{itemize}
+    \item \textit{Authentication}, in cui si scegliere quale slot di salvataggio caricare o iniziare.
+    \item \textit{Inn}, schermata che connete tutte le seguenti facendo da \textit{hub}.
+    \item \textit{Deck Builder}, scena dove si possono scegliere le carte per creare il mazzo da portarsi nel \textit{dungeon}.
+    \item \textit{Inventory \& Shop}, luogo in cui si possono gestire i propri artefatti oppure comprarne di nuovi.
+    \item \textit{Dungeons}, la parte centrale del gioco in cui avviene il \textit{gameplay}, scegliendo il \textit{dungeon} e affrontando le stanze.
+\end{itemize}
+
+Nella prima scena \textit{Authentication}, vi sono tre pergamene che rappresentano i 3 salvataggi che il giocatore ha a disposizione. Possono essere in due stati: vuoti 
+oppure iniziati. Nel primo caso l'unica scelta disponibile è quella di creare un nuovo salvataggio, invece nel secondo caso viene mostrata la percentuale di completamento 
+e se si vuole oltre a giocare il salvataggio selezionato si può anche eliminare, se ad esempio si vuole dare inizio a una nuova \gls{run} e quindi tornare al primo caso.
+Quando si inizia un nuovo salvataggio si viene introdotti alla storia del gioco e al suo mondo fantasy attraverso un fumetto che alla sua fine ci chiede quale classe vogliamo scegliere.
+Esistono tre classi: \textit{warrior}, \textit{rogue} e \textit{mage}. Ognuno sanzisce solamente le prime tre carte che vengono sbloccato all'inizio dell'avventure.
+
+Nell'\textit{Inn} vi sono i diversi collegamenti alle diverse funzionalità che il gioco propone, dall'andare subito a testa bassa in battaglia nei dungeon, oppure calcolare la propria 
+strategie attraverso modifiche al mazzo o miglioramenti all'equipaggiamento. In questa schermata vi è anche un \gls{tutorial}, in formate scritto e con immagini di tutte 
+le parti più importanti del gioco. Infine una menziona va anche fatta alla possibilità di accedere ai crediti del gioco, che di solito nei vidoegiochi si vedono esplicitamente 
+una volta finito il gioco ma per la natura stessa del gioco, ovvero con una rigiocabilità anche dopo aver sconfitto l'ultimo dungeon, questa soluzione è sicuramente migliore.
+
+Il \textit{Deck Builder} prevede la gestione delle carte e del mazzo di gioco.
+All'interno vi sono 5 sezioni: \textit{Warrior}, \textit{Rogue}, \textit{Mage}, \textit{Potion} e \textit{Special}.
+Le prime tre sezioni si riferiscono alle 3 classi che si possono scegliere all'inizio della storia, inizialmente se ne avranno soltanto 3 della classe scelta e successivamente 
+il giocatore può sbloccarle, anche se non della sua classe scelta, tuttavia per sbloccare alcune carte bisognerà soddisfare dei vincoli, ovvero aver sbloccato altre carte. Per quanto 
+concerne la sezione delle pozioni, le quali potevano essere usate in battaglia per rigenerare vita, vigore, \gls{mana} oppure per rimuovere effetti negativi come scottatura, 
+congelamento e avvelenamento. La sezione \textit{Special} infine comprende 3 carte, ognuna sbloccabile al completamento di ognuno dei primi 3 dungeon.
+
+La scena dell'\textit{Inventory \& Shop} si suddivide a sua volte nella parte di inventario e nella parte di negozio.
+Nella prima schermata si può navigare tra i diversi artefatti che si possiede, ottenibili di ritorno da un'avventura nel dungeon avvenuta con successo o acquistabile nel 
+negozio, i quali garantiscono al giocatore un incremento di alcune statistiche e in alcuni casi un decremento di altre. Anche qua, come nel \textit{Deck Builder} vi 
+sono 4 sezioni per differenziare i 4 tipi di artefatti: diademi, collane, armature e armi, vi si può aver equipaggiato un solo oggetto per categoria e gli artefatti possono 
+anche essere venduti per dell'oro.
+La seconda schermata invece presenta uno dei modi nel quale si può spendere l'oro, ovvero attraverso l'acquisto di artefatti. Il mercato dispone anche di un metodo di 
+rinnovo dei prodotti in vendita.
+
+Infine la scena dei \textit{Dungeons} comprende due scene, separate graficamente ma legate logicamente, ovvero quella della scelta del dugeon e quella in cui si esplora 
+effettivamente il dungeon scelto.
+Nella prima delle due schermate bisogna scegliere uno tra i quattro dungeon disponibili, tuttavia la prima volta l'unico dungeon sbloccato sarà quello iniziale e per 
+sbloccare quello successivo bisognerà sconfiggere quello attuale. Inoltre prima di entrare nel dungeon bisognerà pagare una tassa con dell'oro e per far in modo di non 
+rimanere bloccati se l'oro finisce il primo dugeon è gratuito.
+L'utima parte è quella più ludica. All'interno di ogni dungeon bisogna avvrontare un numero di ondate, chiamate stanze, dove 3 mostri, tematici di quel dungeon, si 
+schiereranno di fronte e noi dovremmo sconfiggerli con il mazzo creato e con il supporto delle pozioni da noi scelte. L'ultima stanza è quelle in cui si trova il boss 
+del dungeon e una volta sconfitto lui si completa ufficialmente tale dungeon sbloccando quello successivo e ottendo un artefatto tematico di quel dungeon.
 
 \section{Obiettivi e vincoli dello stage}
 
