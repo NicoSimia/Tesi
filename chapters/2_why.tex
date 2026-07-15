@@ -2,14 +2,45 @@
 
 \section{Il rapporto dell'azienda con gli stage universitari}
 
-Descrizione di come \textit{Eggon} integra gli stagisti universitari all'interno del proprio processo produttivo, affidando loro attività concrete e direttamente collegate allo sviluppo dei prodotti aziendali, anziché incarichi marginali o puramente formativi. Tale approccio riflette la visione dell'innovazione descritta nella Sezione~\ref{sec:propensione-innovazione}. Lo stage viene quindi inquadrato come parte di una strategia più ampia, nella quale il coinvolgimento degli stagisti rappresenta un canale ricorrente per affrontare attività di espansione e di \textit{porting} che, diversamente, richiederebbero l'impiego di risorse interne dedicate.
+% Descrizione di come \textit{Eggon} integra gli stagisti universitari all'interno del proprio processo produttivo, affidando loro attività concrete e direttamente collegate allo sviluppo dei prodotti aziendali, anziché incarichi marginali o puramente formativi. Tale approccio riflette la visione dell'innovazione descritta nella Sezione~\ref{sec:propensione-innovazione}. Lo stage viene quindi inquadrato come parte di una strategia più ampia, nella quale il coinvolgimento degli stagisti rappresenta un canale ricorrente per affrontare attività di espansione e di \textit{porting} che, diversamente, richiederebbero l'impiego di risorse interne dedicate.
+
+Eggon non utilizza gli stage come attività marginali o puramente formative. Al contrario, integra gli stagisti come parte attiva del processo produttivo, affidando 
+loro attività direttamente collegate allo sviluppo e alla manutenzione dei prodotti aziendali.
+
+Durante le mie 8 settimane previste dall'università, Eggon accoglieva contemporaneamente cinque stagisti, suddivisi su tre progetti distinti, ciascuno con obiettivi e 
+tecnologie diverse. Oltre a me, altri tre stagisti hanno iniziato nello stesso periodo: due lavoravano su un progetto di raccolta dati tramite \textit{ESP32} per il 
+monitoraggio durante l'utilizzo della moto, e uno era impegnato nello sviluppo e manutenzione di NEXUM, il software proprietario di Eggon utilizzato per la gestione 
+delle presenze lavorative e della pianificazione dei progetti.
+
+Due settimane dopo l'inizio del mio stage, un quinto stagista si è unito a me nel progetto LITD, permettendo una specializzazione dei compiti entro lo stesso ambito 
+di sviluppo videoludico. Successivamente, Eggon ha assegnato un ulteriore stagista al progetto NEXUM, estendendo il supporto su quel fronte.
+
+Questa struttura di distribuzione degli stagisti rivela come Eggon gestisce strategicamente le risorse umane esterne. Piuttosto che concentrare stagisti su un unico 
+progetto, l'azienda li impiega come risposta a esigenze produttive parallele e specializzate. Ogni progetto aveva un tutor dedicato, indipendentemente che il gruppo di 
+lavoro fosse costituito da una sola persona o da più stagisti. Questo significa che io e il mio collega stagista condividevamo il medesimo tutor e gli stessi obiettivi 
+sul progetto LITD, ma ricevevamo supervisione diretta e costante. Il tutor non era una figura generica, ma un membro del team Eggon con responsabilità concrete sul 
+progetto stesso, garantendo continuità di conoscenza e allineamento con gli obiettivi aziendali.
+
+Questa configurazione dimostra che gli stage non rappresentano per Eggon un canale occasionale o sperimentale, ma piuttosto un meccanismo consolidato e strutturato 
+per esplorare soluzioni su più fronti contemporaneamente. Nel caso di LITD, il progetto era parte di un piano più ampio di estensione del gioco a nuove piattaforme 
+(in particolare Nintendo Switch), attività che era stata rimessa più volte a causa di priorità organizzative diverse. Affidare questo progetto a stagisti ha permesso 
+a Eggon di allocare il team interno a compiti che richiedevano una continuità di conoscenza più profonda, mentre gli stagisti (sia singoli che in coppia) acquisivano 
+esperienza in un contesto reale di sviluppo su progetti tecnicamente rilevanti. Lo stesso vale per il progetto ESP32, dove l'innovazione tecnologica richiesta 
+beneficiava dell'approccio fresco degli stagisti; e per NEXUM, dove lo sviluppo del software interno rappresenta un'infrastruttura critica per l'operatività dell'azienda.
+
+Questo approccio riflette direttamente la visione dell'innovazione che Eggon porta avanti, descritta nella Sezione~\ref{sec:Propensione all'innovazione}: l'azienda 
+investe in nuove tecnologie e piattaforme, e utilizza gli stage come meccanismo organizzato e ricorrente per esplorare soluzioni senza gravare completamente sulle 
+risorse interne. Gli stagisti non sono semplici "aiutanti" di progetto, ma co-protagonisti della strategia di innovazione dell'azienda, inseriti in un contesto dove 
+la loro permanenza è temporanea, ma i loro contributi rimangono parte del prodotto e della strategia aziendale.
 
 \section{Il prodotto: \textit{Lost in the Dungeon}}
 
 % Presentazione del videogioco oggetto dello stage, \textit{Lost in the Dungeon}: genere (\textit{card game} con ambientazione \textit{dungeon fantasy}), piattaforme di destinazione, principali meccaniche di gioco dal punto di vista dell'utente finale e stato del progetto al momento dell'avvio dello stage. Questa sezione fornisce il contesto applicativo necessario per comprendere le scelte progettuali e gli interventi descritti nel Capitolo~3.
 
-Lost in the Dungeon è un videogioco facente parte della categoria dei \textit{dungeon crawler} e dei giochi di carte, rilasciato sul mercato PC e smartphone, 
-successivamente rimosso in quest'utlimo, nel 2018, soltanto in lingua inglese.
+Lost in the Dungeon è un videogioco facente parte della categoria dei \textit{dungeon crawler} e dei giochi di carte, rilasciato sul mercato PC e smartphone, nel 2018.
+Il gioco è disponibile solamente in lingua inglese e per questo la maggior parte dei termini utilizzati per riferirsi agli \textit{assets} saranno nella medesima lingua.
+Inoltre Eggon ha rimosso il gioco dalla piattaforma mobile dopo un breve periodo dal lancio a causa dei cambiamenti delle \textit{policy} del \textit{Google Play Store} e degli artefatti che esso poteva supportare.
+
 Il gioco comprende 5 macroscene:
 \begin{itemize}
     \item \textit{Authentication}, in cui si scegliere quale slot di salvataggio caricare o iniziare.
@@ -26,7 +57,9 @@ Quando si inizia un nuovo salvataggio si viene introdotti alla storia del gioco 
 Esistono tre classi: \textit{warrior}, \textit{rogue} e \textit{mage}. Ognuno sanzisce solamente le prime tre carte che vengono sbloccato all'inizio dell'avventure.
 
 Nell'\textit{Inn} vi sono i diversi collegamenti alle diverse funzionalità che il gioco propone, dall'andare subito a testa bassa in battaglia nei dungeon, oppure calcolare la propria 
-strategie attraverso modifiche al mazzo o miglioramenti all'equipaggiamento. In questa schermata vi è anche un \gls{tutorial}, in formate scritto e con immagini di tutte 
+strategie attraverso modifiche al mazzo o miglioramenti all'equipaggiamento.
+Questa scene gestisce anche il fumetto e la selzione della classe descritti poco sopra, rendendo la gestione tecnica di \textit{Inn} molto complicata, che verrà discussa nel capitolo apposito.
+In questa schermata vi è anche un \gls{tutorial}, in formate scritto e con immagini di tutte 
 le parti più importanti del gioco. Infine una menziona va anche fatta alla possibilità di accedere ai crediti del gioco, che di solito nei vidoegiochi si vedono esplicitamente 
 una volta finito il gioco ma per la natura stessa del gioco, ovvero con una rigiocabilità anche dopo aver sconfitto l'ultimo dungeon, questa soluzione è sicuramente migliore.
 
@@ -62,6 +95,8 @@ rimanere bloccati se l'oro finisce il primo dugeon è gratuito.
 L'utima parte è quella più ludica. All'interno di ogni dungeon bisogna avvrontare un numero di ondate, chiamate stanze, dove 3 mostri, tematici di quel dungeon, si 
 schiereranno di fronte e noi dovremmo sconfiggerli con il mazzo creato e con il supporto delle pozioni da noi scelte. L'ultima stanza è quelle in cui si trova il boss 
 del dungeon e una volta sconfitto lui si completa ufficialmente tale dungeon sbloccando quello successivo e ottendo un artefatto tematico di quel dungeon.
+Queste due scene sono anche le parti in cui il gioco controlla gli \textit{achievement}, se vengono completati o ne monitora l'avanzamento, e quindi comunica con \textit{Steam}. 
+Tuttavia lo strumento usato durante lo sviluppo non risultava più essere valido e di conseguenza il gioco non riusciva più a comunicare con la piattaforma di distribuzione.
 
 \begin{figure}[H]
     \centering
@@ -71,6 +106,13 @@ del dungeon e una volta sconfitto lui si completa ufficialmente tale dungeon sbl
     {\footnotesize Fonte: \textit{Pagina Steam del prodotto e screenshot del gioco}\par}
     \label{fig:section_two}
 \end{figure}
+
+In tutte le scene sopra descritte non vi è nessun sistema di navigazione predefinito. Tutte le azioni che il giocatore fa sono eseguite o dal click di un mouse, 
+nel caso di un PC, o di un tap, per l'applicazione mobile.
+Il gioco non era stato quindi pensato per una navigazione tramite controller o tastiera, ciò rende il gioco non esportabile su mercati come quello delle console che consentolo 
+input solo tramite questi dispositivi.
+In molte di queste scene si note come il gioco non sia stato costruito con l'idea futura di implementare una navigazione del controller, come ad esempio \textit{Dungeon Game} 
+che non prevede dei bottoni, che sono facilmente configurabili per una navigazione predefinita.
 
 \section{Obiettivi e vincoli dello stage}
 
