@@ -116,7 +116,101 @@ che non prevede dei bottoni, che sono facilmente configurabili per una navigazio
 
 \section{Obiettivi e vincoli dello stage}
 
-Descrizione degli obiettivi individuati dall'organizzazione ospitante: realizzazione di un sistema di navigazione completo tramite \textit{controller} in tutte le scene di gioco, attività di \textit{porting} e superamento dei requisiti di certificazione per \textit{Nintendo Switch}, oltre alla risoluzione delle regressioni introdotte dall'aggiornamento del progetto a \textit{Unity 6}. Verranno inoltre illustrati i principali vincoli operativi che hanno caratterizzato il progetto: durata complessiva di otto settimane, necessità di mantenere la piena compatibilità con la \textit{codebase} esistente e svolgimento delle attività in collaborazione con un secondo stagista, mediante una suddivisione degli ambiti di lavoro.
+% Descrizione degli obiettivi individuati dall'organizzazione ospitante: realizzazione di un sistema di navigazione completo tramite \textit{controller} in tutte le scene di gioco, attività di \textit{porting} e superamento dei requisiti di certificazione per \textit{Nintendo Switch}, oltre alla risoluzione delle regressioni introdotte dall'aggiornamento del progetto a \textit{Unity 6}. Verranno inoltre illustrati i principali vincoli operativi che hanno caratterizzato il progetto: durata complessiva di otto settimane, necessità di mantenere la piena compatibilità con la \textit{codebase} esistente e svolgimento delle attività in collaborazione con un secondo stagista, mediante una suddivisione degli ambiti di lavoro.
+
+\subsection{Fase 1: Migrazione dell'engine}
+
+Il piano di lavoro iniziale, concordato con Eggon anticipatamente allo stage, assegnava una priorità maggiore alla migrazione tecnologica del progetto.
+Questi obiettivi erano stato concepiti per poter procedere rapidamente nella fase successiva al mio stage, o in parallelo assieme al secondo stagista, riguardante il 
+porting su Nintendo Switch, attività più complessa e a maggior rischio dell'intero progetto.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|p{4.5cm}|p{6.5cm}|}
+\hline
+\textbf{Obiettivo} & \textbf{Metrica di successo} \\
+\hline
+Migrazione Unity 2017 $\rightarrow$ Unity 6 & 0 errori di compilazione; warning ridotti al minimo \\
+\hline
+Stabilizzazione build & Build eseguibili su PC, iOS e Android, senza crash in fase di compilazione \\
+\hline
+Eliminazione OBB mobile & Rimozione completa dell'apparato OBB dalla configurazione mobile \\
+\hline
+Compatibilità Steam & Nessun errore di runtime specifico della piattaforma Steam \\
+\hline
+\end{tabular}
+\caption{Obiettivi della fase di migrazione, con relative metriche di successo}
+\label{tab:obiettivi_migrazione}
+\end{table}
+
+A questi obiettivi si affiancava un vincolo implicito di compatibilità retroattiva: nessuna modifica introdotta durante la migrazione poteva compromettere i 
+salvataggi o le funzionalità già distribuite su PC e mobile.
+
+Ho affrontato questa fase da solo durante le prime due settimane di stage, completando quasi totalmente gli obiettivi principali in tempi brevi. 
+Nelle settimane successive ho dedicato tempo al consolidamento e alla rifinitura di questi stessi obiettivi, con un ritmo più disteso, mentre si delineava la 
+fase successiva del progetto.
+
+\subsection{Fase 2: Controller e certificazione Nintendo Switch}
+
+Alla terza settimana di stage si è unito infatti al progetto LITD il mio collega stagista (si veda §2.1). Da quel momento abbiamo lavorato insieme sui due obiettivi più 
+critici dell'intero stage: entrambi sono emersi dalla consultazione con il tutor aziendale, una volta valutato il margine di tempo reso disponibile dal rapido 
+progresso della fase di migrazione.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|p{4.5cm}|p{6.5cm}|}
+\hline
+\textbf{Obiettivo} & \textbf{Metrica di successo} \\
+\hline
+Navigazione controller & 6/6 scene navigabili esclusivamente tramite controller standard \\
+\hline
+Certificazione Nintendo Switch & 5/5 test obbligatori del devkit superati \\
+\hline
+\end{tabular}
+\caption{Obiettivi della fase di porting Nintendo Switch, con relative metriche di successo}
+\label{tab:obiettivi_switch}
+\end{table}
+
+A questi due obiettivi si affiancava l'implementazione di un sistema di salvataggio conforme al file system di Nintendo Switch, basato su \textit{user account} e 
+archivio locale della console: condizione necessaria per superare i test di certificazione elencati in Tabella~\ref{tab:obiettivi_switch}.
+
+\subsection{Obiettivi personali dello stagista}
+
+Parallelamente agli obiettivi aziendali, ho formalizzato obiettivi personali di apprendimento, misurabili sulle stesse metriche già definite, espresse nella 
+Tabella~\ref{tab:obiettivi_personali}:
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|p{5cm}|p{6cm}|}
+\hline
+\textbf{Obiettivo personale} & \textbf{Collegamento alla metrica aziendale} \\
+\hline
+Acquisire competenza sulla gestione dell'input da controller & Navigazione controller (Tabella~\ref{tab:obiettivi_switch}) \\
+\hline
+Comprendere il processo di certificazione per console & Certificazione Nintendo Switch (Tabella~\ref{tab:obiettivi_switch}) \\
+\hline
+Gestire la migrazione di una codebase esistente & Migrazione Unity 6 (Tabella~\ref{tab:obiettivi_migrazione}) \\
+\hline
+\end{tabular}
+\caption{Obiettivi personali dello stagista, collegati alle metriche aziendali}
+\label{tab:obiettivi_personali}
+\end{table}
+
+\subsection{Vincoli operativi}
+
+\begin{itemize}
+\item Durata complessiva dello stage: 8 settimane, fissate dall'università
+\item Compatibilità retroattiva con la codebase esistente durante tutta la fase di migrazione (§2.3.1)
+\item Coordinamento con un secondo stagista sulla medesima codebase a partire dalla terza settimana, richiedendo una chiara suddivisione dei compiti tra navigazione controller e certificazione Switch
+\end{itemize}
+
+\subsection{Interazione tra obiettivi e vincoli}
+
+La sequenza delle due fasi non era casuale, ma rifletteva una scelta di gestione del rischio: completare rapidamente la migrazione (fase a minor incertezza tecnica) 
+permetteva di destinare la maggior parte delle 8 settimane disponibili alla certificazione Nintendo Switch, fase a maggior rischio per via dei vincoli imposti dal 
+platform holder e non pienamente sotto il controllo del team. L'arrivo del secondo stagista alla terza settimana, in coincidenza con la chiusura della fase di 
+migrazione, ha permesso di affrontare in coppia il lavoro più oneroso: l'implementazione della navigazione da controller su 6 scene e il superamento dei 5 test di 
+certificazione, entrambi condizioni necessarie per la pubblicazione su Nintendo Switch.
 
 \section{Motivazioni nella scelta dello stage}
 
