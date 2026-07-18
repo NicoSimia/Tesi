@@ -36,84 +36,47 @@ la loro permanenza è temporanea, ma i loro contributi rimangono parte del prodo
 \section{Il prodotto: \textit{Lost in the Dungeon}}
 
 % Presentazione del videogioco oggetto dello stage, \textit{Lost in the Dungeon}: genere (\textit{card game} con ambientazione \textit{dungeon fantasy}), piattaforme di destinazione, principali meccaniche di gioco dal punto di vista dell'utente finale e stato del progetto al momento dell'avvio dello stage. Questa sezione fornisce il contesto applicativo necessario per comprendere le scelte progettuali e gli interventi descritti nel Capitolo~3.
-
-Lost in the Dungeon è un videogioco facente parte della categoria dei \textit{dungeon crawler} e dei giochi di carte, rilasciato sul mercato PC e smartphone, nel 2018.
-Il gioco è disponibile solamente in lingua inglese e per questo la maggior parte dei termini utilizzati per riferirsi agli \textit{assets} saranno nella medesima lingua.
-Inoltre Eggon ha rimosso il gioco dalla piattaforma mobile dopo un breve periodo dal lancio a causa dei cambiamenti delle \textit{policy} del \textit{Google Play Store} e degli artefatti che esso poteva supportare.
-
-Il gioco comprende 5 macroscene:
+ 
+\textit{Lost in the Dungeon} (di seguito \textit{LITD}) è un videogioco appartenente ai generi \textit{dungeon crawler} e \textit{card game}, sviluppato e distribuito da Eggon a partire dal 2018 su PC e su dispositivi mobili. Il gioco è disponibile esclusivamente in lingua inglese: per coerenza, in questo documento i nomi delle sue scene e componenti principali sono riportati nella lingua originale.
+ 
+Poco dopo il lancio, Eggon ha rimosso la versione mobile dal \textit{Google Play Store}, a seguito di un cambiamento nelle \textit{policy} della piattaforma relative alla tipologia di \textit{asset} supportati. Da allora LITD prosegue esclusivamente su PC, distribuito tramite Steam.
+ 
+Il gioco si articola in cinque macroscene, collegate tra loro attraverso una schermata centrale che funge da \textit{hub}:
+ 
 \begin{itemize}
-    \item \textit{Authentication}, in cui si scegliere quale slot di salvataggio caricare o iniziare.
-    \item \textit{Inn}, schermata che connete tutte le seguenti facendo da \textit{hub}.
-    \item \textit{Deck Builder}, scena dove si possono scegliere le carte per creare il mazzo da portarsi nel \textit{dungeon}.
-    \item \textit{Inventory \& Shop}, luogo in cui si possono gestire i propri artefatti oppure comprarne di nuovi.
-    \item \textit{Dungeons}, la parte centrale del gioco in cui avviene il \textit{gameplay}, scegliendo il \textit{dungeon} e affrontando le stanze.
+    \item \textit{Authentication}, per la selezione o la creazione di uno dei tre slot di salvataggio;
+    \item \textit{Inn}, lo \textit{hub} che collega tutte le altre scene e ospita anche il tutorial e i crediti del gioco;
+    \item \textit{Deck Builder}, per la composizione del mazzo di carte con cui affrontare il \textit{dungeon};
+    \item \textit{Inventory \& Shop}, per la gestione e l'acquisto degli artefatti che modificano le statistiche del personaggio;
+    \item \textit{Dungeons}, articolata a sua volta in due scene (\textit{Dungeon Choose} e \textit{Dungeon Game}), dedicate rispettivamente alla selezione del dungeon e allo svolgimento del combattimento vero e proprio.
 \end{itemize}
-
-Nella prima scena \textit{Authentication}, vi sono tre pergamene che rappresentano i 3 salvataggi che il giocatore ha a disposizione. Possono essere in due stati: vuoti 
-oppure iniziati. Nel primo caso l'unica scelta disponibile è quella di creare un nuovo salvataggio, invece nel secondo caso viene mostrata la percentuale di completamento 
-e se si vuole oltre a giocare il salvataggio selezionato si può anche eliminare, se ad esempio si vuole dare inizio a una nuova \gls{run} e quindi tornare al primo caso.
-Quando si inizia un nuovo salvataggio si viene introdotti alla storia del gioco e al suo mondo fantasy attraverso un fumetto che alla sua fine ci chiede quale classe vogliamo scegliere.
-Esistono tre classi: \textit{warrior}, \textit{rogue} e \textit{mage}. Ognuno sanzisce solamente le prime tre carte che vengono sbloccato all'inizio dell'avventure.
-
-Nell'\textit{Inn} vi sono i diversi collegamenti alle diverse funzionalità che il gioco propone, dall'andare subito a testa bassa in battaglia nei dungeon, oppure calcolare la propria 
-strategie attraverso modifiche al mazzo o miglioramenti all'equipaggiamento.
-Questa scene gestisce anche il fumetto e la selzione della classe descritti poco sopra, rendendo la gestione tecnica di \textit{Inn} molto complicata, che verrà discussa nel capitolo apposito.
-In questa schermata vi è anche un \gls{tutorial}, in formate scritto e con immagini di tutte 
-le parti più importanti del gioco. Infine una menziona va anche fatta alla possibilità di accedere ai crediti del gioco, che di solito nei vidoegiochi si vedono esplicitamente 
-una volta finito il gioco ma per la natura stessa del gioco, ovvero con una rigiocabilità anche dopo aver sconfitto l'ultimo dungeon, questa soluzione è sicuramente migliore.
-
-Il \textit{Deck Builder} prevede la gestione delle carte e del mazzo di gioco.
-All'interno vi sono 5 sezioni: \textit{Warrior}, \textit{Rogue}, \textit{Mage}, \textit{Potion} e \textit{Special}.
-Le prime tre sezioni si riferiscono alle 3 classi che si possono scegliere all'inizio della storia, inizialmente se ne avranno soltanto 3 della classe scelta e successivamente 
-il giocatore può sbloccarle, anche se non della sua classe scelta, tuttavia per sbloccare alcune carte bisognerà soddisfare dei vincoli, ovvero aver sbloccato altre carte. Per quanto 
-concerne la sezione delle pozioni, le quali potevano essere usate in battaglia per rigenerare vita, vigore, \gls{mana} oppure per rimuovere effetti negativi come scottatura, 
-congelamento e avvelenamento. La sezione \textit{Special} infine comprende 3 carte, ognuna sbloccabile al completamento di ognuno dei primi 3 dungeon.
-
+ 
+La Figura~\ref{fig:section_one} mostra le prime tre scene elencate, mentre la Figura~\ref{fig:section_two} mostra le restanti due: insieme, offrono un riferimento visivo dell'interfaccia con cui il giocatore interagisce in ciascuna scena, utile per comprendere i vincoli di navigazione discussi più avanti in questa sezione.
+ 
 \begin{figure}[H]
     \centering
     \makebox[\textwidth][c]{\includegraphics[width=1.15\textwidth]{img/section_one.png}}
     \caption{Schermate di \textit{Authentication}, \textit{Inn} e \textit{Deck Builder}}
     \vspace{0.1cm}
-    {\footnotesize Fonte: \textit{Pagina Steam del prodotto e screenshot del gioco}\par}
+    {\footnotesize Fonte: pagina Steam del prodotto e screenshot del gioco\par}
     \label{fig:section_one}
 \end{figure}
-
-La scena dell'\textit{Inventory \& Shop} si suddivide a sua volte nella parte di inventario e nella parte di negozio.
-Nella prima schermata si può navigare tra i diversi artefatti che si possiede, ottenibili di ritorno da un'avventura nel dungeon avvenuta con successo o acquistabile nel 
-negozio, i quali garantiscono al giocatore un incremento di alcune statistiche e in alcuni casi un decremento di altre. Anche qua, come nel \textit{Deck Builder} vi 
-sono 4 sezioni per differenziare i 4 tipi di artefatti: diademi, collane, armature e armi, vi si può aver equipaggiato un solo oggetto per categoria e gli artefatti possono 
-anche essere venduti per dell'oro.
-La seconda schermata invece presenta uno dei modi nel quale si può spendere l'oro, ovvero attraverso l'acquisto di artefatti. Il mercato dispone anche di un metodo di 
-rinnovo dei prodotti in vendita.
-
-Infine la scena dei \textit{Dungeons} comprende due scene, separate graficamente ma legate logicamente, ovvero quella della scelta del dugeon e quella in cui si esplora 
-effettivamente il dungeon scelto. All'interno dello sviluppo e in questo documento ci si riferirà a queste due scene come Dungeon Choose e Dungeon Game
-Nella prima delle due schermate bisogna scegliere uno tra i quattro dungeon disponibili, tuttavia la prima volta l'unico dungeon sbloccato sarà quello iniziale e per 
-sbloccare quello successivo bisognerà sconfiggere quello attuale. Inoltre prima di entrare nel dungeon bisognerà pagare una tassa con dell'oro e per far in modo di non 
-rimanere bloccati se l'oro finisce il primo dugeon è gratuito.
-L'utima parte è quella più ludica. All'interno di ogni dungeon bisogna avvrontare un numero di ondate, chiamate stanze, dove 3 mostri, tematici di quel dungeon, si 
-schiereranno di fronte e noi dovremmo sconfiggerli con il mazzo creato e con il supporto delle pozioni da noi scelte. L'ultima stanza è quelle in cui si trova il boss 
-del dungeon e una volta sconfitto lui si completa ufficialmente tale dungeon sbloccando quello successivo e ottendo un artefatto tematico di quel dungeon.
-Queste due scene sono anche le parti in cui il gioco controlla gli \textit{achievement}, se vengono completati o ne monitora l'avanzamento, e quindi comunica con \textit{Steam}. 
-Tuttavia lo strumento usato durante lo sviluppo non risultava più essere valido e di conseguenza il gioco non riusciva più a comunicare con la piattaforma di distribuzione.
-
+ 
 \begin{figure}[H]
     \centering
     \makebox[\textwidth][c]{\includegraphics[width=1.15\textwidth]{img/section_two.png}}
     \caption{Schermate di \textit{Inventory \& Shop}, \textit{Dungeon Choose} e \textit{Dungeon Game}}
     \vspace{0.1cm}
-    {\footnotesize Fonte: \textit{Pagina Steam del prodotto e screenshot del gioco}\par}
+    {\footnotesize Fonte: pagina Steam del prodotto e screenshot del gioco\par}
     \label{fig:section_two}
 \end{figure}
-
-In tutte le scene sopra descritte non vi è nessun sistema di navigazione predefinito. Tutte le azioni che il giocatore fa sono eseguite o dal click di un mouse, 
-nel caso di un PC, o di un tap, per l'applicazione mobile.
-Il gioco non era stato quindi pensato per una navigazione tramite controller o tastiera, ciò rende il gioco non esportabile su mercati come quello delle console che consentolo 
-input solo tramite questi dispositivi.
-In molte di queste scene si note come il gioco non sia stato costruito con l'idea futura di implementare una navigazione del controller, come ad esempio \textit{Dungeon Game} 
-che non prevede dei bottoni, che sono facilmente configurabili per una navigazione predefinita.
-
+ 
+Al momento dell'avvio dello stage, tutte le scene di LITD condividevano un limite strutturale comune: l'interazione con il gioco era interamente affidata al \textit{click} del mouse su PC o al \textit{tap} sull'applicazione mobile, senza alcun sistema di navigazione alternativo. Nessuna interfaccia prevedeva elementi selezionabili tramite i pulsanti direzionali o dorsali tipici di un \textit{controller}. Questo limite rendeva il gioco, nella sua forma originale, incompatibile con il mercato delle console, dove il supporto per l'input da \textit{controller} è un requisito imposto dal \textit{platform holder}.
+ 
+A questo problema se ne affiancava un secondo, di natura più circoscritta ma comunque rilevante: le scene \textit{Dungeon Choose} e \textit{Dungeon Game} comunicano con Steam per il tracciamento degli \textit{achievement} di gioco, ma lo strumento di integrazione utilizzato in fase di sviluppo non era più valido al momento dello stage, interrompendo di fatto questa comunicazione.
+ 
+L'assenza di supporto per il \textit{controller}, l'integrazione con Steam da ripristinare e il debito tecnico accumulato da un \textit{engine} ormai datato (Unity 2017) costituiscono, nel loro insieme, i problemi concreti che Eggon ha affidato allo stage. Gli obiettivi discussi in §2.3 rappresentano la declinazione operativa di questi problemi.
+ 
 \section{Obiettivi e vincoli dello stage}
 
 % Descrizione degli obiettivi individuati dall'organizzazione ospitante: realizzazione di un sistema di navigazione completo tramite \textit{controller} in tutte le scene di gioco, attività di \textit{porting} e superamento dei requisiti di certificazione per \textit{Nintendo Switch}, oltre alla risoluzione delle regressioni introdotte dall'aggiornamento del progetto a \textit{Unity 6}. Verranno inoltre illustrati i principali vincoli operativi che hanno caratterizzato il progetto: durata complessiva di otto settimane, necessità di mantenere la piena compatibilità con la \textit{codebase} esistente e svolgimento delle attività in collaborazione con un secondo stagista, mediante una suddivisione degli ambiti di lavoro.
@@ -197,20 +160,25 @@ Gestire la migrazione di una codebase esistente & Migrazione Unity 6 (Tabella~\r
 \end{table}
 
 \subsection{Vincoli operativi}
-
+ 
+Lo svolgimento dello stage era vincolato da tre fattori principali:
+ 
 \begin{itemize}
-\item Durata complessiva dello stage: 8 settimane, fissate dall'università
-\item Compatibilità retroattiva con la codebase esistente durante tutta la fase di migrazione (§2.3.1)
-\item Coordinamento con un secondo stagista sulla medesima codebase a partire dalla terza settimana, richiedendo una chiara suddivisione dei compiti tra navigazione controller e certificazione Switch
+\item durata complessiva di 8 settimane, fissata dall'università e non modificabile in corso d'opera;
+\item compatibilità retroattiva con la codebase esistente durante tutta la fase di migrazione (§2.3.1), poiché nessuna modifica poteva compromettere i salvataggi o le funzionalità già distribuite;
+\item coordinamento con un secondo stagista sulla medesima codebase a partire dalla terza settimana, che richiedeva una suddivisione chiara dei compiti tra navigazione controller e certificazione Switch, per evitare conflitti di lavoro sugli stessi file.
 \end{itemize}
+ 
+La sequenza delle due fasi descritte in §2.3.1 e §2.3.2 non era casuale, ma rifletteva una scelta di gestione del rischio entro questi vincoli: completare rapidamente 
+la migrazione (fase a minore incertezza tecnica) permetteva di destinare la maggior parte delle 8 settimane disponibili alla certificazione Nintendo Switch, fase a 
+maggiore rischio per via dei vincoli imposti dal platform holder e non pienamente sotto il controllo del team. L'arrivo del secondo stagista alla terza settimana, in 
+coincidenza con la chiusura della fase di migrazione, ha permesso di affrontare in coppia il lavoro più oneroso: l'implementazione della navigazione da controller su 
+6 scene e il superamento dei 5 test di certificazione, entrambi condizioni necessarie per la pubblicazione su Nintendo Switch.
+ 
+Questa gestione sequenziale, vincolata da un tempo fisso di 8 settimane, riflette lo stesso approccio all'innovazione descritto in §2.1: Eggon delega agli stagisti 
+l'esplorazione tecnica di un nuovo mercato (qui, Nintendo Switch), riservando al team interno la sola supervisione tramite il tutor, senza investire risorse dedicate 
+a tempo pieno sul progetto durante questa fase esplorativa.
 
-\subsection{Interazione tra obiettivi e vincoli}
-
-La sequenza delle due fasi non era casuale, ma rifletteva una scelta di gestione del rischio: completare rapidamente la migrazione (fase a minor incertezza tecnica) 
-permetteva di destinare la maggior parte delle 8 settimane disponibili alla certificazione Nintendo Switch, fase a maggior rischio per via dei vincoli imposti dal 
-platform holder e non pienamente sotto il controllo del team. L'arrivo del secondo stagista alla terza settimana, in coincidenza con la chiusura della fase di 
-migrazione, ha permesso di affrontare in coppia il lavoro più oneroso: l'implementazione della navigazione da controller su 6 scene e il superamento dei 5 test di 
-certificazione, entrambi condizioni necessarie per la pubblicazione su Nintendo Switch.
 
 \section{Motivazioni nella scelta dello stage}
 
