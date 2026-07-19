@@ -1,6 +1,7 @@
 \chapter{Il progetto di stage}
 
 \section{Il rapporto dell'azienda con gli stage universitari}
+\label{sec:rapporto-eggon-stage}
 
 % Descrizione di come \textit{Eggon} integra gli stagisti universitari all'interno del proprio processo produttivo, affidando loro attività concrete e direttamente collegate allo sviluppo dei prodotti aziendali, anziché incarichi marginali o puramente formativi. Tale approccio riflette la visione dell'innovazione descritta nella Sezione~\ref{sec:propensione-innovazione}. Lo stage viene quindi inquadrato come parte di una strategia più ampia, nella quale il coinvolgimento degli stagisti rappresenta un canale ricorrente per affrontare attività di espansione e di \textit{porting} che, diversamente, richiederebbero l'impiego di risorse interne dedicate.
 
@@ -8,7 +9,7 @@ Eggon non utilizza gli stage come attività marginali o puramente formative. Al 
 loro attività direttamente collegate allo sviluppo e alla manutenzione dei prodotti aziendali.
 
 Durante le mie 8 settimane previste dall'università, Eggon accoglieva contemporaneamente cinque stagisti, suddivisi su tre progetti distinti, ciascuno con obiettivi e 
-tecnologie diverse. Oltre a me, altri tre stagisti hanno iniziato nello stesso periodo: due lavoravano su un progetto di raccolta dati tramite \textit{ESP32} per il 
+tecnologie diverse. Oltre a me, altri tre stagisti hanno iniziato nello stesso periodo: due lavoravano su un progetto di raccolta dati tramite \textit{ESP32}, un microntroller a basso consumo, per il 
 monitoraggio durante l'utilizzo della moto, e uno era impegnato nello sviluppo e manutenzione di NEXUM, il software proprietario di Eggon utilizzato per la gestione 
 delle presenze lavorative e della pianificazione dei progetti.
 
@@ -23,12 +24,12 @@ progetto stesso, garantendo continuità di conoscenza e allineamento con gli obi
 
 Questa configurazione dimostra che gli stage non rappresentano per Eggon un canale occasionale o sperimentale, ma piuttosto un meccanismo consolidato e strutturato 
 per esplorare soluzioni su più fronti contemporaneamente. Nel caso di LITD, il progetto era parte di un piano più ampio di estensione del gioco a nuove piattaforme 
-(in particolare Nintendo Switch), attività che era stata rimessa più volte a causa di priorità organizzative diverse. Affidare questo progetto a stagisti ha permesso 
+(in particolare Nintendo Switch), attività che era stata rimessa più volte a causa di priorità organizzative diverse. Affidare questo progetto a degli stagisti ha permesso 
 a Eggon di allocare il team interno a compiti che richiedevano una continuità di conoscenza più profonda, mentre gli stagisti (sia singoli che in coppia) acquisivano 
 esperienza in un contesto reale di sviluppo su progetti tecnicamente rilevanti. Lo stesso vale per il progetto ESP32, dove l'innovazione tecnologica richiesta 
 beneficiava dell'approccio fresco degli stagisti; e per NEXUM, dove lo sviluppo del software interno rappresenta un'infrastruttura critica per l'operatività dell'azienda.
 
-Questo approccio riflette direttamente la visione dell'innovazione che Eggon porta avanti, descritta nella Sezione~\ref{sec:Propensione all'innovazione}: l'azienda 
+Questo approccio riflette direttamente la visione dell'innovazione che Eggon porta avanti, descritta nella Sezione~\ref{sec:propensione-innovazione}: l'azienda 
 investe in nuove tecnologie e piattaforme, e utilizza gli stage come meccanismo organizzato e ricorrente per esplorare soluzioni senza gravare completamente sulle 
 risorse interne. Gli stagisti non sono semplici "aiutanti" di progetto, ma co-protagonisti della strategia di innovazione dell'azienda, inseriti in un contesto dove 
 la loro permanenza è temporanea, ma i loro contributi rimangono parte del prodotto e della strategia aziendale.
@@ -37,7 +38,7 @@ la loro permanenza è temporanea, ma i loro contributi rimangono parte del prodo
 
 % Presentazione del videogioco oggetto dello stage, \textit{Lost in the Dungeon}: genere (\textit{card game} con ambientazione \textit{dungeon fantasy}), piattaforme di destinazione, principali meccaniche di gioco dal punto di vista dell'utente finale e stato del progetto al momento dell'avvio dello stage. Questa sezione fornisce il contesto applicativo necessario per comprendere le scelte progettuali e gli interventi descritti nel Capitolo~3.
  
-\textit{Lost in the Dungeon} (di seguito \textit{LITD}) è un videogioco appartenente ai generi \textit{dungeon crawler} e \textit{card game}, sviluppato e distribuito da Eggon a partire dal 2018 su PC e su dispositivi mobili. Il gioco è disponibile esclusivamente in lingua inglese: per coerenza, in questo documento i nomi delle sue scene e componenti principali sono riportati nella lingua originale.
+\textit{Lost in the Dungeon} (di seguito \textit{LITD}) è un videogioco appartenente ai generi \textit{dungeon crawler} e \textit{card game}, sviluppato e distribuito da Eggon a partire dal 2018 su PC e su cellulari. Il gioco è disponibile esclusivamente in lingua inglese: per coerenza, in questo documento i nomi delle sue scene e componenti principali sono riportati nella lingua originale.
  
 Poco dopo il lancio, Eggon ha rimosso la versione mobile dal \textit{Google Play Store}, a seguito di un cambiamento nelle \textit{policy} della piattaforma relative alla tipologia di \textit{asset} supportati. Da allora LITD prosegue esclusivamente su PC, distribuito tramite Steam.
  
@@ -75,13 +76,15 @@ Al momento dell'avvio dello stage, tutte le scene di LITD condividevano un limit
  
 A questo problema se ne affiancava un secondo, di natura più circoscritta ma comunque rilevante: le scene \textit{Dungeon Choose} e \textit{Dungeon Game} comunicano con Steam per il tracciamento degli \textit{achievement} di gioco, ma lo strumento di integrazione utilizzato in fase di sviluppo non era più valido al momento dello stage, interrompendo di fatto questa comunicazione.
  
-L'assenza di supporto per il \textit{controller}, l'integrazione con Steam da ripristinare e il debito tecnico accumulato da un \textit{engine} ormai datato (Unity 2017) costituiscono, nel loro insieme, i problemi concreti che Eggon ha affidato allo stage. Gli obiettivi discussi in §2.3 rappresentano la declinazione operativa di questi problemi.
+L'assenza di supporto per il \textit{controller}, l'integrazione con Steam da ripristinare e il debito tecnico accumulato da un \textit{engine} ormai datato (Unity 2017) costituiscono, nel loro insieme, i problemi concreti che Eggon ha affidato allo stage.
+%Gli obiettivi discussi in §2.3 rappresentano la declinazione operativa di questi problemi.
  
 \section{Obiettivi e vincoli dello stage}
 
 % Descrizione degli obiettivi individuati dall'organizzazione ospitante: realizzazione di un sistema di navigazione completo tramite \textit{controller} in tutte le scene di gioco, attività di \textit{porting} e superamento dei requisiti di certificazione per \textit{Nintendo Switch}, oltre alla risoluzione delle regressioni introdotte dall'aggiornamento del progetto a \textit{Unity 6}. Verranno inoltre illustrati i principali vincoli operativi che hanno caratterizzato il progetto: durata complessiva di otto settimane, necessità di mantenere la piena compatibilità con la \textit{codebase} esistente e svolgimento delle attività in collaborazione con un secondo stagista, mediante una suddivisione degli ambiti di lavoro.
 
 \subsection{Fase 1: Migrazione dell'engine}
+\label{sec:obiettivi-migrazione-engine}
 
 Il piano di lavoro iniziale, concordato con Eggon anticipatamente allo stage, assegnava una priorità maggiore alla migrazione tecnologica del progetto.
 Questi obiettivi erano stato concepiti per poter procedere rapidamente nella fase successiva al mio stage, o in parallelo assieme al secondo stagista, riguardante il 
@@ -106,7 +109,7 @@ Compatibilità Steam & Nessun errore di runtime specifico della piattaforma Stea
 \label{tab:obiettivi_migrazione}
 \end{table}
 
-A questi obiettivi si affiancava un vincolo implicito di compatibilità retroattiva: nessuna modifica introdotta durante la migrazione poteva compromettere i 
+A questi obiettivi (si veda \ref{tab:obiettivi_migrazione}) si affiancava un vincolo implicito di compatibilità retroattiva: nessuna modifica introdotta durante la migrazione poteva compromettere i 
 salvataggi o le funzionalità già distribuite su PC e mobile.
 
 Ho affrontato questa fase da solo durante le prime due settimane di stage, completando quasi totalmente gli obiettivi principali in tempi brevi. 
@@ -114,8 +117,9 @@ Nelle settimane successive ho dedicato tempo al consolidamento e alla rifinitura
 fase successiva del progetto.
 
 \subsection{Fase 2: Controller e certificazione Nintendo Switch}
+\label{sec:obiettivi-controller-certificazione}
 
-Alla terza settimana di stage si è unito infatti al progetto LITD il mio collega stagista (si veda §2.1). Da quel momento abbiamo lavorato insieme sui due obiettivi più 
+Alla terza settimana di stage si è unito infatti al progetto LITD il mio collega stagista. Da quel momento abbiamo lavorato insieme sui due obiettivi più 
 critici dell'intero stage: entrambi sono emersi dalla consultazione con il tutor aziendale, una volta valutato il margine di tempo reso disponibile dal rapido 
 progresso della fase di migrazione.
 
@@ -169,13 +173,13 @@ Lo svolgimento dello stage era vincolato da tre fattori principali:
 \item coordinamento con un secondo stagista sulla medesima codebase a partire dalla terza settimana, che richiedeva una suddivisione chiara dei compiti tra navigazione controller e certificazione Switch, per evitare conflitti di lavoro sugli stessi file.
 \end{itemize}
  
-La sequenza delle due fasi descritte in §2.3.1 e §2.3.2 non era casuale, ma rifletteva una scelta di gestione del rischio entro questi vincoli: completare rapidamente 
+La sequenza delle due fasi descritte in \ref{sec:obiettivi-migrazione-engine} e \ref{sec:obiettivi-controller-certificazione} non era casuale, ma rifletteva una scelta di gestione del rischio entro questi vincoli: completare rapidamente 
 la migrazione (fase a minore incertezza tecnica) permetteva di destinare la maggior parte delle 8 settimane disponibili alla certificazione Nintendo Switch, fase a 
 maggiore rischio per via dei vincoli imposti dal platform holder e non pienamente sotto il controllo del team. L'arrivo del secondo stagista alla terza settimana, in 
 coincidenza con la chiusura della fase di migrazione, ha permesso di affrontare in coppia il lavoro più oneroso: l'implementazione della navigazione da controller su 
 6 scene e il superamento dei 5 test di certificazione, entrambi condizioni necessarie per la pubblicazione su Nintendo Switch.
  
-Questa gestione sequenziale, vincolata da un tempo fisso di 8 settimane, riflette lo stesso approccio all'innovazione descritto in §2.1: Eggon delega agli stagisti 
+Questa gestione sequenziale, vincolata da un tempo fisso di 8 settimane, riflette lo stesso approccio all'innovazione descritto in \ref{sec:rapporto-eggon-stage}: Eggon delega agli stagisti 
 l'esplorazione tecnica di un nuovo mercato (qui, Nintendo Switch), riservando al team interno la sola supervisione tramite il tutor, senza investire risorse dedicate 
 a tempo pieno sul progetto durante questa fase esplorativa.
 
@@ -185,12 +189,12 @@ a tempo pieno sul progetto durante questa fase esplorativa.
 %Esposizione delle motivazioni personali che hanno portato a preferire questa opportunità rispetto ad altre proposte disponibili. In particolare, l'interesse per lo sviluppo videoludico e per \textit{Unity} come strumento professionale e la possibilità di lavorare su un prodotto reale destinato a più piattaforme commerciali e l'opportunità di approfondire aspetti tecnici quali la gestione dell'input da \textit{controller}, il processo di certificazione per console, difficilmente riproducibili in un contesto esclusivamente accademico.
 
 L'interesse per il settore videoludico rappresenta una motivazione di lungo termine che ha guidato la mia scelta di studiare informatica. Sin dai primi anni di 
-università, ho considerato il game development come un ambito dove il contributo tecnico e creativo convergono in modo significativo, e dove i problemi informatici 
-da risolvere spaziano dalla grafica al networking, dall'ottimizzazione delle performance alla gestione di sistemi complessi. Questa prospettiva ha influenzato la 
+università, ho considerato il \textit{game development} come un ambito dove il contributo tecnico e creativo convergono in modo significativo, e dove i problemi informatici 
+da risolvere spaziano dalla grafica al \textit{networking}, dall'ottimizzazione delle performance alla gestione di sistemi complessi. Questa prospettiva ha influenzato la 
 selezione dei corsi durante il percorso di studi, privilegiando insegnamenti con applicazioni pratiche nel settore.
 
 Tra le proposte di stage disponibili, l'opportunità presso Eggon su LITD si è subito distinta per allineamento con questa visione di lungo termine. A differenza di 
-altre offerte circoscritte a progetti di software business (gestionali web, sistemi informativi aziendali), lo stage su LITD rappresentava l'occasione di contribuire 
+altre offerte circoscritte a progetti di \textit{software business} (gestionali web, sistemi informativi aziendali), lo stage su LITD rappresentava l'occasione di contribuire 
 a un prodotto reale destinato al mercato commerciale, sviluppato con una tecnologia professionale quale Unity, ampiamente adottata nell'industria videoludica 
 internazionale. Questo aspetto è stato determinante: non si trattava di un esercizio didattico, ma di un lavoro concreto su un prodotto con una storia, un utenza, 
 e una distribuzione su più piattaforme.
@@ -199,7 +203,7 @@ In particolare, lo stage prometteva di affrontare sfide tecniche ed ecosistemich
 approfondire la gestione degli input da controller, un aspetto centrale dell'esperienza interattiva che raramente emerge nei progetti personali e indipendenti. Il 
 processo di certificazione per console rappresenta un elemento ancora più critico: i mondi delle console (Nintendo, Sony, Microsoft) sono ecosistemi chiusi e 
 fortemente controllati, dove l'accesso è regolato e non disponibile a sviluppatori indipendenti al di fuori di percorsi ufficiali e strutturati. Conoscere come 
-navigare i requisiti di un platform holder (in questo caso Nintendo) e implementare soluzioni che li rispettino costituisce un bagaglio di competenza esplicitamente 
+navigare i requisiti di un \textit{platform holder} (in questo caso Nintendo) e implementare soluzioni che li rispettino costituisce un bagaglio di competenza esplicitamente 
 richiesto dal mercato del lavoro videoludico, ma praticamente inaccessibile al di fuori di contesti professionali.
 
 La possibilità di lavorare su un prodotto multi-piattaforma (PC, mobile, console) infine rappresentava un'occasione per toccare con mano le differenze progettuali 
