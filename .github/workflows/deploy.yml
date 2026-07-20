@@ -17,6 +17,15 @@ jobs:
       - name: Checkout del repository
         uses: actions/checkout@v4
 
+      - name: Configura Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Controllo termini inglesi e \textit{}
+        run: |
+          python scripts/check_english_terms.py
+
       - name: Compila il PDF (LaTeX)
         uses: xu-cheng/latex-action@v3
         with:
