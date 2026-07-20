@@ -1,7 +1,84 @@
-platform holder
-game
-engine
-console
-input
-controller
-software
+Achievement
+API
+App Store
+Asset
+Authentication
+Back
+Bitbucket
+Build
+Card game
+Codebase
+Commit
+Controller
+Crash
+Deck Builder
+Dev-kit
+Digital Health
+Dungeon
+Dungeon Choose
+Dungeon crawler
+Dungeon fantasy
+Dungeon Game
+Engine
+Event System
+External Assets
+Focus
+Game development
+Gamepad
+Git
+Google Play
+Hub
+Inn
+Insurtech
+Internal Assets
+Inventory & Shop
+IoT
+Issue tracking
+Logger
+Manager
+Merge
+MMORPG
+Mobile
+Mouse
+Multiplayer
+Networking
+Nintendo eShop
+Nintendo SDK Plugin
+OBB
+Online
+Pipeline
+Platform holder
+Porting
+Prefab
+Publish-subscribe
+RPG
+Runtime
+Script
+Scriptable object
+SDK
+Secret Dungeon
+Shader
+Shared Assets
+Showcase
+Smart working
+Software
+Software business
+Software house
+Stack
+Startupper
+Steam
+Steamworks.NET
+Tap
+Task
+TCG
+Testing
+Todo
+Touch
+Tutorial
+User account
+Virtual Pet
+Warning
+Web
+Workflow
+Wrapper
+Write Access Count
