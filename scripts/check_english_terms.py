@@ -23,27 +23,36 @@ def load_english_words(txt_filename="english_words.txt"):
                 terms.add(line.lower())
     return terms
 
-def get_textit_spans(raw_content):
+def get_ignored_spans(raw_content):
     """
-    Restituisce gli intervalli (start, end) del testo contenuto all'interno di \textit{...}.
+    Restituisce gli intervalli (start, end) del testo racchiuso in \textit{...} 
+    oppure contenuto nei comandi del glossario (es. \gls{...}, \Gls{...}, \glspl{...}, ecc.).
     """
     spans = []
-    pattern = r'\\textit\{([^}]*)\}'
-    for match in re.finditer(pattern, raw_content):
+    
+    # 1. Match per \textit{...}
+    textit_pattern = r'\\textit\{([^}]*)\}'
+    for match in re.finditer(textit_pattern, raw_content):
         spans.append((match.start(1), match.end(1)))
+        
+    # 2. Match per comandi glossario: \gls{...}, \Gls{...}, \glspl{...}, \Glspl{...}
+    gls_pattern = r'\\[gG]ls(?:pl)?\{([^}]*)\}'
+    for match in re.finditer(gls_pattern, raw_content):
+        spans.append((match.start(1), match.end(1)))
+        
     return spans
 
-def is_inside_textit(start, end, textit_spans):
+def is_inside_ignored_span(start, end, ignored_spans):
     """
-    Verifica se la posizione (start, end) ricade all'interno di un \textit{}.
+    Verifica se la posizione (start, end) ricade all'interno di un \textit{} o di un \gls{}.
     """
-    return any(s_start <= start and end <= s_end for s_start, s_end in textit_spans)
+    return any(s_start <= start and end <= s_end for s_start, s_end in ignored_spans)
 
 def check_missing_textit(raw_content, known_terms):
     """
-    Trova TUTTE le occorrenze dei termini noti che compaiono nel testo ma NON sono in \textit{}.
+    Trova TUTTE le occorrenze dei termini noti che compaiono nel testo ma NON sono in \textit{} o \gls{}.
     """
-    textit_spans = get_textit_spans(raw_content)
+    ignored_spans = get_ignored_spans(raw_content)
     missing_textit = []
     
     # Ordina i termini dal più lungo al più corto per evitare falsi match parziali
@@ -53,7 +62,7 @@ def check_missing_textit(raw_content, known_terms):
         pattern = r'\b' + re.escape(term) + r'\b'
         for match in re.finditer(pattern, raw_content, re.IGNORECASE):
             start, end = match.start(), match.end()
-            if not is_inside_textit(start, end, textit_spans):
+            if not is_inside_ignored_span(start, end, ignored_spans):
                 line_no = raw_content[:start].count('\n') + 1
                 missing_textit.append((line_no, match.group(0)))
                 
@@ -87,7 +96,7 @@ def main():
                     print()
                     
     if not has_warnings:
-        print("✅ Tutti i termini inglesi presenti nella lista sono correttamente racchiusi in \\textit{}!")
+        print("✅ Tutti i termini inglesi presenti nella lista sono correttamente racchiusi in \\textit{} o gestiti tramite \\gls{}!")
 
 if __name__ == "__main__":
     main()
