@@ -5,6 +5,7 @@
 In questa sezione viene descritto l'approccio organizzativo adottato durante l'intero periodo di stage, con particolare attenzione alle modalità di pianificazione delle attività, alla comunicazione con il tutor aziendale e agli strumenti utilizzati per monitorare l'avanzamento del progetto.
 
 \subsection{Pianificazione e interazione con il tutor}
+\label{sec:pianificazione}
 
 %Descrizione dell'organizzazione delle giornate e delle settimane lavorative, della frequenza e delle modalità degli incontri con il tutor aziendale, delle revisioni periodiche dello stato di avanzamento e della collaborazione quotidiana con il secondo stagista. Verrà inoltre illustrato l'utilizzo del file condiviso \textit{Todo}, impiegato come strumento informale ma efficace per il monitoraggio delle attività aperte e completate, evidenziandone i vantaggi in termini di praticità e i limiti rispetto a sistemi di tracciamento più strutturati.
 
@@ -25,7 +26,21 @@ Questa soluzione presentava dei limiti evidenti rispetto a uno strumento di trac
  
 \subsection{Versionamento e \textit{workflow} collaborativo}
 
-Descrizione dell'utilizzo di \textit{Git} e \textit{Bitbucket} per la gestione del codice sorgente, dell'organizzazione dei rami di sviluppo, delle operazioni di \textit{merge} tra il lavoro dei due stagisti e delle modalità di rilascio progressivo delle modifiche. Verrà inoltre evidenziato come la struttura dei messaggi di \textit{commit} abbia costituito una forma di documentazione incrementale dell'evoluzione del progetto, compensando l'assenza di un sistema dedicato di \textit{issue tracking}.
+% Descrizione dell'utilizzo di \textit{Git} e \textit{Bitbucket} per la gestione del codice sorgente, dell'organizzazione dei rami di sviluppo, delle operazioni di \textit{merge} tra il lavoro dei due stagisti e delle modalità di rilascio progressivo delle modifiche. Verrà inoltre evidenziato come la struttura dei messaggi di \textit{commit} abbia costituito una forma di documentazione incrementale dell'evoluzione del progetto, compensando l'assenza di un sistema dedicato di \textit{issue tracking}.
+
+Per il versionamento del progetto, come già accennato nel primo capitolo, abbiamo usato il software Git insieme a Bitbucket, ospitato su un'infrastruttura indipendente dall'azienda.
+ 
+Quando ho preso in mano il progetto, l'organizzazione dei rami era piuttosto caotica: erano aperti numerosi \textit{branch}, conseguenza diretta dell'assenza di manutenzione del progetto negli anni precedenti allo stage. Molti di questi rami avevano nomi poco significativi, riferiti solamente alle persone che vi avevano lavorato in passato.
+ 
+Per lo stage, insieme al tutor abbiamo deciso di creare un nuovo \textit{branch} a partire dall'ultimo \textit{commit} disponibile, risalente al 2018. Nelle prime due settimane, in cui ero l'unico stagista sul progetto, ho lavorato direttamente su questo branch, senza dover gestire conflitti di \textit{merge}. Quando è arrivato il secondo stagista, abbiamo invece scelto di creare due rami separati: uno dedicato ai miei compiti, l'altro ai suoi.
+ 
+%\textbf{\{DA COMPLETARE: come avvenivano concretamente i merge tra i due branch? Pull request su Bitbucket con revisione incrociata, merge diretto da riga di comando, altro?\}}
+ 
+La collaborazione tra i due branch si basava su una regola semplice: comunicare preventivamente su quali scene o file ciascuno stesse lavorando, per poi dividersi le \textit{task} di conseguenza ed evitare di modificare gli stessi file in parallelo. Prima di integrare il proprio lavoro nel branch principale creato a inizio stage, verificavamo che le modifiche non introducessero errori nel codice.
+ 
+%\textbf{\{DA COMPLETARE: come arrivava il codice dai branch di lavoro a una build effettivamente distribuita o testabile? C'era una cadenza di rilascio, un branch di destinazione comune, dei tag di versione?\}}
+ 
+Le descrizioni dei messaggi di \textit{commit} costituivano inoltre una forma di documentazione incrementale del progetto, che compensava l'assenza di uno strumento dedicato di \textit{issue tracking} descritta in \ref{sec:pianificazione}. Per riferirci in modo univoco alle voci del file \textit{Todo} presentato in quella stessa sezione, anteponevamo ai messaggi di commit la sigla \texttt{td}, seguita dalla lettera della categoria e dal numero della voce specifica: un commit relativo, ad esempio, alla voce C3 del file Todo riportava la dicitura \texttt{td-C3}. Questa convenzione ci permetteva di ricostruire, a posteriori, quale attività pianificata ciascuna modifica al codice avesse implementato.
 
 \section{Attività svolte}
 
