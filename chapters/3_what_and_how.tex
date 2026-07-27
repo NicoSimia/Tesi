@@ -55,9 +55,9 @@ Ho dedicato le prime due settimane di stage alla migrazione del progetto da Unit
  
 Per affrontare questo aggiornamento, ho scelto di dividerlo in due passaggi, inserendo una versione intermedia tra quella di partenza e quella finale, anziché saltare direttamente da Unity 2017 a Unity 6. Questa scelta riduceva il rischio di perdere traccia di errori che, saltando subito a una versione molto più recente, l'engine potrebbe non segnalare più affatto: il codice ormai troppo datato viene infatti rimosso dalle versioni più recenti, anziché semplicemente segnalato come deprecato. La versione scelta come tappa intermedia è stata Unity 2021, un compromesso tra la versione di partenza (rilasciata nel 2017) e la versione 6, obiettivo finale, rilasciata nel 2025.
  
-\textbf{Prima tappa: da Unity 2017 a Unity 2021.} Questo primo passaggio è stato in gran parte gestito dall'engine stesso: Unity individuava automaticamente le impostazioni non più compatibili e proponeva direttamente la correzione da applicare. Un esempio è l'impostazione \textit{Auto Graphics API}, che Unity segnalava come da aggiornare per allinearsi alle API grafiche supportate dalle versioni più recenti dell'engine; ho applicato la correzione seguendo l'indicazione proposta nei \textit{settings} del progetto. In questa tappa mi sono limitato ad annotare gli errori più complessi emersi in console, rimandandone la risoluzione al passaggio successivo, senza intervenire direttamente nel codice.
+Prima tappa: da Unity 2017 a Unity 2021. Questo primo passaggio è stato in gran parte gestito dall'engine stesso: Unity individuava automaticamente le impostazioni non più compatibili e proponeva direttamente la correzione da applicare. Un esempio è l'impostazione \textit{Auto Graphics API}, che Unity segnalava come da aggiornare per allinearsi alle API grafiche supportate dalle versioni più recenti dell'engine; ho applicato la correzione seguendo l'indicazione proposta nei \textit{settings} del progetto. In questa tappa mi sono limitato ad annotare gli errori più complessi emersi in console, rimandandone la risoluzione al passaggio successivo, senza intervenire direttamente nel codice.
  
-\textbf{Completamento della migrazione: da Unity 2021 a Unity 6.} È in questo secondo passaggio che ho affrontato la maggior parte delle problematiche annotate in precedenza, insieme ad altre emerse nel salto verso la versione più recente.
+Completamento della migrazione: da Unity 2021 a Unity 6. È in questo secondo passaggio che ho affrontato la maggior parte delle problematiche annotate in precedenza, insieme ad altre emerse nel salto verso la versione più recente.
  
 Alcune dipendenze sono state aggiornate automaticamente dall'engine, senza richiedere intervento diretto. \textit{DOTween}, una libreria molto diffusa nell'ecosistema Unity per la gestione semplificata della fisica 2D, rientra in questo caso: il progetto la includeva come file \texttt{.dll} (una libreria già compilata) anziché come pacchetto Unity, e per questo l'engine la riconosceva automaticamente attraverso l'\textit{Package Manager}, senza generare errori lungo le diverse versioni.
  
@@ -120,7 +120,13 @@ La Figura~\ref{fig:schema-navigazione-inn} mostra lo schema di adiacenza progett
     \label{fig:schema-navigazione-inn}
 \end{figure}
  
-%\textbf{\{CONTINUA QUI: spiega la logica dello schema mostrato in figura — come sono stati assegnati i collegamenti tra i pulsanti direzionali e i vari elementi, eventuali casi particolari (ad esempio elementi raggiungibili da più direzioni, o angoli della schermata) e perché Inn è un esempio rappresentativo delle scelte adottate per le altre scene.\}}
+Nella schermata \textit{Inn}, abbiamo impostato manualmente la maggior parte dei collegamenti direzionali, anziché affidarci al collegamento automatico descritto in precedenza. \textit{Inn} è infatti una scena che racchiude contemporaneamente più parti del gioco — il tutorial, l'accesso alle altre scene, i crediti — e la logica automatica, non tenendo conto di quando un elemento risulta effettivamente attivo, produceva collegamenti scorretti tra oggetti non sempre presenti insieme sullo schermo.
+ 
+Un caso particolare riguarda la schermata dei crediti: l'abbiamo resa deliberatamente irraggiungibile tramite la navigazione direzionale, rendendola accessibile solo tramite il tasto dedicato Y/Triangle del controller (da \textit{mouse}, invece, è sufficiente cliccarci sopra). Questa scelta ci ha permesso di escludere un elemento secondario dal grafo di navigazione principale, senza complicare i collegamenti tra gli elementi usati più di frequente.
+ 
+Un secondo caso particolare riguarda la sezione di tutorial, durante la quale abbiamo disabilitato del tutto la navigazione libera: il giocatore può interagire solo con il personaggio del \textit{Ferryman} per accedere al dialogo introduttivo, e in seguito solo con l'elemento che avvia il primo \textit{dungeon}. In questo caso la scena non offre una navigazione tra più elementi, ma una sequenza fissa di due soli punti di interazione, pensata per guidare il giocatore nei primi passi senza margine di errore.
+ 
+\textit{Inn} risulta quindi rappresentativa delle scelte adottate anche nelle altre scene del gioco: la necessità di intervenire manualmente sui collegamenti quando gli elementi dell'interfaccia cambiano stato dinamicamente, e l'uso di tasti dedicati per isolare dal flusso di navigazione principale funzionalità secondarie o poco frequenti — un pattern che si ripete, ad esempio, nell'uso dei tasti L1 e R1 nella schermata \textit{Deck Builder} discusso in precedenza.
  
 La presenza di uno schema di navigazione ha inoltre reso possibile gestire in modo uniforme il concetto di focus, ovvero l'elemento dell'interfaccia che riceve gli \textit{input} del controller in un determinato istante. La gestione del focus ha assunto un ruolo centrale durante tutto lo sviluppo, soprattutto perché il gioco consentiva il passaggio in tempo reale tra \textit{mouse} e \textit{gamepad}. Abbiamo dovuto quindi definire una strategia che permettesse di recuperare automaticamente il focus corretto quando il giocatore riprendeva a utilizzare il controller, evitando che la navigazione ripartisse da elementi arbitrari o non più visibili.
  
@@ -152,7 +158,36 @@ Il primo problema riscontrato con la Nintendo Switch riguardava i salvataggi, in
  
 La principale differenza riguardava il fatto che, per scrivere qualcosa in memoria, è necessario prima instanziare, o selezionare, l'area di \textit{mount}: per farlo serve un riferimento allo \textit{userid}. Questo ha posto le basi per evitare che il gioco si arrestasse in modo anomalo alla selezione di uno slot di salvataggio, momento in cui viene inizializzata la memoria in cui verranno salvati i dati. I dati, tuttavia, vengono scritti solo su un \textit{buffer} e non direttamente in memoria: per renderli persistenti è necessario un \textit{commit}, un'operazione che libera il buffer scrivendo definitivamente le informazioni al suo interno nelle celle di memoria assegnate.
  
-Proprio l'uso del \textit{commit} è stato all'origine del problema più insidioso incontrato durante il processo di certificazione: il superamento del limite di \textit{Write Access Count} imposto da Nintendo. Il test di certificazione monitora il numero di operazioni di scrittura sul salvataggio in un dato intervallo, e fallisce se questo numero supera una soglia massima — nel nostro caso, circa 32 operazioni al minuto. Abbiamo individuato l'origine del problema analizzando i log di accesso al \textit{file system} con lo strumento ufficiale Nintendo \textit{FsAccessLogViewer}, che permette di ispezionare, a partire dai log salvati su una scheda SD, il numero di operazioni di scrittura registrate durante una sessione di gioco: il codice originale eseguiva infatti un \textit{commit} a ogni singola modifica di una proprietà del salvataggio, superando abbondantemente la soglia consentita, con punte di oltre 160 operazioni al minuto.
+Il processo di certificazione Nintendo relativo alla gestione dei salvataggi si articola in sei test distinti, riassunti in Tabella~\ref{tab:test-nintendo-salvataggi}.
+ 
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|p{10cm}|}
+\hline
+\textbf{Test} & \textbf{Ambito verificato} \\
+\hline
+1 & Continuità del salvataggio dopo il trasferimento dei dati tra account utente tramite backup su scheda SD \\
+\hline
+2 & Continuità del salvataggio dopo un cambiamento dell'identificativo di sistema \\
+\hline
+3 & Continuità del salvataggio al variare dell'account Nintendo collegato all'account utente \\
+\hline
+4 & Robustezza dell'applicazione al variare della velocità di accesso al supporto di archiviazione \\
+\hline
+5 & Frequenza massima di lettura ripetuta dalla stessa area di memoria \\
+\hline
+6 & Frequenza e volume massimi delle operazioni di scrittura sul salvataggio (\textit{Write Access Count}) \\
+\hline
+\end{tabular}
+\caption{I sei test di certificazione Nintendo relativi alla gestione dei salvataggi}
+\label{tab:test-nintendo-salvataggi}
+\end{table}
+ 
+Quattro di questi sei test sono stati superati senza particolari difficoltà. Alcuni verificavano il comportamento del sistema di salvataggio in condizioni simili a quelle discusse più avanti per il test 6, e sono stati superati grazie alle stesse ottimizzazioni introdotte per quel caso. Un altro richiedeva invece di eseguire manualmente una specifica sequenza di operazioni — ad esempio trasferire il salvataggio da un account utente a un altro tramite backup su scheda SD — verificando che i dati rimanessero coerenti e correttamente leggibili al termine del trasferimento.
+ 
+L'unico test a non essere stato superato al primo tentativo riguardava la continuità del salvataggio al variare dell'account Nintendo collegato all'account utente della console. Il problema è stato risolto la settimana successiva alla conclusione del mio stage dal mio collega, che ha individuato l'origine dell'incomprensione: il test non fa riferimento ad account Nintendo reali, bensì ad account di prova creati appositamente per l'ambiente di sviluppo — un dettaglio non immediatamente evidente dalla sola documentazione.
+ 
+Tra i sei test, quello sul \textit{Write Access Count} si è rivelato il più impegnativo, ed è stato anche l'unico a richiedere un intervento strutturato sul codice del gioco, a differenza degli altri, risolvibili tramite operazioni manuali o chiarimenti procedurali. Proprio l'uso del \textit{commit} è stato all'origine del problema: il superamento del limite di \textit{Write Access Count} imposto da Nintendo. Il test di certificazione monitora il numero di operazioni di scrittura sul salvataggio in un dato intervallo, e fallisce se questo numero supera una soglia massima — nel nostro caso, circa 32 operazioni al minuto. Abbiamo individuato l'origine del problema analizzando i log di accesso al \textit{file system} con lo strumento ufficiale Nintendo \textit{FsAccessLogViewer}, che permette di ispezionare, a partire dai log salvati su una scheda SD, il numero di operazioni di scrittura registrate durante una sessione di gioco: il codice originale eseguiva infatti un \textit{commit} a ogni singola modifica di una proprietà del salvataggio, superando abbondantemente la soglia consentita, con punte di oltre 160 operazioni al minuto.
  
 Per risolvere il problema abbiamo introdotto tre ottimizzazioni distinte.
  
@@ -174,7 +209,15 @@ La seconda richiesta maggiormente vincolante era quella della navigazione tramit
 
 \subsection{Visione d'insieme del prodotto}
 
-Al termine dello stage il prodotto risulta completamente navigabile tramite controller in tutte le principali scene di gioco, compatibile con la piattaforma \textit{Nintendo Switch} e predisposto per l'integrazione del nuovo contenuto rappresentato dal \textit{Secret Dungeon}. Verrà analizzata l'esperienza d'uso dal punto di vista dell'utente finale, mettendo in evidenza la coerenza dell'interfaccia e le soluzioni adottate per adattare un sistema originariamente progettato per \textit{mouse} e \textit{touch} a un paradigma di interazione basato esclusivamente sul controller.
+%Al termine dello stage il prodotto risulta completamente navigabile tramite controller in tutte le principali scene di gioco, compatibile con la piattaforma \textit{Nintendo Switch} e predisposto per l'integrazione del nuovo contenuto rappresentato dal \textit{Secret Dungeon}. Verrà analizzata l'esperienza d'uso dal punto di vista dell'utente finale, mettendo in evidenza la coerenza dell'interfaccia e le soluzioni adottate per adattare un sistema originariamente progettato per \textit{mouse} e \textit{touch} a un paradigma di interazione basato esclusivamente sul controller.
+ 
+Al termine dello stage, il giocatore può completare l'intera esperienza di gioco — dall'autenticazione al primo \textit{dungeon} — utilizzando esclusivamente il \textit{controller}, senza dover ricorrere in alcun momento a \textit{mouse} o \textit{touch}. Le scelte progettuali descritte in \S\ref{sec:implementazione_controller} — lo schema di adiacenza definito per ciascuna scena, la gestione unificata del \textit{Back}, l'indicatore visivo del focus e le scorciatoie dedicate come L1/R1 nel \textit{Deck Builder} — concorrono a un'esperienza di navigazione che, dal punto di vista di chi gioca, risulta nel complesso coerente e prevedibile, pur con alcune eccezioni deliberate legate al contesto specifico di alcune scene.
+ 
+L'associazione dei tasti non viene mai spiegata esplicitamente al giocatore tramite indicazioni a schermo, ma segue le convenzioni consolidate di ciascuna piattaforma. Sul controller PlayStation, ad esempio, la selezione avviene con \texttt{X} e il ritorno alla schermata precedente con \texttt{O}, come nella maggior parte dei giochi commerciali. Per Nintendo Switch, anziché adottare automaticamente la stessa combinazione, abbiamo analizzato altri titoli disponibili sulla \textit{console} per individuare quali tasti utilizzassero per la selezione e il ritorno indietro nelle interfacce 2D, adottando poi la stessa convenzione: una scelta che privilegia la coerenza con le aspettative del giocatore su ciascuna piattaforma, piuttosto che una coerenza rigida con lo sviluppo originario sul \textit{controller} PlayStation.
+ 
+La logica del \textit{Back} si comporta in modo identico in tutte le scene del gioco. Il cursore grafico a forma di mano, invece, presenta un'eccezione: è assente dalla scena \textit{Dungeon Game}, dove abbiamo preferito, per un'esperienza visiva più pulita, sostituirlo con una soluzione basata su \textit{shader} che illuminano il contorno delle carte utilizzabili — sia quelle selezionabili, sia i bersagli validi una volta scelta una carta da giocare. Il cursore ricompare tuttavia non appena il giocatore accede a un menu all'interno della stessa scena, ad esempio le opzioni di gioco o la scelta se proseguire oppure uscire, mantenendo così la coerenza del linguaggio visivo ovunque non sia stata deliberatamente sostituita da un'alternativa più adatta al contesto.
+ 
+L'aspetto che, dal punto di vista dell'utente, risulta ancora meno immediato riguarda la navigazione nelle schermate \textit{Deck Builder} e \textit{Inventory \& Shop}, a causa dei collegamenti statici impostati manualmente tra gli elementi. È proprio per compensare questa minore immediatezza che avevamo introdotto il cursore a forma di mano: un riferimento visivo sempre presente, che permette al giocatore di individuare con certezza dove si trova il focus in un dato momento, anche quando i collegamenti tra gli elementi non risultano del tutto intuitivi.
 
 \subsection{Copertura dei requisiti e risultati quantitativi}
 
