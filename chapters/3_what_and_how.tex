@@ -9,6 +9,15 @@ In questa sezione viene descritto l'approccio organizzativo adottato durante l'i
 
 %Descrizione dell'organizzazione delle giornate e delle settimane lavorative, della frequenza e delle modalità degli incontri con il tutor aziendale, delle revisioni periodiche dello stato di avanzamento e della collaborazione quotidiana con il secondo stagista. Verrà inoltre illustrato l'utilizzo del file condiviso \textit{Todo}, impiegato come strumento informale ma efficace per il monitoraggio delle attività aperte e completate, evidenziandone i vantaggi in termini di praticità e i limiti rispetto a sistemi di tracciamento più strutturati.
 
+La Figura~\ref{fig:pianificazione-tutor} offre una visione d'insieme del flusso di pianificazione, interazione con il tutor e utilizzo del file \textit{Todo} descritto nel seguito di questa sezione, dalla pianificazione mensile fino al coinvolgimento delle figure di livello superiore verso la fine dello stage.
+ 
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.95\textwidth]{img/pianificazione_e_interazione.png}
+\caption{Flusso di pianificazione mensile, interazione con il tutor e utilizzo del file \textit{Todo}}
+\label{fig:pianificazione-tutor}
+\end{figure}
+
 La pianificazione aziendale prevedeva, come prima cosa di ogni mese, la definizione dei giorni in cui stagisti e dipendenti sarebbero stati in presenza. Questo era dovuto a una scarsità di postazioni di lavoro in grado di accogliere tutti i dipendenti, con l'unica eccezione del venerdì, giorno in cui la maggior parte dei dipendenti lavorava da remoto e restava quindi maggiore flessibilità per noi stagisti. Nel primo mese, maggio, ho lavorato in presenza il martedì e il giovedì; 
 nel mese successivo i giorni sono cambiati in lunedì e mercoledì. L'azienda permetteva comunque flessibilità quando il progetto lo richiedeva: nel secondo mese, ad esempio, io e il mio collega stagista siamo andati in azienda con maggiore frequenza, poiché il devkit Nintendo Switch necessario per i test di certificazione (\ref{sec:obiettivi-controller-certificazione}) era disponibile solo in sede. Nei giorni in cui restavamo a casa, ci concentravamo maggiormente sulla scrittura del codice e meno sulle attività di \textit{testing}, che richiedevano l'accesso diretto alla console.
  
@@ -74,7 +83,7 @@ Per la libreria \textit{ShaderForge} non emergevano invece errori espliciti di c
  
 Una serie di \textit{warning} riguardava inoltre il rimpiazzo di alcuni metodi ormai obsoleti, ripetuti in diverse parti del codice del gioco: l'avanzamento delle versioni di Unity aveva infatti deprecato questi metodi. La sostituzione è stata comunque semplice, poiché l'engine indicava già, all'interno del \textit{warning} stesso, la nuova firma del metodo da utilizzare; ho dovuto soltanto adattare i parametri passati, senza altre modifiche.
  
-La \textit{build} per PC funzionava senza problemi, mentre la controparte Android presentava difficoltà legate all'uso degli \textit{OBB}. Sebbene i file OBB restino tecnicamente utilizzabili nell'ecosistema Android, non sono più ammessi per la pubblicazione sul Google Play Store: la libreria \textit{OBB Downloader}, ancora presente nel progetto, generava quindi errori. È bastato rimuovere la cartella che la conteneva per eliminarli.
+La \textit{build} per PC funzionava senza problemi, mentre la controparte Android presentava difficoltà legate all'uso degli \textit{OBB}. Sebbene i file \textit{OBB} restino tecnicamente utilizzabili nell'ecosistema Android, non sono più ammessi per la pubblicazione sul Google Play Store: la libreria \textit{OBB Downloader}, ancora presente nel progetto, generava quindi errori. È bastato rimuovere la cartella che la conteneva per eliminarli.
  
 L'interazione con Steam era affidata alla libreria \textit{Steamworks.NET}, che il progetto originale includeva scaricando i file binari e importandoli direttamente, senza passare dall'\textit{Package Manager}. La libreria non era supportata ufficialmente da Unity al momento della sua integrazione originaria; le versioni più recenti dell'engine, invece, supportano anche librerie non ufficiali e provenienti da fonti diverse dallo \textit{store}. Ho risolto il problema eliminando completamente la cartella esistente e importando la versione più recente della libreria tramite l'\textit{Package Manager}. Tuttavia una volta caricata la libreria correttamente il gioco è diventato impossibile da eseguire sull'\textit{editor} che infatti, per costruzione della libreria, andava ad aprire l'Applicazione Steam per cercare di avviare il gioco dalla collezione giochi dell'\textit{account} e quindi ciò che veniva eseguito risultava la versione rilasciata del 2018 invece di quella attualmente in sviluppo. Per aggirare questo problema abbiamo posizionato un \texttt{if}, una condizione che andava a verificare attraverso dei parametri generati dell'\textit{editor} o dalla \textit{build} se ci si trovava all'interno dell'\textit{engine} oppure nell'esecuzione file generato dalla \textit{build}. Nel primo caso la libreria non veniva inizializzata in modo che poi non venisse richiamato il gioco ufficiale dalla pagina di Steam.
 
@@ -96,17 +105,14 @@ Per il progetto oggetto dello stage, l'adozione del nuovo sistema non è stata u
  
 La Figura~\ref{fig:confronto-input-systems} confronta schematicamente l'architettura dei due sistemi, evidenziando come il New Input System introduca un livello di astrazione — le Input Action — assente nell'approccio precedente.
  
-% Aggiungere immagini con confronto fra le due architetture:
-% Legacy Input Manager
-% Keyboard ─┐
-% Mouse ────┼──► Input.GetKey() / GetAxis() ───► Game Logic
-% Gamepad ──┘
-%
-% New Input System
-% Keyboard ─┐
-% Mouse ────┤
-% Gamepad ──┼──► Input Actions ───► Game Logic
-% Touch ────┘
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=1.15\textwidth]{img/confronto_input.png}}
+    \caption{Confronto schematico tra i due sistemi di \textit{input} in Unity}
+    %\vspace{0.1cm}
+    %{\footnotesize Fonte: pagina Steam del prodotto e screenshot del gioco\par}
+    \label{fig:confronto-input-systems}
+\end{figure}
  
 Dopo aver introdotto i due sistemi di input, la prima attività è consistita nell'introdurre progressivamente il New Input System all'interno del progetto. In questo periodo, nelle impostazioni di Unity abbiamo mantenuto l'opzione Input System Package (New) + Input Manager (Old), corrispondente alla modalità Both. In questa configurazione entrambi i sistemi risultavano contemporaneamente disponibili, consentendo al codice già esistente di continuare a utilizzare il Legacy Input Manager mentre sviluppavamo le nuove funzionalità con il New Input System.
  
@@ -239,4 +245,68 @@ L'aspetto che, dal punto di vista dell'utente, risulta ancora meno immediato rig
 
 \subsection{Copertura dei requisiti e risultati quantitativi}
 
-In conclusione verranno presentati i principali risultati quantitativi ottenuti durante il progetto: numero di scene rese completamente navigabili tramite controller, numero di attività completate all'interno del file \textit{Todo}, stima delle righe di codice sviluppate o modificate, piattaforme sulle quali il gioco è stato testato con successo e requisiti di certificazione per \textit{Nintendo Switch} soddisfatti. Tali informazioni saranno sintetizzate mediante una tabella riepilogativa che metterà in relazione gli obiettivi definiti nel Capitolo~2 con i risultati effettivamente conseguiti.
+%In conclusione verranno presentati i principali risultati quantitativi ottenuti durante il progetto: numero di scene rese completamente navigabili tramite controller, numero di attività completate all'interno del file \textit{Todo}, stima delle righe di codice sviluppate o modificate, piattaforme sulle quali il gioco è stato testato con successo e requisiti di certificazione per \textit{Nintendo Switch} soddisfatti. Tali informazioni saranno sintetizzate mediante una tabella riepilogativa che metterà in relazione gli obiettivi definiti nel Capitolo~2 con i risultati effettivamente conseguiti.
+
+In conclusione, presento i principali risultati quantitativi ottenuti durante il progetto, con particolare attenzione al confronto tra gli obiettivi definiti nel Capitolo~2 e i risultati effettivamente conseguiti.
+ 
+La navigazione tramite \textit{controller} è stata implementata su tutte e sei le scene di gioco, raggiungendo pienamente l'obiettivo definito in \S\ref{sec:obiettivi-controller-certificazione} (Tabella~\ref{tab:obiettivi_switch}).
+ 
+Il file \textit{Todo} descritto in \S3.1.1 permette di quantificare con precisione le attività completate durante lo stage. La Tabella~\ref{tab:todo-completamento} riassume lo stato delle attività tracciate, suddivise per categoria secondo la stessa convenzione lettera-numero usata nei messaggi di \textit{commit} (\S3.1.2).
+ 
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|p{6cm}|c|c|}
+\hline
+\textbf{Categoria} & \textbf{Descrizione} & \textbf{Completati} & \textbf{Totale} \\
+\hline
+A & Attività pianificate inizialmente & 7 & 7 \\
+\hline
+B & Correzioni (\textit{fix}) & 37 & 38 \\
+\hline
+C & Altri errori riscontrati & 3 & 3 \\
+\hline
+D & Bug critici & 4 & 4 \\
+\hline
+E & Miglioramenti di qualità (\textit{QoL}) & 9 & 9 \\
+\hline
+\textbf{Totale} & & \textbf{60} & \textbf{61} \\
+\hline
+\end{tabular}
+\caption{Completamento delle attività tracciate nel file \textit{Todo}, per categoria}
+\label{tab:todo-completamento}
+\end{table}
+ 
+L'unica attività rimasta aperta riguarda un possibile errore nella schermata \textit{Inventory \& Shop}, segnalato per una verifica futura ma non ancora riprodotto in modo affidabile. Il file \textit{Todo} contiene inoltre due categorie aggiuntive — aggiornamenti futuri e attività di pre-rilascio — volutamente escluse da questo conteggio poiché non rientravano negli obiettivi dello stage, ma pianificate per il lavoro successivo sul progetto.
+ 
+Il gioco è stato testato con successo su cinque piattaforme: Windows, macOS, Android, iOS e Nintendo Switch.
+ 
+Per quanto riguarda la certificazione Nintendo Switch, sui sei test obbligatori descritti in \S3.2.3, cinque sono stati superati durante le otto settimane dello stage. Il sesto test, relativo alla continuità del salvataggio al variare dell'account Nintendo collegato, è stato completato la settimana successiva alla conclusione del mio stage dal mio collega stagista.
+ 
+\textbf{\{PLACEHOLDER: numero di righe di codice sviluppate o modificate, da \texttt{git diff --stat} tra il primo e l'ultimo commit del branch.\}}
+ 
+Oltre agli obiettivi definiti nel Capitolo~2, lo stage ha posto le basi per un contenuto aggiuntivo, il \textit{Secret Dungeon} (in seguito rinominato \textit{Extra Dungeon}): ho predisposto la logica iniziale, verificandone il funzionamento di base, mentre l'implementazione completa e l'integrazione con il resto del gioco sono state realizzate dal mio collega nella settimana successiva alla fine del mio stage.
+ 
+La Tabella~\ref{tab:confronto-obiettivi-risultati} confronta gli obiettivi definiti nel Capitolo~2 con i risultati effettivamente conseguiti durante lo stage.
+ 
+\begin{table}[h]
+\centering
+\begin{tabular}{|p{4cm}|p{4.5cm}|p{4.5cm}|}
+\hline
+\textbf{Obiettivo} & \textbf{Metrica definita (Cap.~2)} & \textbf{Risultato conseguito} \\
+\hline
+Migrazione Unity 2017 $\rightarrow$ Unity 6 & 0 errori di compilazione; \textit{warning} ridotti al minimo & Raggiunto: 0 errori di compilazione \\
+\hline
+Stabilizzazione \textit{build} & \textit{Build} eseguibili su PC, iOS e Android, senza \textit{crash} durante la compilazione & Raggiunto, ed esteso a Nintendo Switch e macOS \\
+\hline
+Eliminazione \textit{OBB} \textit{mobile} & Rimozione completa dell'apparato \textit{OBB} & Raggiunto \\
+\hline
+Compatibilità Steam & Nessun errore di \textit{runtime} specifico della piattaforma Steam & Raggiunto \\
+\hline
+Navigazione \textit{controller} & 6/6 scene navigabili esclusivamente tramite \textit{controller} standard & Raggiunto: 6/6 \\
+\hline
+Certificazione Nintendo Switch & 6/6 test obbligatori del devkit superati & 5/6 durante lo stage; 6/6 completato la settimana successiva \\
+\hline
+\end{tabular}
+\caption{Confronto tra gli obiettivi aziendali definiti nel Capitolo~2 e i risultati conseguiti}
+\label{tab:confronto-obiettivi-risultati}
+\end{table}
