@@ -59,6 +59,15 @@ Prima tappa: da Unity 2017 a Unity 2021. Questo primo passaggio è stato in gran
  
 Completamento della migrazione: da Unity 2021 a Unity 6. È in questo secondo passaggio che ho affrontato la maggior parte delle problematiche annotate in precedenza, insieme ad altre emerse nel salto verso la versione più recente.
  
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=1.15\textwidth]{img/linea_versioni_unity.png}}
+    \caption{Grafico riassuntivo delle migrazioni effettuate}
+    %\vspace{0.1cm}
+    %{\footnotesize Fonte: pagina Steam del prodotto e screenshot del gioco\par}
+    \label{fig:line-versioni-unity}
+\end{figure}
+
 Alcune dipendenze sono state aggiornate automaticamente dall'engine, senza richiedere intervento diretto. \textit{DOTween}, una libreria molto diffusa nell'ecosistema Unity per la gestione semplificata della fisica 2D, rientra in questo caso: il progetto la includeva come file \texttt{.dll} (una libreria già compilata) anziché come pacchetto Unity, e per questo l'engine la riconosceva automaticamente attraverso l'\textit{Package Manager}, senza generare errori lungo le diverse versioni.
  
 Per la libreria \textit{ShaderForge} non emergevano invece errori espliciti di compilazione, né inizialmente problemi visibili all'interno del gioco: gli errori comparivano solo selezionando una \textit{shader} creata tramite l'interfaccia grafica offerta dalla libreria, a causa della mancanza di alcuni pulsanti nella finestra \textit{Inspector}. Testando il gioco nell'\textit{editor} nel corso delle settimane, io e il mio collega abbiamo notato alcuni artefatti grafici non coerenti con la versione rilasciata su Steam nel 2018, riguardanti principalmente la trasparenza di alcune texture. Le soluzioni possibili erano due: ricreare da zero le \textit{shader} problematiche, oppure intervenire direttamente sul loro codice — tecnica più scomoda, dato che di norma le shader si costruiscono tramite strumenti grafici dedicati. Ho scelto la seconda opzione nonostante la maggiore difficoltà, per ragioni di tempo; informandomi \textit{online} tramite diversi \textit{forum} e con il supporto di strumenti agentici, sono riuscito a ricostruire l'effetto grafico originario.
@@ -109,7 +118,7 @@ Da questo momento in poi il lavoro si è concentrato non tanto sulla semplice ma
  
 Il nostro lavoro è consistito quindi nel decidere, per ogni scena, i collegamenti corretti tra gli elementi, facendo attenzione al fatto che una stessa scena poteva gestire più interfacce sovrapposte — ad esempio un sottomenu che compariva dopo aver premuto un determinato pulsante. Abbiamo poi dovuto modificare singolarmente ogni riferimento di navigazione per riflettere questi collegamenti corretti.
  
-La Figura~\ref{fig:schema-navigazione-inn} mostra lo schema di adiacenza progettato per la schermata \textit{Inn}, una delle scene più articolate dal punto di vista della navigazione poiché funge da \textit{hub} verso tutte le altre schermate del gioco (\S2.2).
+La Figura~\ref{fig:schema-navigazione-inn} mostra lo schema di adiacenza progettato per la schermata \textit{Inn}, una delle scene più articolate dal punto di vista della navigazione poiché funge da \textit{hub} verso tutte le altre schermate del gioco (\S\ref{sec:prodotto-litd}).
 
 \begin{figure}[H]
     \centering
@@ -151,6 +160,15 @@ Il PC è sempre stato la piattaforma meno problematica, dato che anche il primo 
 Una nota particolare merita l'ecosistema Apple: pur avendo sviluppato e testato fin dall'inizio in ambiente Windows, per eseguire il gioco su un Mac o un iPhone è necessario utilizzare un dispositivo Apple su cui aprire il progetto ed eseguire le \textit{build}. Abbiamo quindi svolto tutte le prove per questo ecosistema alla fine dello sviluppo, quando sapevamo che non avremmo più toccato nulla che potesse comprometterlo. Tuttavia, anche con questo rallentamento e un piccolo problema grafico dovuto a una scelta di programmazione del precedente team di sviluppo, l'ambiente Apple non ha dato ulteriori problemi.
  
 Proprio a causa del problema descritto poco sopra — errori che non si manifestano durante l'esecuzione nell'\textit{editor} — abbiamo deciso di creare un \textit{logger}, una semplice interfaccia grafica che stampava a schermo qualunque comunicazione il gioco avrebbe dovuto stampare: \textit{warning}, errori, oppure \textit{print} inseriti esplicitamente nel codice da me e dal mio collega, o già presenti nella vecchia versione del gioco. Questo non sarebbe stato necessario testando solo all'interno di Unity, che offre una \textit{console} di \textit{debug} che svolge lo stesso lavoro. Per le applicazioni eseguite nel loro reale ambiente di esecuzione, invece, si può scegliere questo approccio — molto più veloce da implementare e immediato nella verifica — a meno che non si preferisca ricorrere a \textit{software} di terze parti. È naturalmente necessario disabilitare questo componente al momento del rilascio sulle piattaforme ufficiali.
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=1.15\textwidth]{img/unity_logger_game.png}}
+    \caption{Interfaccia del \textit{logger} all'interno gioco}
+    %\vspace{0.1cm}
+    %{\footnotesize Fonte: pagina Steam del prodotto e screenshot del gioco\par}
+    \label{fig:unity-logger-game}
+\end{figure}
  
 La sfida sicuramente più difficile, ma allo stesso tempo intrigante, era provare il gioco sulla Nintendo Switch e sul suo \textit{dev-kit}. Per quanto riguarda l'\textit{hardware}, inizialmente non sapevamo quanto ci saremmo avvicinati a una versione rilasciabile del gioco: di conseguenza, l'azienda non aveva deciso di investire subito nell'acquisto del \textit{dev-kit} Nintendo Switch, l'ambiente di sviluppo ufficiale della piattaforma, necessario per poter in seguito rilasciare il gioco. Per alcune settimane abbiamo quindi provato il gioco usando una Nintendo Switch \textit{moddata}, modificata con un software che ne cambia radicalmente il funzionamento, permettendo ad esempio di ricevere file dal \textit{computer} e installare file \texttt{.nsp}.
  
