@@ -65,15 +65,18 @@ Software
 Software business
 Software house
 Stack
+Stage
 Startupper
 Steam
 Steamworks.NET
 Tap
 Task
 TCG
+Test
 Testing
 Todo
 Touch
+Tutor
 Tutorial
 User account
 Virtual Pet
