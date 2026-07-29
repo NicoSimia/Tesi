@@ -1,18 +1,28 @@
+Account
 Achievement
 API
 App Store
 Asset
 Authentication
 Back
+Backup
 Bitbucket
+Branch
+Buffer
 Build
+Bug
+Business
 Card game
+Cloud
 Codebase
 Commit
+Console
 Controller
 Crash
 Deck Builder
 Dev-kit
+Devkit
+Dev Kit
 Digital Health
 Dungeon
 Dungeon Choose
@@ -22,21 +32,27 @@ Dungeon Game
 Engine
 Event System
 External Assets
+File
 Focus
 Game development
 Gamepad
 Git
 Google Play
+Hardware
 Hub
 Inn
+Input
 Insurtech
 Internal Assets
 Inventory & Shop
 IoT
 Issue tracking
+Log
 Logger
 Manager
+Markdown
 Merge
+Microcontroller
 MMORPG
 Mobile
 Mouse
@@ -46,11 +62,13 @@ Nintendo eShop
 Nintendo SDK Plugin
 OBB
 Online
+Performance
 Pipeline
 Platform holder
 Porting
 Prefab
 Publish-subscribe
+Rendering
 RPG
 Runtime
 Script
@@ -60,6 +78,7 @@ Secret Dungeon
 Shader
 Shared Assets
 Showcase
+Slot
 Smart working
 Software
 Software business
@@ -72,6 +91,7 @@ Steamworks.NET
 Tap
 Task
 TCG
+Team
 Test
 Testing
 Todo
