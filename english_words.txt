@@ -6,7 +6,6 @@ Asset
 Authentication
 Back
 Backup
-Bitbucket
 Branch
 Buffer
 Build
@@ -25,25 +24,19 @@ Devkit
 Dev Kit
 Digital Health
 Dungeon
-Dungeon Choose
 Dungeon crawler
 Dungeon fantasy
-Dungeon Game
 Engine
 Event System
-External Assets
 File
 Focus
 Game development
 Gamepad
-Git
-Google Play
 Hardware
 Hub
 Inn
 Input
 Insurtech
-Internal Assets
 Inventory & Shop
 IoT
 Issue tracking
@@ -58,8 +51,6 @@ Mobile
 Mouse
 Multiplayer
 Networking
-Nintendo eShop
-Nintendo SDK Plugin
 OBB
 Online
 Performance
@@ -74,9 +65,7 @@ Runtime
 Script
 Scriptable object
 SDK
-Secret Dungeon
 Shader
-Shared Assets
 Showcase
 Slot
 Smart working
@@ -86,15 +75,12 @@ Software house
 Stack
 Stage
 Startupper
-Steam
-Steamworks.NET
 Tap
 Task
 TCG
 Team
 Test
 Testing
-Todo
 Touch
 Tutor
 Tutorial
