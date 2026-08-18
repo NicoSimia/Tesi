@@ -40,6 +40,7 @@ Abbiamo versionato questo documento sin dalla sua creazione, aggiornandolo a ogn
 Questa soluzione presentava dei limiti evidenti rispetto a uno strumento di tracciamento professionale: non permetteva di assegnare priorità o scadenze alle singole voci, non offriva visibilità su chi stesse lavorando a una determinata attività in un dato momento, e affidava interamente alla disciplina dei due stagisti la coerenza tra lo stato del \textit{file} e lo stato reale del codice. Con un \textit{team} di due persone e un ambito di lavoro ben delimitato, questi limiti non hanno mai causato problemi concreti; la stessa soluzione avrebbe riscontrato probabili limiti applicata a un \textit{team} più numeroso o ad attività meno prevedibili.
  
 \subsection{Versionamento e \textit{workflow} collaborativo}
+\label{sec:versionamento}
 
 % Descrizione dell'utilizzo di \textit{Git} e \textit{Bitbucket} per la gestione del codice sorgente, dell'organizzazione dei rami di sviluppo, delle operazioni di \textit{merge} tra il lavoro dei due stagisti e delle modalità di rilascio progressivo delle modifiche. Verrà inoltre evidenziato come la struttura dei messaggi di \textit{commit} abbia costituito una forma di documentazione incrementale dell'evoluzione del progetto, compensando l'assenza di un sistema dedicato di \textit{issue tracking}.
 
@@ -237,7 +238,8 @@ La logica del \textit{Back} si comporta in modo identico in tutte le scene del g
 L'aspetto che, dal punto di vista dell'utente, risulta ancora meno immediato riguarda la navigazione nelle schermate \textit{Deck Builder} e \textit{Inventory \& Shop}, a causa dei collegamenti statici impostati manualmente tra gli elementi. È proprio per compensare questa minore immediatezza che avevamo introdotto il cursore a forma di mano: un riferimento visivo sempre presente, che permette al giocatore di individuare con certezza dove si trova il \textit{focus} in un dato momento, anche quando i collegamenti tra gli elementi non risultano del tutto intuitivi.
 
 \subsection{Copertura dei requisiti e risultati quantitativi}
- 
+\label{sec:copertura_requisiti}
+
 In conclusione, presento i principali risultati quantitativi ottenuti durante il progetto, con particolare attenzione al confronto tra gli obiettivi definiti nel Capitolo~2 e i risultati effettivamente conseguiti.
  
 La navigazione tramite \textit{controller} è stata implementata su tutte e sei le scene di gioco, raggiungendo pienamente l'obiettivo definito in \S\ref{sec:obiettivi-controller-certificazione} (Tabella~\ref{tab:obiettivi_switch}).
