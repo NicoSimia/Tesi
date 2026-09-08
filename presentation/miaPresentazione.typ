@@ -169,7 +169,7 @@
     circle(radius: 1.6em, fill: accent)[#text(fill: white, weight: "bold", size: 18pt)[4]],
     
     text(size: 15pt, weight: "bold", fill: primary)[L'Azienda],
-    text(size: 15pt, weight: "bold", fill: primary)[Analisi dei \ Requisiti],
+    text(size: 15pt, weight: "bold", fill: primary)[Obiettivi \ Metodo di Lavoro],
     text(size: 15pt, weight: "bold", fill: primary)[Sviluppo Tecnico],
     text(size: 15pt, weight: "bold", fill: accent)[Resoconto & \ Bilancio]
   )
@@ -303,48 +303,50 @@
 // SEZIONE 2: ANALISI DEI REQUISITI (Slide 5 e 6)
 // =============================================================================
 
-#slide(title: "Analisi Macro: I Tre Obiettivi Principali", section: "2. Analisi dei Requisiti")[
-  #v(0.2em)
+#let img-tile(path: "", color: primary, title: "", weeks: none, metric: none, img-height: 1fr) = {
+  block(fill: white, stroke: (top: 4pt + color, rest: 0.5pt + luma(200)),
+    inset: 0.6em, radius: 0.3em, width: 100%, height: 100%)[
+    #grid(rows: (img-height, auto), row-gutter: 0.4em, align: center + horizon,
+      image(path, width: 100%, fit: "contain"),
+      [
+        #text(size: 12pt, weight: "bold", fill: color)[#title]
+        #if weeks != none [ \ #text(size: 8pt, fill: luma(130))[#weeks] ]
+        #if metric != none [ #v(0.2em) #text(size: 11pt, weight: "bold")[#metric] ]
+      ]
+    )
+  ]
+}
+
+#slide(title: "Obiettivi dello Stage", section: "2. Obiettivi e Metodo")[
   #grid(
-    columns: (1fr, 1fr, 1fr),
-    gutter: 1em,
-    block(fill: primary.lighten(92%), stroke: 1.5pt + primary, radius: 0.4em, inset: 1em)[
-      #align(center)[#text(weight: "bold", fill: primary)[1. Debito Tecnico]]
-      #v(0.4em)
-      - Eliminazione dipendenze obsolete
-      - Risoluzione warning e API deprecate post-upgrade
-    ],
-    block(fill: primary.lighten(92%), stroke: 1.5pt + primary, radius: 0.4em, inset: 1em)[
-      #align(center)[#text(weight: "bold", fill: primary)[2. Navigazione Controller]]
-      #v(0.4em)
-      - Mappatura completa Joy-Con / Pro Controller
-      - Navigazione UI tramite D-Pad e Stick
-    ],
-    block(fill: accent.lighten(90%), stroke: 1.5pt + accent, radius: 0.4em, inset: 1em)[
-      #align(center)[#text(weight: "bold", fill: accent)[3. Certificazione]]
-      #v(0.4em)
-      - Conformità alle linee guida Nintendo (TRC/Lotcheck)
-      - Gestione profilo utenti e salvataggi
-    ]
+    rows: (1fr),
+    columns: (1fr, auto, 1fr, auto, 1fr),
+    align: horizon, column-gutter: 0.3em,
+    img-tile(path: "../img/icon_gear.jpg", color: luma(100),
+      title: "Migrazione Engine", weeks: "Sett. 1-2 · da solo", metric: [0 errori compilazione]),
+    align(center)[#text(size: 20pt, fill: luma(150))[→]],
+    img-tile(path: "../img/icon_controller.jpg", color: primary,
+      title: "Navigazione Controller", weeks: "Sett. 3-8 · in coppia", metric: [6/6 scene]),
+    align(center)[#text(size: 20pt, fill: luma(150))[→]],
+    img-tile(path: "../img/icon_switch.jpg", color: accent,
+      title: "Certificazione Switch", weeks: "Sett. 3-8 · in coppia", metric: [6/6 test]),
   )
 ]
 
-#slide(title: "Gestione Dinamica dell'Analisi", section: "2. Analisi dei Requisiti")[
-  #grid(
-    columns: (1.2fr, 1fr),
-    gutter: 1.5em,
-    align: horizon,
-    [
-      - *Pianificazione Iterativa*
-        - Scomposizione dei requisiti macro in Task giornalieri
-        - Valutazione dell'impatto ad ogni cambio di versione engine
-      - *Raffinamento del Backlog*
-        - Prioritizzazione dei blocchi di compilazione bloccanti
-        - Gestione dinamica degli imprevisti riscontrati nel codice legacy
-      - *Verifica Continua*
-        - Allineamento giornaliero interno al team a due componenti
-    ],
-    img-box(height: 10em, title: "Workflow Agile / Board Task")
+#slide(title: "Metodo di Lavoro", section: "2. Obiettivi e Metodo")[
+  #grid(rows: (1fr, 1fr), row-gutter: 0.7em,
+    grid(columns: (1fr, 1fr), column-gutter: 0.8em,
+      img-tile(path: "../img/icon_calendario.jpg", color: primary,
+        title: "Giorni Fissi", metric: [Dev Kit solo in sede]),
+      img-tile(path: "../img/icon_tutor.jpg", color: primary,
+        title: "Confronto Tutor", metric: [Informale, a ogni avanzamento]),
+    ),
+    grid(columns: (1fr, 1fr), column-gutter: 0.8em,
+      img-tile(path: "../img/icon_todo.jpg", color: accent,
+        title: "File Todo (md)", metric: [Versionato con Git]),
+      img-tile(path: "../img/icon_git.jpg", color: accent,
+        title: "Divisione per Scena", metric: [Non per attività]),
+    )
   )
 ]
 
@@ -353,34 +355,37 @@
 // =============================================================================
 
 #slide(title: "Migrazione dell'Engine: Pipeline di Upgrade", section: "3. Sviluppo")[
-  // 1. TIMELINE ORIZZONTALE DELLE VERSIONI
+  // 1. TIMELINE ORIZZONTALE DELLE VERSIONI (SENZA BLOCCHI)
   #grid(
     columns: (1fr, auto, 1.2fr, auto, 1fr),
     align: center + horizon,
     gutter: 0.4em,
     
     // Nodo 1: Unity 2017
-    block(fill: bg-box, stroke: 1.5pt + primary.lighten(40%), radius: 0.4em, inset: 0.8em, width: 100%)[
-      #text(size: 14pt, weight: "bold", fill: primary)[Unity 2017] \
-      #text(size: 9pt, fill: luma(120))[Legacy Codebase]
+    [
+      #image("../img/logo_unity2017.png", height: 3.5em)
+      #v(0.2em)
+      #text(size: 8pt, fill: luma(120))[] //[Legacy Codebase]
     ],
     
     // Freccia 1
-    text(size: 20pt, fill: accent, weight: "bold")[$arrow.r$],
+    text(size: 40pt, fill: accent, weight: "bold")[$arrow.r$],
     
     // Nodo 2: Unity 2021
-    block(fill: accent.lighten(90%), stroke: 1.5pt + accent, radius: 0.4em, inset: 0.8em, width: 100%)[
-      #text(size: 14pt, weight: "bold", fill: accent)[Unity 2021] \
-      #text(size: 9pt, fill: accent)[LTS Intermedio]
+    [
+      #image("../img/logo_unity2021.jpg", height: 5em)
+      #v(0.2em)
+      #text(size: 8pt, fill: luma(120))[] //[LTS Intermedio]
     ],
     
     // Freccia 2
-    text(size: 20pt, fill: primary, weight: "bold")[$arrow.r$],
+    text(size: 40pt, fill: primary, weight: "bold")[$arrow.r$],
     
     // Nodo 3: Unity 6
-    block(fill: primary, radius: 0.4em, inset: 0.8em, width: 100%)[
-      #text(size: 14pt, weight: "bold", fill: white)[Unity 6] \
-      #text(size: 9pt, fill: white.darken(15%))[Target Finale]
+    [
+      #image("../img/logo_unity6.png", height: 5em)
+      #v(0.2em)
+      #text(size: 8pt, fill: luma(120))[] //[Target Finale]
     ]
   )
 
