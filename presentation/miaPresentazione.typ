@@ -507,63 +507,74 @@
 // =============================================================================
 // SEZIONE 4: RESOCONTO & BILANCIO (Slide 9 e 10)
 // =============================================================================
+// 
+#let result-row(icon: "check", color: primary, title: "", detail: []) = {
+  block(width: 100%, fill: color.lighten(93%), stroke: (left: 5pt + color),
+    inset: 0.7em, radius: (right: 0.3em))[
+    #grid(columns: (auto, 1fr), column-gutter: 0.8em, align: horizon,
+      box(width: 2.2em)[#align(center)[#text(size: 17pt, weight: "bold", fill: color)[#icon]]],
+      [
+        #text(size: 13pt, weight: "bold", fill: color)[#title]
+        #linebreak()
+        #text(size: 10.5pt, fill: luma(80))[#detail]
+      ]
+    )
+  ]
+}
 
-#slide(title: "Risultati e Crescita Professionale", section: "4. Resoconto")[
-  #grid(
-    columns: (1fr, 1fr),
-    gutter: 1.2em,
-    [
-      #text(weight: "bold", fill: primary)[Metriche Oggettive]
-      #v(0.3em)
-      #block(fill: bg-box, stroke: (left: 4pt + primary), inset: 0.8em, radius: (right: 0.3em))[
-        - *0 Errori di Compilazione* post-upgrade
-        - *100% Scene UI* accessibili da controller
-        - *Test Nintendo Superati* (Lotcheck TRC)
-      ]
-    ],
-    [
-      #text(weight: "bold", fill: accent)[Crescita Personale]
-      #v(0.3em)
-      #block(fill: bg-box, stroke: (left: 4pt + accent), inset: 0.8em, radius: (right: 0.3em))[
-        - *C\# & Unity*: Padronanza avanzata
-        - *Game Patterns*: Pattern Repository, State
-        - *Standard industriali*: Rispetto direttive rigide di pubblicazione console
-      ]
-    ]
-  )
+#slide(title: "Risultati Raggiunti", section: "4. Resoconto")[
+  #block(height: 1fr)[
+    #grid(rows: (1fr, 1fr, 1fr), row-gutter: 0.6em,
+      result-row(icon: "✓", color: primary,
+        title: "Migrazione e stabilizzazione engine",
+        detail: [0 errori di compilazione — OBB eliminato — compatibilità Steam ripristinata]),
+      result-row(icon: "✓", color: primary,
+        title: "Navigazione da controller",
+        detail: [6/6 scene navigabili esclusivamente tramite gamepad]),
+      result-row(icon: "5/6", color: accent,
+        title: "Certificazione Nintendo Switch",
+        detail: [test superati entro le 8 settimane — 6/6 completato la settimana successiva dal collega]),
+    )
+  ]
 ]
 
-#slide(title: "Bilancio Quantitativo", section: "4. Resoconto")[
-  #grid(
-    columns: (1.1fr, 1fr),
-    gutter: 1.5em,
-    [
-      #text(weight: "bold", size: 15pt, fill: primary)[Ripartizione Ore (Totale 300h)]
-      #v(0.5em)
-      #grid(
-        columns: (auto, 1fr, auto),
-        row-gutter: 0.6em,
-        column-gutter: 0.8em,
-        align: horizon,
-        rect(width: 0.9em, height: 0.9em, fill: primary), text(size: 11pt)[Analisi & Upgrade Engine], text(size: 11pt, weight: "bold")[60 h],
-        rect(width: 0.9em, height: 0.9em, fill: primary.lighten(30%)), text(size: 11pt)[Refactoring UI & Controller], text(size: 11pt, weight: "bold")[90 h],
-        rect(width: 0.9em, height: 0.9em, fill: accent), text(size: 11pt)[Integrazione SDK & FS Test], text(size: 11pt, weight: "bold")[80 h],
-        rect(width: 0.9em, height: 0.9em, fill: accent.lighten(30%)), text(size: 11pt)[Correzione Debito Tecnico], text(size: 11pt, weight: "bold")[40 h],
-        rect(width: 0.9em, height: 0.9em, fill: luma(100)), text(size: 11pt)[Documentazione & Report], text(size: 11pt, weight: "bold")[30 h]
-      )
-    ],
-    [
-      #text(weight: "bold", size: 15pt, fill: accent)[Metriche di Prodotto]
-      #v(0.5em)
-      #block(fill: bg-box, stroke: 1pt + primary.lighten(50%), radius: 0.4em, inset: 0.8em)[
-        - *Righe di codice (LOC)* scritte/rifattorizzate
-        - *Scene di gioco* rese completamente conformi
-        - *Documenti redatti*: Relazione di Tesi + Report per aggiornamenti futuri
-      ]
+#let stat-card(color: primary, number: "", label: "") = {
+  block(width: 100%, height: 100%, fill: white, stroke: (top: 4pt + color, rest: 0.5pt + luma(200)),
+    inset: 0.8em, radius: 0.3em)[
+    #align(center + horizon)[
+      #text(size: 30pt, weight: "bold", fill: color)[#number]
+      #v(0.2em)
+      #text(size: 11pt, fill: luma(90))[#label]
     ]
-  )
-  #v(0.8em)
-  #align(center)[
-    #text(size: 16pt, weight: "bold", fill: primary)[Grazie per l'attenzione!]
+  ]
+}
+
+#slide(title: "Bilancio Quantitativo", section: "4. Resoconto")[
+  #block(height: 1fr)[
+    #grid(rows: (1fr, 1fr), row-gutter: 0.7em,
+      block(height: 100%)[
+        #grid(columns: (1fr, 1fr, 1fr), column-gutter: 0.7em, rows: (100%),
+          stat-card(color: primary, number: "320", label: "ore complessive di stage"),
+          stat-card(color: primary, number: "72", label: "commit versionati con Git"),
+          stat-card(color: accent, number: "60/61", label: "attività del file Todo completate"),
+        )
+      ],
+      block(fill: white, stroke: (top: 4pt + accent), radius: 0.3em, inset: 0.8em, height: 100%)[
+        #grid(columns: (auto, 1fr), column-gutter: 1em, align: horizon,
+          align(center)[
+            #text(size: 30pt, weight: "bold", fill: accent)[9]
+            #v(0.1em)
+            #text(size: 10pt, fill: luma(90))[documenti \ redatti]
+          ],
+          align(left)[
+            #text(size: 11pt)[
+              - *7 CSV* — statistiche di carte ed equipaggiamenti, per future modifiche a danni ed economia di gioco
+              - *1 documento* sul funzionamento del sistema di salvataggio Nintendo — struttura privata, poca esperienza reperibile sul mercato
+              - *1 documento* di setup e handoff — punti di forza del codice e modifiche introdotte, per chi riprenderà il progetto
+            ]
+          ]
+        )
+      ]
+    )
   ]
 ]
