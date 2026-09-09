@@ -303,12 +303,12 @@
 // SEZIONE 2: ANALISI DEI REQUISITI (Slide 5 e 6)
 // =============================================================================
 
-#let img-tile(path: "", color: primary, title: "", weeks: none, metric: none, img-height: 1fr) = {
+#let img-tile(path: "", color: primary, title: "", weeks: none, metric: none, icon-size: 3em) = {
   block(fill: white, stroke: (top: 4pt + color, rest: 0.5pt + luma(200)),
-    inset: 0.6em, radius: 0.3em, width: 100%, height: 100%)[
-    #grid(rows: (img-height, auto), row-gutter: 0.4em, align: center + horizon,
-      image(path, width: 100%, fit: "contain"),
-      [
+    inset: 0.7em, radius: 0.3em, width: 100%, height: 100%)[
+    #grid(columns: (100%), rows: (1fr, auto), row-gutter: 0.3em, align: center + horizon,
+      align(center + horizon)[#image(path, width: icon-size, height: icon-size)],
+      align(center)[
         #text(size: 12pt, weight: "bold", fill: color)[#title]
         #if weeks != none [ \ #text(size: 8pt, fill: luma(130))[#weeks] ]
         #if metric != none [ #v(0.2em) #text(size: 11pt, weight: "bold")[#metric] ]
@@ -335,18 +335,22 @@
 
 #slide(title: "Metodo di Lavoro", section: "2. Obiettivi e Metodo")[
   #grid(rows: (1fr, 1fr), row-gutter: 0.7em,
-    grid(columns: (1fr, 1fr), column-gutter: 0.8em,
-      img-tile(path: "../img/icon_calendario.jpg", color: primary,
-        title: "Giorni Fissi", metric: [Dev Kit solo in sede]),
-      img-tile(path: "../img/icon_tutor.jpg", color: primary,
-        title: "Confronto Tutor", metric: [Informale, a ogni avanzamento]),
-    ),
-    grid(columns: (1fr, 1fr), column-gutter: 0.8em,
-      img-tile(path: "../img/icon_todo.jpg", color: accent,
-        title: "File Todo (md)", metric: [Versionato con Git]),
-      img-tile(path: "../img/icon_git.jpg", color: accent,
-        title: "Divisione per Scena", metric: [Non per attività]),
-    )
+    block(height: 100%)[
+      #grid(columns: (1fr, 1fr), column-gutter: 0.8em, rows: (100%),
+        img-tile(path: "../img/icon_calendario.jpg", color: primary,
+          title: "Giorni Fissi", metric: [Dev Kit solo in sede]),
+        img-tile(path: "../img/icon_tutor.jpg", color: primary,
+          title: "Confronto Tutor", metric: [Informale, a ogni avanzamento]),
+      )
+    ],
+    block(height: 100%)[
+      #grid(columns: (1fr, 1fr), column-gutter: 0.8em, rows: (100%),
+        img-tile(path: "../img/icon_todo.jpg", color: accent,
+          title: "File Todo (md)", metric: [Versionato con Git]),
+        img-tile(path: "../img/icon_git.jpg", color: accent,
+          title: "Divisione per Scena", metric: [Non per attività]),
+      )
+    ]
   )
 ]
 
@@ -440,38 +444,64 @@
   )
 ]
 
+#let shot-panel(path: "", caption: none, color: primary) = {
+  block(width: 100%, height: 100%, stroke: (top: 4pt + color), radius: 0.3em,
+    fill: white, inset: 0.5em)[
+    #grid(columns: (100%), rows: (1fr, auto), row-gutter: 0.3em, align: center + horizon,
+      align(center + horizon)[#image(path, width: 100%, height: 100%, fit: "contain")],
+      if caption != none {
+        align(center)[#text(size: 10pt, fill: luma(100), style: "italic")[#caption]]
+      }
+    )
+  ]
+}
+
 #slide(title: "Navigazione da Controller", section: "3. Sviluppo")[
-  #grid(
-    columns: (1.1fr, 1fr),
-    gutter: 1.5em,
-    align: horizon,
-    [
-      - *Refactoring dell'Interfaccia Utente*
-        - Transizione da input Pointer/Mouse a *InputSystem* a eventi
-        - Mappatura del focus dinamico per tutti i menu di gioco
-      - *Gestione dello Stato UI*
-        - Prevenzione del perdita di focus nell'interfaccia
-        - Gestione overlay di pausa e finestre di dialogo native
-    ],
-    img-box(height: 10.5em, title: "Screenshot Scene UI / Navigazione Controller")
-  )
+  #block(height: 1fr)[
+    #grid(columns: (1fr, 1fr), column-gutter: 1em, rows: (100%),
+      shot-panel(path: "../img/unity_logger_windows.png", caption: "Inspector — Navigation: Explicit", color: primary),
+      shot-panel(path: "../img/Code_Nintedo.png", caption: "Script del cursore a forma di mano", color: accent),
+    )
+  ]
 ]
 
-#slide(title: "Testing e Integrazione SDK Nintendo", section: "3. Sviluppo")[
-  #grid(
-    columns: (1.1fr, 1fr),
-    gutter: 1.5em,
-    align: horizon,
-    [
-      - *Integrazione API Native (FS Nintendo)*
-        - Gestione del File System per salvataggi asincroni
-        - Conformità ai vincoli di memoria e tempo d'accesso
-      - *Suite di Test Interna*
-        - Test automatici di stabilità durante le sessioni prolungate
-        - Verifica della gestione del cambio utente e sospensione console
-    ],
-    img-box(height: 10.5em, title: "Screenshot Codice Test / Modulo FS")
-  )
+#let warn = rgb("#B00020")
+
+#slide(title: "Certificazione Nintendo Switch", section: "3. Sviluppo")[
+  #block(height: 1fr)[
+    #grid(columns: (1fr, 1fr), column-gutter: 1em, rows: (100%),
+      shot-panel(path: "../img/Code_Nintedo.png", caption: "Classe di supporto al file system Switch", color: primary),
+      block(fill: white, stroke: (top: 4pt + accent), radius: 0.3em, inset: 0.8em, height: 100%)[
+        #grid(columns: (100%), rows: (auto, 1fr), row-gutter: 0.8em,
+          align(center)[
+            #text(size: 14pt, weight: "bold", fill: accent)[Write Access Count]
+            #v(0.4em)
+            #grid(columns: (1fr, auto, 1fr), align: horizon,
+              align(center)[
+                #text(size: 24pt, weight: "bold", fill: warn)[160+]
+                #v(0.1em)
+                #text(size: 9pt, fill: luma(100))[ops/min originali]
+              ],
+              align(center + horizon)[#text(size: 20pt, fill: luma(150))[→]],
+              align(center)[
+                #text(size: 24pt, weight: "bold", fill: primary)[< 32]
+                #v(0.1em)
+                #text(size: 9pt, fill: luma(100))[soglia richiesta]
+              ]
+            )
+          ],
+          align(left + top)[
+            #v(0.5em)
+            #text(size: 12pt, weight: "bold")[Tre ottimizzazioni:]
+            #v(0.3em)
+            - Scrittura ritardata (batch, 30s)
+            - Skip se contenuto invariato
+            - Riapertura file, non ricreazione
+          ]
+        )
+      ]
+    )
+  ]
 ]
 
 // =============================================================================
