@@ -4,7 +4,7 @@
 #let autore        = "Simionato Nicola"
 #let matricola     = "2113190"
 #let relatore      = "Prof. Tullio Vardanega"
-#let titolo-esteso = "Adattamento di Lost in the Dungeon su Nintendo Switch"
+#let titolo-esteso = "Adattamento di Lost in the Dungeon (LITD) su Nintendo Switch"
 #let titolo-breve  = "Porting LITD"
 #let data-laurea   = "24 Settembre 2026"
 
@@ -53,10 +53,10 @@
         grid(
           columns: (1.2fr, 2.5fr, 1fr),
           align(left + horizon)[
-            #text(size: 11pt, weight: "bold", fill: primary)[#the-section.get()]
+            #text(size: 13pt, weight: "bold", fill: primary)[#the-section.get()]
           ],
           align(center + horizon)[
-            #text(size: 15pt, weight: "bold", fill: text-color)[#the-slide-title.get()]
+            #text(size: 18pt, weight: "bold", fill: text-color)[#the-slide-title.get()]
           ],
           align(right + horizon)[#image("../img/logo_unipd.jpeg", height: 40pt)]
         )
@@ -77,7 +77,7 @@
           rect(width: 100% + 3.0em, height: 2.2em, fill: primary, radius: 0pt)
         )
         
-        set text(size: 11pt, fill: white)
+        set text(size: 12pt, fill: white)
         if p == 2 {
           grid(
             columns: (1fr, 1.5fr, 1fr),
@@ -303,55 +303,72 @@
 // SEZIONE 2: ANALISI DEI REQUISITI (Slide 5 e 6)
 // =============================================================================
 
-#let img-tile(path: "", color: primary, title: "", weeks: none, metric: none, icon-size: 3em) = {
+#let img-tile(path: "", color: primary, title: "", weeks: none, metric: none, icon-size: 5em) = {
   block(fill: white, stroke: (top: 4pt + color, rest: 0.5pt + luma(200)),
-    inset: 0.7em, radius: 0.3em, width: 100%, height: 100%)[
+    inset: 0.7em, radius: 0.3em, width: 100%, height: 75%)[
     #grid(columns: (100%), rows: (1fr, auto), row-gutter: 0.3em, align: center + horizon,
       align(center + horizon)[#image(path, width: icon-size, height: icon-size)],
       align(center)[
-        #text(size: 12pt, weight: "bold", fill: color)[#title]
-        #if weeks != none [ \ #text(size: 8pt, fill: luma(130))[#weeks] ]
-        #if metric != none [ #v(0.2em) #text(size: 11pt, weight: "bold")[#metric] ]
+        #text(size: 13pt, weight: "bold", fill: color)[#title]
+        #if weeks != none [ \ #text(size: 9pt, fill: luma(130))[#weeks] ]
+        #if metric != none [ #v(0.25em) #text(size: 12pt, weight: "bold")[#metric] ]
       ]
     )
   ]
 }
 
 #slide(title: "Obiettivi dello Stage", section: "2. Obiettivi e Metodo")[
-  #grid(
-    rows: (1fr),
-    columns: (1fr, auto, 1fr, auto, 1fr),
-    align: horizon, column-gutter: 0.3em,
-    img-tile(path: "../img/icon_gear.jpg", color: luma(100),
-      title: "Migrazione Engine", weeks: "Sett. 1-2 · da solo", metric: [0 errori compilazione]),
-    align(center)[#text(size: 20pt, fill: luma(150))[→]],
-    img-tile(path: "../img/icon_controller.jpg", color: primary,
-      title: "Navigazione Controller", weeks: "Sett. 3-8 · in coppia", metric: [6/6 scene]),
-    align(center)[#text(size: 20pt, fill: luma(150))[→]],
-    img-tile(path: "../img/icon_switch.jpg", color: accent,
-      title: "Certificazione Switch", weeks: "Sett. 3-8 · in coppia", metric: [6/6 test]),
-  )
+  #block(height: 1fr)[
+    #grid(
+      rows: (1fr),
+      columns: (1fr, auto, 1fr, auto, 1fr),
+      align: horizon, column-gutter: 0.3em,
+      img-tile(path: "../img/icon_gear.jpg", color: luma(100),
+        title: "Migrazione Engine", weeks: "Sett. 1-2 · da solo", metric: [0 errori compilazione]),
+      align(center)[#text(size: 20pt, fill: luma(150))[→]],
+      img-tile(path: "../img/icon_controller.jpg", color: primary,
+        title: "Navigazione Controller", weeks: "Sett. 3-8 · in coppia", metric: [6/6 scene]),
+      align(center)[#text(size: 20pt, fill: luma(150))[→]],
+      img-tile(path: "../img/icon_switch.jpg", color: accent,
+        title: "Certificazione Switch", weeks: "Sett. 3-8 · in coppia", metric: [6/6 test]),
+    )
+  ]
 ]
 
+#let scatter-tile(path: "", color: primary, title: "", metric: "", icon-size: 4em, w: 42%) = {
+  block(fill: white, stroke: (top: 4pt + color, rest: 0.5pt + luma(200)),
+    inset: 0.7em, radius: 0.3em, width: w)[
+    #grid(columns: (auto, 1fr), column-gutter: 0.7em, align: horizon,
+      image(path, width: icon-size, height: icon-size),
+      [
+        #text(size: 17pt, weight: "bold", fill: color)[#title] \
+        #text(size: 13pt, fill: luma(90))[#metric]
+      ]
+    )
+  ]
+}
+
 #slide(title: "Metodo di Lavoro", section: "2. Obiettivi e Metodo")[
-  #grid(rows: (1fr, 1fr), row-gutter: 0.7em,
-    block(height: 100%)[
-      #grid(columns: (1fr, 1fr), column-gutter: 0.8em, rows: (100%),
-        img-tile(path: "../img/icon_calendario.jpg", color: primary,
-          title: "Giorni Fissi", metric: [Dev Kit solo in sede]),
-        img-tile(path: "../img/icon_tutor.jpg", color: primary,
-          title: "Confronto Tutor", metric: [Informale, a ogni avanzamento]),
-      )
-    ],
-    block(height: 100%)[
-      #grid(columns: (1fr, 1fr), column-gutter: 0.8em, rows: (100%),
-        img-tile(path: "../img/icon_todo.jpg", color: accent,
-          title: "File Todo (md)", metric: [Versionato con Git]),
-        img-tile(path: "../img/icon_git.jpg", color: accent,
-          title: "Divisione per Scena", metric: [Non per attività]),
-      )
+  #block(height: 1fr)[
+    #box(width: 100%, height: 100%)[
+      #place(top + left, dx: 3%, dy: 10%)[
+        #scatter-tile(path: "../img/icon_calendario.jpg", color: primary,
+          title: "Giorni Fissi", metric: "Dev Kit solo in sede")
+      ]
+      #place(top + left, dx: 3%, dy: 55%)[
+        #scatter-tile(path: "../img/icon_tutor.jpg", color: primary,
+          title: "Confronto Tutor", metric: "Informale, a ogni avanzamento")
+      ]
+      #place(top + left, dx: 55%, dy: 10%)[
+        #scatter-tile(path: "../img/icon_todo.jpg", color: accent,
+          title: "File Todo (md)", metric: "Versionato con Git")
+      ]
+      #place(top + left, dx: 55%, dy: 55%)[
+        #scatter-tile(path: "../img/icon_git.jpg", color: accent,
+          title: "Divisione per Scena", metric: "Non per attività")
+      ]
     ]
-  )
+  ]
 ]
 
 // =============================================================================
