@@ -315,9 +315,9 @@
     #grid(columns: (100%), rows: (1fr, auto), row-gutter: 0.3em, align: center + horizon,
       align(center + horizon)[#image(path, width: icon-size, height: icon-size)],
       align(center)[
-        #text(size: 13pt, weight: "bold", fill: color)[#title]
-        #if weeks != none [ \ #text(size: 9pt, fill: luma(130))[#weeks] ]
-        #if metric != none [ #v(0.25em) #text(size: 12pt, weight: "bold")[#metric] ]
+        #text(size: 18pt, weight: "bold", fill: color)[#title]
+        #if weeks != none [ \ #text(size: 12pt, fill: luma(130))[#weeks] ]
+        #if metric != none [ #v(0.25em) #text(size: 14pt, weight: "bold")[#metric] ]
       ]
     )
   ]
@@ -329,13 +329,13 @@
       rows: (1fr),
       columns: (1fr, auto, 1fr, auto, 1fr),
       align: horizon, column-gutter: 0.3em,
-      img-tile(path: "../img/icon_gear.jpg", color: luma(100),
+      img-tile(path: "../img/icon_gear.jpg", color: accent,
         title: "Migrazione Engine", weeks: "Sett. 1-2 · da solo", metric: [0 errori compilazione]),
       align(center)[#text(size: 20pt, fill: luma(150))[→]],
-      img-tile(path: "../img/icon_controller.jpg", color: primary,
+      img-tile(path: "../img/icon_controller.jpg", color:  rgb("#0e4b7f"),
         title: "Navigazione Controller", weeks: "Sett. 3-8 · in coppia", metric: [6/6 scene]),
       align(center)[#text(size: 20pt, fill: luma(150))[→]],
-      img-tile(path: "../img/icon_switch.jpg", color: accent,
+      img-tile(path: "../img/icon_switch.jpg", color: primary,
         title: "Certificazione Switch", weeks: "Sett. 3-8 · in coppia", metric: [6/6 test]),
     )
   ]
@@ -503,19 +503,19 @@
               align(center)[
                 #text(size: 24pt, weight: "bold", fill: warn)[160+]
                 #v(0.1em)
-                #text(size: 9pt, fill: luma(100))[ops/min originali]
+                #text(size: 13pt, fill: luma(100))[ops/min originali]
               ],
-              align(center + horizon)[#text(size: 20pt, fill: luma(150))[→]],
+              align(center + horizon)[#text(size: 30pt, fill: luma(150))[→]],
               align(center)[
                 #text(size: 24pt, weight: "bold", fill: primary)[< 32]
                 #v(0.1em)
-                #text(size: 9pt, fill: luma(100))[soglia richiesta]
+                #text(size: 13pt, fill: luma(100))[soglia richiesta]
               ]
             )
           ],
           align(left + top)[
             #v(0.5em)
-            #text(size: 12pt, weight: "bold")[Tre ottimizzazioni:]
+            #text(size: 16pt, weight: "bold")[Tre ottimizzazioni:]
             #v(0.3em)
             - Scrittura ritardata (batch, 30s)
             - Skip se contenuto invariato
@@ -537,9 +537,9 @@
     #grid(columns: (auto, 1fr), column-gutter: 0.8em, align: horizon,
       box(width: 2.2em)[#align(center)[#text(size: 17pt, weight: "bold", fill: color)[#icon]]],
       [
-        #text(size: 13pt, weight: "bold", fill: color)[#title]
+        #text(size: 16pt, weight: "bold", fill: color)[#title]
         #linebreak()
-        #text(size: 10.5pt, fill: luma(80))[#detail]
+        #text(size: 13.5pt, fill: luma(80))[#detail]
       ]
     )
   ]
@@ -567,7 +567,7 @@
     #align(center + horizon)[
       #text(size: 30pt, weight: "bold", fill: color)[#number]
       #v(0.2em)
-      #text(size: 11pt, fill: luma(90))[#label]
+      #text(size: 15pt, fill: luma(90))[#label]
     ]
   ]
 }
@@ -579,7 +579,7 @@
         #grid(columns: (1fr, 1fr, 1fr), column-gutter: 0.7em, rows: (100%),
           stat-card(color: primary, number: "320", label: "ore complessive di stage"),
           stat-card(color: primary, number: "72", label: "commit versionati con Git"),
-          stat-card(color: accent, number: "60/61", label: "attività del file Todo completate"),
+          stat-card(color: rgb("#0e4b7f"), number: "60/61", label: "attività del file Todo completate"),
         )
       ],
       block(fill: white, stroke: (top: 4pt + accent), radius: 0.3em, inset: 0.8em, height: 100%)[
@@ -590,7 +590,7 @@
             #text(size: 10pt, fill: luma(90))[documenti \ redatti]
           ],
           align(left)[
-            #text(size: 11pt)[
+            #text(size: 14pt)[
               - *7 CSV* — statistiche di carte ed equipaggiamenti, per future modifiche a danni ed economia di gioco
               - *1 documento* sul funzionamento del sistema di salvataggio Nintendo — struttura privata, poca esperienza reperibile sul mercato
               - *1 documento* di setup e handoff — punti di forza del codice e modifiche introdotte, per chi riprenderà il progetto
