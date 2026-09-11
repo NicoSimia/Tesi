@@ -259,10 +259,10 @@
       columns: (auto, 1fr),
       column-gutter: 0.5em,
       align: horizon,
-      text(size: 20pt, fill: color, weight: "bold")[#arrow],
+      text(size: 30pt, fill: color, weight: "bold")[#arrow],
       [
-        #text(size: 10pt, fill: luma(100))[#label] \
-        #text(size: 13pt, weight: "bold", fill: color)[#value]
+        #text(size: 14pt, fill: luma(100))[#label] \
+        #text(size: 17pt, weight: "bold", fill: color)[#value]
       ]
     )
   ]
@@ -270,33 +270,39 @@
 
 #slide(title: "Il Progetto: Lost in the Dungeon", section: "1. L'Azienda")[
   #v(0.3em)
-  #grid(
-    columns: (0.7fr, 1.3fr, 0.7fr),
-    rows: (auto, auto, auto),
-    column-gutter: 0.3em,
-    row-gutter: 0.3em,
-    align: horizon,
+  #block(height: 1fr)[
+    #box(width: 100%, height: 100%)[
+      #grid(
+        columns: (1.3fr, 1.3fr, 1.3fr),
+        rows: (1fr, 0.5fr, 1fr),
+        column-gutter: 0.3em,
+        row-gutter: 0.3em,
+        align: horizon,
 
-    // Riga 1
-    corner-box(color: primary, arrow: "↘", label: "Genere", value: [Card Game + \ Dungeon Crawler]),
-    [],
-    corner-box(color: primary, arrow: "↙", label: "Rilascio", value: [Marzo 2018]),
+        // Riga 1
+        corner-box(color: primary, arrow: "↘", label: "Genere", value: [Card Game + \ Dungeon Crawler]),
+        [],
+        corner-box(color: primary, arrow: "↙", label: "Rilascio", value: [Marzo 2018]),
 
-    // Riga 2: immagine centrale
-    [],
-    align(center)[
-      // Sostituire con l'immagine reale: Fig. 1.2 della tesi (Fonte: Steam)
-      #image("../img/litd_logo.png", width: 55%)
-      #v(0.2em)
-      #text(size: 9pt, fill: luma(120), style: "italic")[Fonte: pagina Steam del prodotto]
-    ],
-    [],
+        // Riga 2: cella centrale vuota — l'immagine è posizionata liberamente sotto
+        [], [], [],
 
-    // Riga 3
-    corner-box(color: accent, arrow: "↗", label: "Piattaforme", value: [PC (Steam) \ Mobile (rimosso)]),
-    [],
-    corner-box(color: accent, arrow: "↖", label: "Sviluppo", value: [4° gioco Eggon \ unico indipendente])
-  )
+        // Riga 3
+        corner-box(color: accent, arrow: "↗", label: "Piattaforme", value: [PC (Steam) \ Mobile (rimosso)]),
+        [],
+        corner-box(color: accent, arrow: "↖", label: "Sviluppo", value: [4° gioco Eggon \ unico indipendente])
+      )
+
+      // Immagine centrale: sposta solo dx/dy per riposizionarla
+      #place(top + left, dx: 32%, dy: 27%)[
+        #align(center)[
+          #image("../img/litd_logo.png", width: 15em)
+          #v(0.2em)
+          #text(size: 9pt, fill: luma(120), style: "italic")[Fonte: pagina Steam del prodotto]
+        ]
+      ]
+    ]
+  ]
 ]
 
 // =============================================================================
