@@ -479,11 +479,64 @@
   ]
 }
 
-#slide(title: "Navigazione da Controller", section: "3. Sviluppo")[
+#slide(title: "Navigazione da Controller pt.1", section: "3. Sviluppo")[
   #block(height: 1fr)[
     #grid(columns: (1fr, 1fr), column-gutter: 1em, rows: (100%),
       shot-panel(path: "../img/navigation_unity.png", caption: "Inspector — Navigation: Explicit", color: primary),
       shot-panel(path: "../img/code_hand_cursor.png", caption: "Script del cursore a forma di mano", color: accent),
+    )
+  ]
+]
+
+#slide(title: "Navigazione da Controller pt.2", section: "3. Sviluppo")[
+  #block(height: 1fr)[
+    #grid(
+      columns: (1fr, 1.4fr), // Colonna di sinistra (testo), colonna di destra (immagini)
+      rows: (1fr, 1fr),       // Riga 1 (Prima), Riga 2 (Dopo)
+      column-gutter: 1.5em,
+      row-gutter: 1.2em,
+
+      // --- RIGA 1: PRIMA ---
+      // Sinistra: Testo "Prima"
+      align(horizon + left)[
+        #block(
+          stroke: (left: 4pt + primary),
+          inset: (left: 10pt),
+        )[
+          #text(weight: "bold", fill: primary)[PRIMA]\
+          #v(0.3em)
+          *Stato Iniziale:*
+          - Mancanza di feedback visivo immediato.
+          - Il giocatore non distingue l'elemento attivo nel menu o nelle carte.
+        ]
+      ],
+      // Destra: Immagine "Prima"
+      shot-panel(
+        path: "../img/game_before.png", 
+        caption: "Vista standard senza evidenziazioni", 
+        color: primary
+      ),
+
+      // --- RIGA 2: DOPO ---
+      // Sinistra: Testo "Dopo"
+      align(horizon + left)[
+        #block(
+          stroke: (left: 4pt + accent),
+          inset: (left: 10pt),
+        )[
+          #text(weight: "bold", fill: accent)[DOPO]\
+          #v(0.3em)
+          *Ingrandimenti e Focus:*
+          - Zoom mirato per il tasto *Menu* e la *Carta*.
+          - Integrazione della navigazione *Explicit* e cursore a mano.
+        ]
+      ],
+      // Destra: Immagine "Dopo" (quella con i riquadri sovrapposti come nello schizzo)
+      shot-panel(
+        path: "../img/game_after.png", 
+        caption: "Vista ottimizzata con ritagli zoomati", 
+        color: accent
+      ),
     )
   ]
 ]
