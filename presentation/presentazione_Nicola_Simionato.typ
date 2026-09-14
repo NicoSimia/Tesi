@@ -482,8 +482,8 @@
 #slide(title: "Navigazione da Controller", section: "3. Sviluppo")[
   #block(height: 1fr)[
     #grid(columns: (1fr, 1fr), column-gutter: 1em, rows: (100%),
-      shot-panel(path: "../img/unity_logger_windows.png", caption: "Inspector — Navigation: Explicit", color: primary),
-      shot-panel(path: "../img/Code_Nintedo.png", caption: "Script del cursore a forma di mano", color: accent),
+      shot-panel(path: "../img/navigation_unity.png", caption: "Inspector — Navigation: Explicit", color: primary),
+      shot-panel(path: "../img/code_hand_cursor.png", caption: "Script del cursore a forma di mano", color: accent),
     )
   ]
 ]
