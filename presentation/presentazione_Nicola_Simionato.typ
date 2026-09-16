@@ -108,8 +108,10 @@
       columns: (1fr, auto),
       align(left)[
         #text(size: 12pt, fill: primary, weight: "bold")[
-          Università degli Studi di Padova \
-          Dipartimento di Matematica "Tullio Levi-Civita" \
+          Università degli Studi di Padova 
+
+          Dipartimento di Matematica "Tullio Levi-Civita" 
+
           Corso di Laurea in Informatica
         ]
       ],
@@ -120,17 +122,11 @@
       #text(size: 24pt, weight: "bold", fill: primary)[#titolo-esteso]
     ]
     #v(1.5fr)
-    #grid(
-      columns: (1fr, 1fr),
-      align(left)[
-        #text(size: 13pt, fill: luma(100))[Relatore:] \
-        #text(size: 15pt, weight: "bold", fill: text-color)[#relatore]
-      ],
-      align(right)[
-        #text(size: 13pt, fill: luma(100))[Candidato:] \
-        #text(size: 15pt, weight: "bold", fill: text-color)[#autore \ Matricola #matricola]
-      ]
-    )
+    #align(center)[
+      #text(size: 13pt, fill: luma(100))[Candidato:] 
+
+      #text(size: 15pt, weight: "bold", fill: text-color)[#autore \ Matricola #matricola]
+    ]
     #v(0.8fr)
     #align(center)[
       #text(size: 13pt, fill: primary, weight: "bold")[Esame di Laurea — #data-laurea]
