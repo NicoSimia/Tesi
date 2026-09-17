@@ -546,32 +546,144 @@
       block(fill: white, stroke: (top: 4pt + accent), radius: 0.3em, inset: 0.8em, height: 100%)[
         #grid(columns: (100%), rows: (auto, 1fr), row-gutter: 0.8em,
           align(center)[
-            #text(size: 14pt, weight: "bold", fill: accent)[Write Access Count]
             #v(0.4em)
-            #grid(columns: (1fr, auto, 1fr), align: horizon,
-              align(center)[
-                #text(size: 24pt, weight: "bold", fill: warn)[160+]
-                #v(0.1em)
-                #text(size: 13pt, fill: luma(100))[ops/min originali]
-              ],
-              align(center + horizon)[#text(size: 30pt, fill: luma(150))[→]],
-              align(center)[
-                #text(size: 24pt, weight: "bold", fill: primary)[< 32]
-                #v(0.1em)
-                #text(size: 13pt, fill: luma(100))[soglia richiesta]
-              ]
-            )
+            #text(size: 20pt, weight: "bold", fill: accent)[Ambiti Certificazione Nintendo]
+            #v(0.4em)
           ],
           align(left + top)[
-            #v(0.5em)
-            #text(size: 16pt, weight: "bold")[Tre ottimizzazioni:]
-            #v(0.3em)
-            - Scrittura ritardata (batch, 30s)
-            - Skip se contenuto invariato
-            - Riapertura file, non ricreazione
+            #v(1em)
+            - *Gestione Profili Utente*
+            - *Handled/Docked Mode*
+            - *Gestione Controller*
+            - *Sospensione e Ripresa*
+            - *Frequenza I/O Salvataggi*
           ]
         )
       ]
+    )
+  ]
+]
+
+#slide(title: "Ottimizzazione Salvataggi: Caso di Studio", section: "3. Sviluppo")[
+  #block(height: 1fr)[
+    #grid(
+      columns: (1.15fr, 1fr),
+      column-gutter: 1.0em,
+      rows: (100%),
+
+      // COLONNA SINISTRA: Diagramma di Flusso dell'Architettura
+      block(
+        fill: bg-box,
+        stroke: (top: 4pt + primary, rest: 1pt + luma(200)),
+        inset: (x: 0.6em, y: 0.6em),
+        radius: 0.4em,
+        height: 95%
+      )[
+        #align(center)[
+          #text(weight: "bold", size: 12pt, fill: primary)[Nuova Architettura "Buffered Save"]
+        ]
+        #v(0.5em)
+        
+        #align(center)[
+          #stack(
+            dir: ttb,
+            spacing: 0.2em,
+            
+            // Step 1
+            rect(width: 95%, fill: white, stroke: 0.8pt + primary, radius: 0.3em, inset: (x: 0.5em, y: 0.35em))[
+              #block[
+                #text(size: 13pt, weight: "bold", fill: primary)[1. Evento In-Game / Modifica Stato]
+                #v(0.15em)
+                #text(size: 10pt, fill: luma(100))[Evento causato dal giocatore]
+              ]
+            ],
+
+            text(fill: primary, size: 20pt, weight: "bold")[↓],
+
+            // Step 2
+            rect(width: 95%, fill: primary.lighten(88%), stroke: 0.8pt + primary, radius: 0.3em, inset: (x: 0.5em, y: 0.35em))[
+              #block[
+                #text(size: 13pt, weight: "bold", fill: primary)[2. Buffer Temporaneo in RAM]
+                #v(0.15em)
+                #text(size: 10pt, fill: luma(100))[Nessuna scrittura immediata su disco]
+              ]
+            ],
+
+            text(fill: primary, size: 20pt, weight: "bold")[↓],
+
+            // Step 3
+            rect(width: 95%, fill: white, stroke: 0.8pt + accent, radius: 0.3em, inset: (x: 0.5em, y: 0.35em))[
+              #block[
+                #text(size: 13pt, weight: "bold", fill: accent)[3. Check Hash e Invarianza]
+                #v(0.15em)
+                #text(size: 10pt, fill: luma(100))[Skip della scrittura se il file non è cambiato]
+              ]
+            ],
+
+            text(fill: primary, size: 20pt, weight: "bold")[↓],
+
+            // Step 4 (Fondo chiaro per non confondersi con il footer)
+            rect(width: 95%, fill: white, stroke: 1.2pt + primary, radius: 0.3em, inset: (x: 0.5em, y: 0.35em))[
+              #block[
+                #text(size: 13pt, weight: "bold", fill: primary)[4. Scrittura Batch (30s / Quitting)]
+                #v(0.15em)
+                #text(size: 10pt, fill: luma(100))[Flush singolo su memoria Flash della Switch]
+              ]
+            ]
+          )
+        ]
+      ],
+
+      // COLONNA DESTRA: Metriche Write Access Count e Vantaggi
+      grid(
+        rows: (1fr, 1.1fr),
+        row-gutter: 0.7em,
+
+        // Box Metrica Confronto
+        block(
+          fill: white,
+          stroke: (top: 4pt + accent, rest: 1pt + luma(200)),
+          inset: 0.7em,
+          radius: 0.4em,
+          width: 100%
+        )[
+          #align(center)[
+            #text(size: 13pt, weight: "bold", fill: accent)[Write Access Count]
+            #v(0.3em)
+            #grid(columns: (1fr, auto, 1fr), align: horizon,
+              align(center)[
+                #text(size: 22pt, weight: "bold", fill: warn)[160+]
+                #v(0.05em)
+                #text(size: 10.5pt, fill: luma(100))[ops/min orig.]
+              ],
+              align(center + horizon)[#text(size: 22pt, fill: luma(150))[$arrow.r$]],
+              align(center)[
+                #text(size: 22pt, weight: "bold", fill: primary)[< 32]
+                #v(0.05em)
+                #text(size: 10.5pt, fill: luma(100))[soglia Nintendo]
+              ]
+            )
+          ]
+        ],
+
+        // Box Vantaggi
+        block(
+          fill: white,
+          stroke: (top: 4pt + primary, rest: 1pt + luma(200)),
+          inset: 0.7em,
+          radius: 0.4em,
+          width: 100%,
+          height: 90%
+        )[
+          #text(weight: "bold", size: 20pt, fill: primary)[Ottimizzazione Implementate:]
+          #v(0.5em)
+          #text(size: 17pt)[
+            - *Scrittura Ritardata*
+            - *Skip del Contenuto Invariato*
+            - *Riapertura File, Non Creazione*
+          ]
+        ]
+      )
     )
   ]
 ]
