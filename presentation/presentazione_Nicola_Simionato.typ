@@ -4,8 +4,8 @@
 #let autore        = "Simionato Nicola"
 #let matricola     = "2113190"
 #let relatore      = "Prof. Tullio Vardanega"
-#let titolo-esteso = "Adattamento di Lost in the Dungeon (LITD) su Nintendo Switch"
-#let titolo-breve  = "Porting LITD"
+#let titolo-esteso = "Adattamento di \"Lost in the Dungeon\" (LITD) su Nintendo Switch"
+#let titolo-breve  = [_Porting_ LITD]
 #let data-laurea   = "24 Settembre 2026"
 
 // =============================================================================
@@ -58,7 +58,7 @@
           align(center + horizon)[
             #text(size: 18pt, weight: "bold", fill: text-color)[#the-slide-title.get()]
           ],
-          align(right + horizon)[#image("../img/logo_unipd.jpeg", height: 40pt)]
+          align(right + horizon)[#image("../img/logo_unipd_2.png", height: 40pt)]
         )
         v(-0.3em)
         line(length: 100%, stroke: 0.8pt + primary.lighten(70%))
@@ -108,14 +108,14 @@
       columns: (1fr, auto),
       align(left)[
         #text(size: 12pt, fill: primary, weight: "bold")[
-          Università degli Studi di Padova 
+          Università di Padova 
 
           Dipartimento di Matematica "Tullio Levi-Civita" 
 
           Corso di Laurea in Informatica
         ]
       ],
-      align(right + horizon)[#image("../img/logo_unipd.jpeg", width: 100pt)]
+      align(right + horizon)[#image("../img/logo_unipd_2.png", width: 200pt, height: auto)]
     )
     #v(1.2fr)
     #align(center)[
@@ -175,7 +175,7 @@
 // SEZIONE 1: L'AZIENDA (Slide 3 e 4)
 // =============================================================================
 
-#slide(title: "L'Azienda: Eggon Software House", section: "1. L'Azienda")[
+#slide(title: [L'Azienda: Eggon _Software House_], section: "1. L'Azienda")[
   #v(0.3em)
   #grid(
     columns: (32%, 68%),
@@ -214,7 +214,7 @@
           ],
           [
             #text(size: 10pt, fill: luma(100))[Origine] \
-            #text(size: 13pt, weight: "bold", fill: primary)[Experience USA]
+            #text(size: 13pt, weight: "bold", fill: primary)[Esperienza USA]
           ]
         )
       ],
@@ -276,7 +276,7 @@
         align: horizon,
 
         // Riga 1
-        corner-box(color: primary, arrow: "↘", label: "Genere", value: [Card Game + \ Dungeon Crawler]),
+        corner-box(color: primary, arrow: "↘", label: "Genere", value: [_Card Game_ + \ _Dungeon Crawler_]),
         [],
         corner-box(color: primary, arrow: "↙", label: "Rilascio", value: [Marzo 2018]),
 
@@ -284,7 +284,7 @@
         [], [], [],
 
         // Riga 3
-        corner-box(color: accent, arrow: "↗", label: "Piattaforme", value: [PC (Steam) \ Mobile (rimosso)]),
+        corner-box(color: accent, arrow: "↗", label: "Piattaforme", value: [PC (Steam) \ _Mobile_ (rimosso)]),
         [],
         corner-box(color: accent, arrow: "↖", label: "Sviluppo", value: [4° gioco Eggon \ unico indipendente])
       )
@@ -319,20 +319,20 @@
   ]
 }
 
-#slide(title: "Obiettivi dello Stage", section: "2. Obiettivi e Metodo")[
+#slide(title: [Obiettivi dello _Stage_], section: "2. Obiettivi e Metodo")[
   #block(height: 1fr)[
     #grid(
       rows: (1fr),
       columns: (1fr, auto, 1fr, auto, 1fr),
       align: horizon, column-gutter: 0.3em,
       img-tile(path: "../img/icon_gear.jpg", color: accent,
-        title: "Migrazione Engine", weeks: "Sett. 1-2 · da solo", metric: [0 errori compilazione]),
+        title: [Migrazione _Engine_], weeks: "Sett. 1-2 · da solo", metric: [0 errori compilazione]),
       align(center)[#text(size: 20pt, fill: luma(150))[→]],
       img-tile(path: "../img/icon_controller.jpg", color:  rgb("#0e4b7f"),
-        title: "Navigazione Controller", weeks: "Sett. 3-8 · in coppia", metric: [6/6 scene]),
+        title: [Navigazione _Controller_], weeks: "Sett. 3-8 · in coppia", metric: [6/6 scene]),
       align(center)[#text(size: 20pt, fill: luma(150))[→]],
       img-tile(path: "../img/icon_switch.jpg", color: primary,
-        title: "Certificazione Switch", weeks: "Sett. 3-8 · in coppia", metric: [6/6 test]),
+        title: "Certificazione Switch", weeks: "Sett. 3-8 · in coppia", metric: [6/6 _test_]),
     )
   ]
 ]
@@ -359,11 +359,11 @@
       ]
       #place(top + left, dx: 3%, dy: 55%)[
         #scatter-tile(path: "../img/icon_tutor.jpg", color: primary,
-          title: "Confronto Tutor", metric: "Informale, a ogni avanzamento")
+          title: [Confronto _Tutor_], metric: "Informale, a ogni avanzamento")
       ]
       #place(top + left, dx: 55%, dy: 10%)[
         #scatter-tile(path: "../img/icon_todo.jpg", color: accent,
-          title: "File Todo (md)", metric: "Versionato con Git")
+          title: [_File_ Todo (md)], metric: "Versionato con Git")
       ]
       #place(top + left, dx: 55%, dy: 55%)[
         #scatter-tile(path: "../img/icon_git.jpg", color: accent,
@@ -377,7 +377,7 @@
 // SEZIONE 3: SVILUPPO (Slide 7 e 8)
 // =============================================================================
 
-#slide(title: "Migrazione dell'Engine: Pipeline di Upgrade", section: "3. Sviluppo")[
+#slide(title: [Migrazione dell'_Engine_: _Pipeline_ di _Upgrade_], section: "3. Sviluppo")[
   // 1. TIMELINE ORIZZONTALE DELLE VERSIONI (SENZA BLOCCHI)
   #grid(
     columns: (1fr, auto, 1.2fr, auto, 1fr),
@@ -432,11 +432,11 @@
         gutter: 0.5em,
         align: horizon,
         text(fill: accent, weight: "bold", size: 12pt)[STEP 1:],
-        text(weight: "bold", size: 12pt, fill: text-color)[2017 $arrow.r$ 2021 (Refactoring Breaking Changes)]
+        text(weight: "bold", size: 12pt, fill: text-color)[2017 $arrow.r$ 2021 (_Refactoring Breaking Changes_)]
       )
       #v(0.3em)
-      - *API deprecate e namespace rimossi*
-      - *Rimozione gestione legacy dei file OBB*
+      - *API deprecate e _namespace_ rimossi*
+      - *Rimozione gestione _legacy_ dei _file_ OBB*
       - *Incompatibilità dei pacchetti di terze parti*
     ],
     
@@ -458,7 +458,7 @@
       #v(0.3em)
       - *Ripristino e integrazione Steamworks.NET*
       - *Allineamento alle API e librerie native Nintendo*
-      - *Risoluzione warning di compilazione e Render Pipeline*
+      - *Risoluzione _warning_ di compilazione e _Render Pipeline_*
     ]
   )
 ]
@@ -475,7 +475,7 @@
   ]
 }
 
-#slide(title: "Navigazione da Controller pt.1", section: "3. Sviluppo")[
+#slide(title: [Navigazione da _Controller_ pt.1], section: "3. Sviluppo")[
   #block(height: 1fr)[
     #grid(columns: (1fr, 1fr), column-gutter: 1em, rows: (100%),
       shot-panel(path: "../img/navigation_unity.png", caption: "Inspector — Navigation: Explicit", color: primary),
@@ -484,7 +484,7 @@
   ]
 ]
 
-#slide(title: "Navigazione da Controller pt.2", section: "3. Sviluppo")[
+#slide(title: [Navigazione da _Controller_ pt.2], section: "3. Sviluppo")[
   #block(height: 1fr)[
     #grid(
       columns: (1fr, 1fr),
@@ -521,7 +521,7 @@
             #text(weight: "bold", fill: primary, size: 12pt)[PRIMA]
             #v(0.05em)
             #set text(size: 10pt)
-            - *Stato Iniziale:* assenza di feedback visivo immediato.
+            - *Stato Iniziale:* assenza di _feedback_ visivo immediato.
             - Impossibile distinguere l'elemento attivo nel menu o nelle carte.
           ]
         )
@@ -556,7 +556,7 @@
           )[
             #text(weight: "bold", fill: accent, size: 12pt)[DOPO]
             #set text(size: 10pt)
-            - *Focus specifici:* selezione Carta.
+            - *_Focus_ specifici:* selezione Carta.
             - Integrazione navigazione con *cursore a mano*.
           ]
         )
@@ -581,8 +581,8 @@
           align(left + top)[
             #v(1em)
             - *Gestione Profili Utente*
-            - *Handled/Docked Mode*
-            - *Gestione Controller*
+            - *Handled/Docked _Mode_*
+            - *Gestione _Controller_*
             - *Sospensione e Ripresa*
             - *Frequenza I/O Salvataggi*
           ]
@@ -608,7 +608,7 @@
         height: 95%
       )[
         #align(center)[
-          #text(weight: "bold", size: 12pt, fill: primary)[Nuova Architettura "Buffered Save"]
+          #text(weight: "bold", size: 12pt, fill: primary)[Nuova Architettura "_Buffered Save_"]
         ]
         #v(0.5em)
         
@@ -631,7 +631,7 @@
             // Step 2
             rect(width: 95%, fill: primary.lighten(88%), stroke: 0.8pt + primary, radius: 0.3em, inset: (x: 0.5em, y: 0.35em))[
               #block[
-                #text(size: 13pt, weight: "bold", fill: primary)[2. Buffer Temporaneo in RAM]
+                #text(size: 13pt, weight: "bold", fill: primary)[2. _Buffer_ Temporaneo in RAM]
                 #v(0.15em)
                 #text(size: 10pt, fill: luma(100))[Nessuna scrittura immediata su disco]
               ]
@@ -642,9 +642,9 @@
             // Step 3
             rect(width: 95%, fill: white, stroke: 0.8pt + accent, radius: 0.3em, inset: (x: 0.5em, y: 0.35em))[
               #block[
-                #text(size: 13pt, weight: "bold", fill: accent)[3. Check Hash e Invarianza]
+                #text(size: 13pt, weight: "bold", fill: accent)[3. _Check Hash_ e Invarianza]
                 #v(0.15em)
-                #text(size: 10pt, fill: luma(100))[Skip della scrittura se il file non è cambiato]
+                #text(size: 10pt, fill: luma(100))[_Skip_ della scrittura se il _file_ non è cambiato]
               ]
             ],
 
@@ -653,9 +653,9 @@
             // Step 4 (Fondo chiaro per non confondersi con il footer)
             rect(width: 95%, fill: white, stroke: 1.2pt + primary, radius: 0.3em, inset: (x: 0.5em, y: 0.35em))[
               #block[
-                #text(size: 13pt, weight: "bold", fill: primary)[4. Scrittura Batch (30s / Quitting)]
+                #text(size: 13pt, weight: "bold", fill: primary)[4. Scrittura _Batch_ (30s / _Quitting_)]
                 #v(0.15em)
-                #text(size: 10pt, fill: luma(100))[Flush singolo su memoria Flash della Switch]
+                #text(size: 10pt, fill: luma(100))[_Flush_ singolo su memoria _Flash_ della Switch]
               ]
             ]
           )
@@ -707,8 +707,8 @@
           #v(0.5em)
           #text(size: 17pt)[
             - *Scrittura Ritardata*
-            - *Skip del Contenuto Invariato*
-            - *Riapertura File, Non Creazione*
+            - *_Skip_ del Contenuto Invariato*
+            - *Riapertura _File_, Non Creazione*
           ]
         ]
       )
@@ -738,14 +738,14 @@
   #block(height: 1fr)[
     #grid(rows: (1fr, 1fr, 1fr), row-gutter: 0.6em,
       result-row(icon: "✓", color: primary,
-        title: "Migrazione e stabilizzazione engine",
+        title: [Migrazione e stabilizzazione _engine_],
         detail: [0 errori di compilazione — OBB eliminato — compatibilità Steam ripristinata]),
       result-row(icon: "✓", color: primary,
-        title: "Navigazione da controller",
-        detail: [6/6 scene navigabili esclusivamente tramite gamepad]),
+        title: [Navigazione da _controller_],
+        detail: [6/6 scene navigabili completamente tramite _gamepad_]),
       result-row(icon: "5/6", color: accent,
         title: "Certificazione Nintendo Switch",
-        detail: [test superati entro le 8 settimane — 6/6 completato la settimana successiva dal collega]),
+        detail: [_test_ superati entro le 8 settimane — 6/6 completato la settimana successiva dal collega]),
     )
   ]
 ]
@@ -766,9 +766,9 @@
     #grid(rows: (1fr, 1fr), row-gutter: 0.7em,
       block(height: 100%)[
         #grid(columns: (1fr, 1fr, 1fr), column-gutter: 0.7em, rows: (100%),
-          stat-card(color: primary, number: "320", label: "ore complessive di stage"),
-          stat-card(color: primary, number: "72", label: "commit versionati con Git"),
-          stat-card(color: rgb("#0e4b7f"), number: "60/61", label: "attività del file Todo completate"),
+          stat-card(color: primary, number: "320", label: [ore complessive di _stage_]),
+          stat-card(color: primary, number: "72", label: [_commit_ versionati con Git]),
+          stat-card(color: rgb("#0e4b7f"), number: "60/61", label: [attività del _file_ Todo completate]),
         )
       ],
       block(fill: white, stroke: (top: 4pt + accent), radius: 0.3em, inset: 0.8em, height: 100%)[
@@ -782,7 +782,7 @@
             #text(size: 14pt)[
               - *7 CSV* — statistiche di carte ed equipaggiamenti, per future modifiche a danni ed economia di gioco
               - *1 documento* sul funzionamento del sistema di salvataggio Nintendo — struttura privata, poca esperienza reperibile sul mercato
-              - *1 documento* di setup e handoff — punti di forza del codice e modifiche introdotte, per chi riprenderà il progetto
+              - *1 documento* di _setup_ e _handoff_ — punti di forza del codice e modifiche introdotte, per chi riprenderà il progetto
             ]
           ]
         )
