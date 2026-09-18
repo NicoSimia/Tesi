@@ -487,52 +487,80 @@
 #slide(title: "Navigazione da Controller pt.2", section: "3. Sviluppo")[
   #block(height: 1fr)[
     #grid(
-      columns: (1fr, 1.4fr), // Colonna di sinistra (testo), colonna di destra (immagini)
-      rows: (1fr, 1fr),       // Riga 1 (Prima), Riga 2 (Dopo)
-      column-gutter: 1.5em,
-      row-gutter: 1.2em,
+      columns: (1fr, 1fr),
+      column-gutter: 1.2em,
+      rows: (100%),
 
-      // --- RIGA 1: PRIMA ---
-      // Sinistra: Testo "Prima"
-      align(horizon + left)[
-        #block(
-          stroke: (left: 4pt + primary),
-          inset: (left: 10pt),
-        )[
-          #text(weight: "bold", fill: primary)[PRIMA]\
-          #v(0.3em)
-          *Stato Iniziale:*
-          - Mancanza di feedback visivo immediato.
-          - Il giocatore non distingue l'elemento attivo nel menu o nelle carte.
-        ]
-      ],
-      // Destra: Immagine "Prima"
-      shot-panel(
-        path: "../img/game_before.png", 
-        caption: "Vista standard senza evidenziazioni", 
-        color: primary
-      ),
+      // =======================================================================
+      // COLONNA SINISTRA: PRIMA
+      // =======================================================================
+      block(
+        width: 100%,
+        height: 100%,
+        fill: white,
+        stroke: (top: 4pt + primary, rest: 0.8pt + luma(200)),
+        radius: 0.4em,
+        inset: 0.6em
+      )[
+        #grid(
+          columns: (100%),
+          rows: (1fr, auto),
+          row-gutter: 0.5em,
 
-      // --- RIGA 2: DOPO ---
-      // Sinistra: Testo "Dopo"
-      align(horizon + left)[
-        #block(
-          stroke: (left: 4pt + accent),
-          inset: (left: 10pt),
-        )[
-          #text(weight: "bold", fill: accent)[DOPO]\
-          #v(0.3em)
-          *Ingrandimenti e Focus:*
-          - Zoom mirato per il tasto *Menu* e la *Carta*.
-          - Integrazione della navigazione *Explicit* e cursore a mano.
-        ]
+          // Immagine in alto (massimo spazio visivo)
+          align(center + horizon)[
+            #image("../img/game_no_after.png", width: 100%, height: 100%, fit: "contain")
+          ],
+
+          // Spiegazione in basso
+          block(
+            width: 100%,
+            stroke: (left: 3pt + primary),
+            inset: (left: 8pt)
+          )[
+            #text(weight: "bold", fill: primary, size: 12pt)[PRIMA]
+            #v(0.05em)
+            #set text(size: 10pt)
+            - *Stato Iniziale:* assenza di feedback visivo immediato.
+            - Impossibile distinguere l'elemento attivo nel menu o nelle carte.
+          ]
+        )
       ],
-      // Destra: Immagine "Dopo" (quella con i riquadri sovrapposti come nello schizzo)
-      shot-panel(
-        path: "../img/game_after.png", 
-        caption: "Vista ottimizzata con ritagli zoomati", 
-        color: accent
-      ),
+
+      // =======================================================================
+      // COLONNA DESTRA: DOPO
+      // =======================================================================
+      block(
+        width: 100%,
+        height: 100%,
+        fill: white,
+        stroke: (top: 4pt + accent, rest: 0.8pt + luma(200)),
+        radius: 0.4em,
+        inset: 0.6em
+      )[
+        #grid(
+          columns: (100%),
+          rows: (1fr, auto),
+          row-gutter: 0.5em,
+
+          // Immagine in alto (massimo spazio visivo)
+          align(center + horizon)[
+            #image("../img/game_yes_before.png", width: 100%, height: 100%, fit: "contain")
+          ],
+
+          // Spiegazione in basso
+          block(
+            width: 100%,
+            stroke: (left: 3pt + accent),
+            inset: (left: 8pt)
+          )[
+            #text(weight: "bold", fill: accent, size: 12pt)[DOPO]
+            #set text(size: 10pt)
+            - *Focus specifici:* selezione Carta.
+            - Integrazione navigazione con *cursore a mano*.
+          ]
+        )
+      ]
     )
   ]
 ]
