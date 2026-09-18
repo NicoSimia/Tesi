@@ -227,11 +227,11 @@
         radius: (right: 0.4em),
         width: 100%
       )[
-        #text(weight: "bold", fill: accent, size: 14pt)[Settori Chiave di Business]
+        #text(weight: "bold", fill: accent, size: 14pt)[Settori Chiave di _Business_]
         #v(0.3em)
-        - *Digital Health* //: App *mioPediatra* per canale diretto genitori-medico
+        - *_Digital Health_* //: App *mioPediatra* per canale diretto genitori-medico
         - *IoT & Industria 5.0* // : Analytics dati smart per efficientamento energetico
-        - *Insurtech* //: PWA *MyWide* per gestione e digitalizzazione polizze
+        - *_Insurtech_* //: PWA *MyWide* per gestione e digitalizzazione polizze
         - *Sviluppo Videoludico*
       ]
     )
