@@ -720,32 +720,71 @@
 // SEZIONE 4: RESOCONTO & BILANCIO (Slide 9 e 10)
 // =============================================================================
 // 
-#let result-row(icon: "check", color: primary, title: "", detail: []) = {
-  block(width: 100%, fill: color.lighten(93%), stroke: (left: 5pt + color),
-    inset: 0.7em, radius: (right: 0.3em))[
-    #grid(columns: (auto, 1fr), column-gutter: 0.8em, align: horizon,
-      box(width: 2.2em)[#align(center)[#text(size: 17pt, weight: "bold", fill: color)[#icon]]],
-      [
-        #text(size: 16pt, weight: "bold", fill: color)[#title]
-        #linebreak()
-        #text(size: 13.5pt, fill: luma(80))[#detail]
+#let result-row(icon: "✓", color: primary, title: "", detail: [], img: none) = {
+  grid(
+    columns: (1fr, 3.2em), // Il blocco prende tutto lo spazio principale, l'icona ha dimensione fissa a destra
+    column-gutter: 1.2em,
+    align: horizon,
+    
+    // Blocco colorato con larghezza ridotta
+    block(
+      width: 100%, 
+      fill: color.lighten(93%), 
+      stroke: (left: 5pt + color),
+      inset: 0.7em, 
+      radius: (right: 0.3em)
+    )[
+      #grid(
+        columns: (auto, 1fr), 
+        column-gutter: 0.8em, 
+        align: horizon,
+        box(width: 2.2em)[#align(center)[#text(size: 17pt, weight: "bold", fill: color)[#icon]]],
+        [
+          #text(size: 16pt, weight: "bold", fill: color)[#title]
+          #linebreak()
+          #text(size: 13.5pt, fill: luma(80))[#detail]
+        ]
+      )
+    ],
+
+    // Icona immagine sulla destra
+    if img != none {
+      align(center + horizon)[
+        #image(img, width: 100%, fit: "contain")
       ]
-    )
-  ]
+    }
+  )
 }
 
 #slide(title: "Risultati Raggiunti", section: "4. Resoconto")[
   #block(height: 1fr)[
-    #grid(rows: (1fr, 1fr, 1fr), row-gutter: 0.6em,
-      result-row(icon: "✓", color: primary,
+    #grid(
+      rows: (1fr, 1fr, 1fr), 
+      row-gutter: 0.6em,
+
+      result-row(
+        icon: "✓", 
+        color: primary,
         title: [Migrazione e stabilizzazione _engine_],
-        detail: [0 errori di compilazione — OBB eliminato — compatibilità Steam ripristinata]),
-      result-row(icon: "✓", color: primary,
+        detail: [0 errori di compilazione — OBB eliminato — compatibilità Steam ripristinata],
+        img: "../img/icon_gear.jpg" // Sostituisci con il tuo file
+      ),
+      
+      result-row(
+        icon: "✓", 
+        color: primary,
         title: [Navigazione da _controller_],
-        detail: [6/6 scene navigabili completamente tramite _gamepad_]),
-      result-row(icon: "5/6", color: accent,
+        detail: [6/6 scene navigabili completamente tramite _gamepad_],
+        img: "../img/icon_controller.jpg" // Sostituisci con il tuo file
+      ),
+      
+      result-row(
+        icon: "5/6", 
+        color: accent,
         title: "Certificazione Nintendo Switch",
-        detail: [_test_ superati entro le 8 settimane — 6/6 completato la settimana successiva dal collega]),
+        detail: [_test_ superati entro le 8 settimane — 6/6 completato la settimana successiva dal collega],
+        img: "../img/icon_switch.jpg" // Sostituisci con il tuo file
+      ),
     )
   ]
 ]
